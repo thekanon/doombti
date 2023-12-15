@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Colors */
+  --primary-100: #f0edff;
+  --primary-200: #d9d2ff;
+  --primary-300: #c2b6ff;
+  --primary-400: #ab9bff;
+  --primary-500: #6949ff; /* 기본 색상 */
+  --primary-600: #5038cc;
+  --primary-700: #382699;
+  --primary-800: #211466;
+  --primary-900: #0a0233;
+
+  /* Secondary Colors */
+  --secondary-100: #fff7e0;
+  --secondary-200: #ffeec0;
+  --secondary-300: #ffe5a0;
+  --secondary-400: #ffdc80;
+  --secondary-500: #ffc107; /* 기본 색상 */
+  --secondary-600: #cc9805;
+  --secondary-700: #997104;
+  --secondary-800: #665103;
+  --secondary-900: #332802;
+
+  /* Alert & Status Colors */
+  --success: #12d18e;
+  --info: #6949ff;
+  --warning: #facc15;
+  --error: #f75555;
+  --disabled: #d8d8d8;
+  --disabled-button: #543acc;
+
+  /* Greyscale Colors */
+  --greyscale-900: #212121;
+  --greyscale-800: #424242;
+  --greyscale-700: #616161;
+  --greyscale-600: #757575;
+  --greyscale-500: #9e9e9e;
+  --greyscale-400: #bdbdbd;
+  --greyscale-300: #e0e0e0;
+  --greyscale-200: #eeeeee;
+  --greyscale-100: #f5f5f5;
+  --greyscale-50: #fafafa;
+
+  /* Dark Colors */
+  --dark-1: #181a20;
+  --dark-2: #1f222a;
+  --dark-3: #262a35;
+  --dark-4: #35383f;
+
+  /* Other Colors */
+  --white: #ffffff;
+  --black: #000000;
+  --red: #f44336;
+  --pink: #e91e63;
+  --purple: #9c27b0;
+  --deep-purple: #673ab7;
+  --indigo: #3f51b5;
+  --blue: #2196f3;
+  --light-blue: #03a9f4;
+  --cyan: #00bcd4;
+  --teal: #009688;
+  --green: #4caf50;
+  --light-green: #8bc34a;
+  --lime: #cddc39;
+  --yellow: #ffeb3b;
+  --amber: #ffc107;
+  --orange: #ff9800;
+  --deep-orange: #ff5722;
+  --brown: #795548;
+  --blue-grey: #607d8b;
+
+  /* Background Colors */
+  --background-purple: #f9f8ff;
+  --background-yellow: #fffceb;
+  --background-green: #f1fdf5;
+  --background-blue: #f6f9ff;
+  --background-teal: #f2fffd;
+  --background-red: #fff7f8;
+  --background-orange: #fff8ed;
+
+  /* Transparent Colors */
+  --transparent-purple: #6949ff;
+  --transparent-yellow: #ffd300;
+  --transparent-green: #12d18e;
+  --transparent-blue: #246bfd;
+  --transparent-teal: #019b83;
+  --transparent-red: #ff5a5f;
+  --transparent-orange: #ff9800;
+  --transparent-cyan: #00bcd4;
+
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+
+  /* 새 그라데이션 변수 정의 */
+  --gradient-green-start: 18, 209, 142; /* #12D18E */
+  --gradient-green-end: 113, 227, 187; /* #71E3BB */
+  --gradient-yellow-start: 250, 204, 21; /* #FACC15 */
+  --gradient-yellow-end: 255, 229, 128; /* #FFE580 */
+  --gradient-blue-start: 33, 150, 243; /* #2196F3 */
+  --gradient-blue-end: 110, 198, 255; /* #6EC6FF */
+  --gradient-purple-start: 156, 39, 176; /* #9C27B0 */
+  --gradient-purple-end: 216, 128, 242; /* #D980F2 */
+  --gradient-teal-start: 0, 150, 136; /* #009688 */
+  --gradient-teal-end: 102, 216, 201; /* #66D8C9 */
+  --gradient-red-start: 244, 67, 54; /* #F44336 */
+  --gradient-red-end: 255, 138, 128; /* #FF8A80 */
+  --gradient-orange-start: 255, 152, 0; /* #FF9800 */
+  --gradient-orange-end: 255, 209, 128; /* #FFD180 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+}
+
+/* 새 그라데이션 스타일 정의 */
+.gradient-green {
+  background-image: linear-gradient(
+    286deg,
+    rgb(var(--gradient-green-start)) 0%,
+    rgb(var(--gradient-green-end)) 100%
+  );
+}
+
+.gradient-yellow {
+  background-image: linear-gradient(
+    286deg,
+    rgb(var(--gradient-yellow-start)) 0%,
+    rgb(var(--gradient-yellow-end)) 100%
+  );
+}
+
+.gradient-blue {
+  background-image: linear-gradient(
+    286deg,
+    rgb(var(--gradient-blue-start)) 0%,
+    rgb(var(--gradient-blue-end)) 100%
+  );
+}
+
+.gradient-purple {
+  background-image: linear-gradient(
+    286deg,
+    rgb(var(--gradient-purple-start)) 0%,
+    rgb(var(--gradient-purple-end)) 100%
+  );
+}
+
+.gradient-teal {
+  background-image: linear-gradient(
+    286deg,
+    rgb(var(--gradient-teal-start)) 0%,
+    rgb(var(--gradient-teal-end)) 100%
+  );
+}
+
+.gradient-red {
+  background-image: linear-gradient(
+    286deg,
+    rgb(var(--gradient-red-start)) 0%,
+    rgb(var(--gradient-red-end)) 100%
+  );
+}
+
+.gradient-orange {
+  background-image: linear-gradient(
+    286deg,
+    rgb(var(--gradient-orange-start)) 0%,
+    rgb(var(--gradient-orange-end)) 100%
+  );
+}
+
+/* Font Used */
+.Bold {
+  font-family: Nunito;
+  font-weight: 700;
+}
+.SemiBold {
+  font-family: Nunito;
+  font-weight: 600;
+}
+.Medium {
+  font-family: Nunito;
+  font-weight: 500;
+}
+.Regular {
+  font-family: Nunito;
+  font-weight: 400;
+}
+.Heading1 {
+  color: var(--greyscale-900, #212121);
+  /* H1/bold */
+  font-family: Nunito;
+  font-size: 48px;
+  font-style: normal;
+  line-height: 160%; /* 76.8px */
+}
+.Heading2 {
+  color: var(--greyscale-900, #212121);
+  /* H2/bold */
+  font-family: Nunito;
+  font-size: 40px;
+  font-style: normal;
+  line-height: 160%; /* 57.6px */
+}
+.Heading3 {
+  color: var(--greyscale-900, #212121);
+  /* H3/bold */
+  font-family: Nunito;
+  font-size: 32px;
+  font-style: normal;
+  line-height: 160%; /* 51.2px */
+}
+.Heading4 {
+  color: var(--greyscale-900, #212121);
+  /* H4/bold */
+  font-family: Nunito;
+  font-size: 24px;
+  font-style: normal;
+  line-height: 160%; /* 38.4px */
+}
+.Heading5 {
+  color: var(--greyscale-900, #212121);
+  /* H5/bold */
+  font-family: Nunito;
+  font-size: 20px;
+  font-style: normal;
+  line-height: 160%; /* 32px */
+}
+.Heading6 {
+  color: var(--greyscale-900, #212121);
+  /* H6/bold */
+  font-family: Nunito;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 160%; /* 25.6px */
+}
+.Body {
+  color: var(--greyscale-900, #212121);
+  font-family: Nunito;
+  font-style: normal;
+  line-height: 140%; /* 25.2px */
+  letter-spacing: 0.2px;
+}
+.XLarge {
+  font-size: 18px;
+}
+.Large {
+  font-size: 16px;
+}
+.Medium {
+  font-size: 14px;
+}
+.Small {
+  font-size: 12px;
+}
+.XSmall {
+  font-size: 10px;
+}
+
+/* Swiper */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination-bullet {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  color: #000;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.swiper-pagination-bullet-active {
+  color: #fff;
+  width: 50px !important;
+  background: var(--primary-500) !important;
+  border-radius: 100px !important;
+}

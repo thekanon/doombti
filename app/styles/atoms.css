@@ -1,0 +1,62 @@
+/* inputField */
+/* 공통 스타일을 .input-field 클래스에 정의합니다. */
+.input-field {
+  border-radius: 16px;
+}
+
+/* 각 상태별로 색상과 배경만 지정합니다. */
+.default-input-field {
+  color: var(--greyscale-900, #9e9e9e);
+  background: var(--greyscale-50, #fafafa);
+}
+.fill-input-field {
+  color: var(--greyscale-500, #8c8c8c);
+  background: var(--greyscale-50, #fafafa);
+}
+
+.active-input-field {
+  color: var(--greyscale-900, #212121);
+  border: 1px solid var(--primary-500, #6949ff);
+  background: rgba(105, 73, 255, 0.08);
+}
+
+.dark-default-input-field {
+  color: var(--greyscale-100, #9e9e9e);
+  background: var(--dark-dark-2, #1f222a);
+}
+.dark-fill-input-field {
+  color: var(--greyscale-500, #9e9e9e);
+  background: var(--dark-dark-2, #1f222a);
+}
+
+.dark-active-input-field {
+  color: var(--others-white, #fff);
+  border: 1px solid var(--primary-500, #6949ff);
+  background: rgba(105, 73, 255, 0.08);
+}
+
+/* 공통 부모 클래스를 사용하여 모든 input 요소에 대한 스타일을 적용합니다. */
+.input-field input {
+  background: transparent;
+}
+
+/* Button */
+.button-component {
+}
+
+.button-component.primary {
+  border-bottom: 5px solid var(--alerts-status-button-disabled, #543acc);
+  background: var(--primary-500, #6949ff);
+
+  color: var(--others-white, #fff);
+}
+.button-component.secondary {
+  border-bottom: 5px solid var(--primary-200, #c3b6ff);
+  background: var(--primary-100, #f0edff);
+
+  color: var(--primary-500, #6949ff);
+}
+.button-component.additional {
+  border-bottom: 5px solid var(--greyscale-300, #e0e0e0);
+  background: var(--others-white, #fff);
+}
