@@ -1,10 +1,11 @@
-import React, { ReactNode } from "react";
-import { Swiper as SwiperClass, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { EffectFade, Navigation, Pagination } from "swiper/modules";
+'use client';
+import React, { ReactNode } from 'react';
+import { Swiper as SwiperClass, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 
 // html 태그
 interface SlideItem {
@@ -12,14 +13,14 @@ interface SlideItem {
 }
 
 interface SwiperProps {
-  spaceBetween: number;
-  effect: string;
-  navigation: boolean;
-  pagination: {
+  spaceBetween?: number;
+  effect?: string;
+  navigation?: boolean;
+  pagination?: {
     clickable: boolean;
   };
-  modules: any[];
-  className: string;
+  modules?: any[];
+  className?: string;
   slides: SlideItem[];
 }
 
@@ -35,7 +36,7 @@ const Swiper: React.FC<SwiperProps> = ({
   const defaultPagination = {
     clickable: true,
     renderBullet: function (index: number, className: string) {
-      return '<span class="' + className + '">' + "</span>";
+      return '<span class="' + className + '">' + '</span>';
     },
   };
 

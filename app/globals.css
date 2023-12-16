@@ -95,7 +95,7 @@
   --transparent-cyan: #00bcd4;
 
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
 
   /* 새 그라데이션 변수 정의 */
@@ -115,13 +115,13 @@
   --gradient-orange-end: 255, 209, 128; /* #FFD180 */
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -276,25 +276,17 @@ body {
 /* Swiper */
 .swiper {
   width: 100%;
-  height: 100%;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: var(--background-start-rgb);
 
   /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .swiper-pagination-bullet {
