@@ -8,6 +8,8 @@ const IntroPage = () => {
   const router = useRouter();
 
   useEffect(() => {
+    router.prefetch('introduce/step');
+
     const timer = setTimeout(() => {
       router.push('introduce/step');
     }, 3000);
