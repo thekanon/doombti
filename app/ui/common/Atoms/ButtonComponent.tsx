@@ -17,7 +17,7 @@ const ButtonComponent = ({
   iconStyle,
   state = 'active',
   theme = 'light',
-  customStyle,
+  customStyle = 'py-[18px] px-4 ',
   text,
 }: ButtonComponentProps) => {
   let baseStyles =

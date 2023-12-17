@@ -24,3 +24,27 @@ import { Inter } from 'next/font/google'
 -> 다크모드 이거 좀 골때리네
 
 tailwind 개어렵다.
+
+컴포넌트 만들어야함
+
+- 색 있는 아이콘이 있는 버튼
+
+# question 페이지 구현방법?
+
+1. 첫 로드 시 페이지에서 json 데이터 가져옴
+   -> DB 연동해서 뿌리자
+   -> postgreSQL 연동해서 뿌리자
+   -> 샘플 데이터
+   title='JavaScript에서 "hoisting"이란 무엇인가요?'
+   description=""
+   questions={[
+   '변수와 함수 선언을 스크립트의 맨 위로 끌어올리는 JavaScript의 기본 행동',
+   '페이지가 로드될 때 스크립트를 서버에서 클라이언트로 전송하는 과정',
+   '함수 내에서만 사용할 수 있는 변수를 선언하는 방법',
+   'CSS 스타일을 JavaScript로 동적으로 조작하는 방법',
+   ]
+
+   pnpm install uuid
+
+2. json 데이터를 컨테이너에 props로 넘겨줌
+3. 컨테이너에서 json 데이터를 통해 인터렉션을 구현함.

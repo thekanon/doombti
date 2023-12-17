@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
 import Swiper from '@/app/ui/common/Molecules/Swiper';
 import ButtonComponent from '@/app/ui/common/Atoms/ButtonComponent';
 import Image from 'next/image';
@@ -14,6 +15,7 @@ const Tutorial1Page = {
         width={500}
         height={500}
         alt="introstep1"
+        loading="eager" // 레이지 로딩 비활성화
       />
       <div className="max-w-xl pb-2 pt-4">
         <h1 className="Bold text-2xl	">
@@ -35,6 +37,7 @@ const Tutorial2Page = {
         width={500}
         height={500}
         alt="introstep1"
+        loading="eager" // 레이지 로딩 비활성화
       />
       <div className="max-w-xl pb-2 pt-4">
         <h1 className="Bold text-2xl">
@@ -59,6 +62,7 @@ const Tutorial3Page = {
         width={500}
         height={500}
         alt="introstep1"
+        loading="eager" // 레이지 로딩 비활성화
       />
       <div className="max-w-xl pb-2 pt-4">
         <h1 className="Bold text-2xl">
@@ -77,8 +81,8 @@ const StepPage = () => {
       className="h-screen
     "
     >
-      <div className="absolute left-0 right-0 pt-16">
-        <Swiper slides={[Tutorial1Page, Tutorial2Page, Tutorial3Page]} />
+      <div className="absolute left-0 right-0 pt-10">
+        <Swiper slides={[Tutorial2Page, Tutorial3Page, Tutorial1Page]} />
       </div>
       {/* button wrapper */}
       <div

@@ -229,3 +229,29 @@ export async function getUser(email: string) {
     throw new Error('Failed to fetch user.');
   }
 }
+
+export async function getQuestionsWithOptions() {
+  try {
+    const result = await sql`
+      SELECT 
+        q.id AS question_id,
+        q.title,
+        q.category,
+        q.createdat,
+        q.icon,
+        q.answerid,
+        json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
+      FROM 
+        questions q
+      JOIN 
+        questionoptions o ON q.id = o.questionid
+      GROUP BY 
+        q.id, q.title, q.category, q.createdat, q.icon, q.answerid
+      LIMIT 3;
+    `;
+    return result.rows;
+  } catch (error) {
+    console.error('Failed to fetch questions with options:', error);
+    throw new Error('Failed to fetch questions with options.');
+  }
+}

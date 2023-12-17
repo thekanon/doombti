@@ -8,6 +8,10 @@ const IntroPage = () => {
   const router = useRouter();
 
   useEffect(() => {
+    /*
+      prefetch를 사용하여 페이지를 미리 로드
+      얘를 안하면 페이지 이동후에 이미지를 가져오기 때문에 페이지 레이아웃이 깨짐
+    */
     router.prefetch('introduce/step');
 
     const timer = setTimeout(() => {
