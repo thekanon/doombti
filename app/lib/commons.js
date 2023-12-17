@@ -1,8 +1,9 @@
 export const ICON_LIST = [
+  'Profile',
   '2 User',
   '3 User',
-  'Activity',
   'Add User',
+  'Activity',
   'Arrow - Down 2',
   'Arrow - Down 3',
   'Arrow - Down Circle',
@@ -75,7 +76,6 @@ export const ICON_LIST = [
   'Password',
   'Play',
   'Plus',
-  'Profile',
   'Scan',
   'Search',
   'Send',

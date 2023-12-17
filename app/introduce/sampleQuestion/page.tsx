@@ -10,10 +10,10 @@ import { getQuestionsWithOptions } from '@/app/lib/data';
 
 const SampleQuestionPage = async ({ question = 0 }: { question: number }) => {
   const questions = await getQuestionsWithOptions();
-  console.log(questions);
+
   return (
     <div>
-      <QuestionContainer />
+      <QuestionContainer questions={questions} />
     </div>
   );
 };

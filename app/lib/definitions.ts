@@ -86,3 +86,28 @@ export type InvoiceForm = {
   amount: number;
   status: 'pending' | 'paid';
 };
+
+export interface IIConQuestion {
+  title: string;
+  description: string;
+  questions: QuestionOption[];
+}
+
+export type QuestionOption = {
+  id: string;
+  question_id: string;
+  text: string;
+};
+export type Question = {
+  question_id: string;
+  title: string;
+  category: string;
+  createdat: string;
+  icon: string;
+  answerid: string;
+  options: QuestionOption[];
+};
+
+export type IQuestionContainerProps = {
+  questions: Question[];
+};

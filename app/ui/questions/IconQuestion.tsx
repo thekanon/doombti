@@ -1,27 +1,11 @@
 import React from 'react';
 import IconButton from '../common/Molecules/IconButton';
 import { ICON_LIST, COLOR_LIST } from '@/app/lib/commons';
-/*
-  제목
-    Question의 제목
-  설명
-    제목 하단에 들어가는 설명
-  문항
-    Question의 문항(4지선다)
-*/
-export interface IIConQuestion {
-  title: string;
-  description: string;
-  questions: string[];
-}
+import { IIConQuestion } from '@/app/lib/definitions';
+
 const IconQuestion = (props: IIConQuestion) => {
   const colors = COLOR_LIST;
   const icons = ICON_LIST;
-
-  const getRandomIcon = () => {
-    const randomIndex = Math.floor(Math.random() * icons.length);
-    return icons[randomIndex];
-  };
 
   return (
     <>
@@ -40,8 +24,8 @@ const IconQuestion = (props: IIConQuestion) => {
           {props.questions.map((question, index) => (
             <IconButton
               key={index}
-              icon={getRandomIcon()}
-              text={question}
+              icon={icons[index % icons.length]}
+              text={question.text}
               color={colors[index % colors.length]}
             />
           ))}

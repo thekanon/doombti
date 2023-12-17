@@ -13,9 +13,14 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ percentage, color }) => {
     transition: 'width 1s ease-in-out',
   };
 
+  const isComplete = percentage >= 100;
+
   return (
     <div className="h-2.5 w-full rounded bg-gray-300">
-      <div style={progressBarStyle} className="h-full rounded"></div>
+      <div
+        style={progressBarStyle}
+        className={`h-full rounded ${isComplete ? 'colorfulBlink' : ''}`}
+      ></div>
     </div>
   );
 };

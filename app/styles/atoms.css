@@ -60,3 +60,26 @@
   border-bottom: 5px solid var(--greyscale-300, #e0e0e0);
   background: var(--others-white, #fff);
 }
+@keyframes colorfulBlink {
+  0%,
+  100% {
+    opacity: 1;
+    background-color: green;
+  }
+  25% {
+    opacity: 0.75;
+    background-color: blue;
+  }
+  50% {
+    opacity: 0.5;
+    background-color: red;
+  }
+  75% {
+    opacity: 0.75;
+    background-color: yellow;
+  }
+}
+
+.colorfulBlink {
+  animation: colorfulBlink 2s ease-in-out infinite;
+}

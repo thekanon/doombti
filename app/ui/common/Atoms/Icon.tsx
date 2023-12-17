@@ -21,7 +21,6 @@ const iconMappings = (theme: string, type: string) => {
 
 const Icon = ({ type, theme, leftMargin = true }: IconProps) => {
   const iconSrc = iconMappings(theme, type);
-
   if (iconSrc) {
     return (
       <div className={leftMargin ? 'ml-2' : ''}>

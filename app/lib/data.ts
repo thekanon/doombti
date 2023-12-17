@@ -247,7 +247,7 @@ export async function getQuestionsWithOptions() {
         questionoptions o ON q.id = o.questionid
       GROUP BY 
         q.id, q.title, q.category, q.createdat, q.icon, q.answerid
-      LIMIT 3;
+      LIMIT 5;
     `;
     return result.rows;
   } catch (error) {

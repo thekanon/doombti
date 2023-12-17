@@ -31,7 +31,7 @@ const IconButton = ({
         ${color}
   `;
   const rightClassName = `rounded-tr-lg rounded-br-lg border-t border-r border-b border-gray-300`;
-
+  console.log(icon);
   return (
     <button
       onClick={onClick}
