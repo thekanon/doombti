@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Swiper from '@/app/ui/common/Molecules/Swiper';
 import ButtonComponent from '@/app/ui/common/Atoms/ButtonComponent';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const Tutorial1Page = {
   content: (
@@ -76,6 +77,8 @@ const Tutorial3Page = {
 };
 
 const StepPage = () => {
+  const router = useRouter();
+
   return (
     <div
       className="h-screen
@@ -95,9 +98,12 @@ const StepPage = () => {
           styleType="filled"
           customStyle="w-full max-w-xl py-2"
           text="일단 해보기"
+          onClick={() => {
+            router.push('./sampleQuestion');
+          }}
         ></ButtonComponent>
         <ButtonComponent
-          colorType="primary"
+          colorType="secondary"
           state="active"
           customStyle="w-full max-w-xl py-2"
           styleType="filled"

@@ -9,6 +9,7 @@ export interface ButtonComponentProps {
   theme?: 'dark' | 'light';
   customStyle?: string;
   text?: string;
+  onClick?: () => void;
 }
 
 const ButtonComponent = ({
@@ -19,6 +20,7 @@ const ButtonComponent = ({
   theme = 'light',
   customStyle = 'py-[18px] px-4 ',
   text,
+  onClick,
 }: ButtonComponentProps) => {
   let baseStyles =
     // "px-4 py-2 text-sm font-medium rounded-md focus:outline-none";
@@ -56,7 +58,7 @@ const ButtonComponent = ({
   `;
 
   return (
-    <button className={buttonStyles}>
+    <button className={buttonStyles} onClick={onClick}>
       {iconStyle && <Icon type={iconStyle} theme={theme} />} {text}
     </button>
   );

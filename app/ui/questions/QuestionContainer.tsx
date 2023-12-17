@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 
 import IconQuestion from './IconQuestion';
@@ -5,12 +6,13 @@ import ProgressBar from '../common/Atoms/ProgressBar';
 import ButtonComponent from '../common/Atoms/ButtonComponent';
 
 const QuestionContainer = () => {
-  const question = 50;
+  const [question, setQuestion] = React.useState(0);
 
   return (
     <div>
-      {' '}
-      <ProgressBar percentage={question} color="black" />
+      <div className="p-4">
+        <ProgressBar percentage={question} color="black" />
+      </div>
       <div className="flex flex-col items-center justify-center">
         <IconQuestion
           title='JavaScript에서 "hoisting"이란 무엇인가요?'
