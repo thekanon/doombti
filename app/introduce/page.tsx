@@ -16,19 +16,27 @@ const IntroPage = () => {
 
     const timer = setTimeout(() => {
       router.push('introduce/step');
-    }, 3000);
+    }, 300000);
 
     return () => clearTimeout(timer);
   }, [router]);
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
-      <div className=" w-5/12">
+    <div
+      className="flex h-screen flex-col items-center justify-around
+    "
+    >
+      <div
+        className="w-7/12 md:w-3/12"
+        style={{
+          textAlign: '-webkit-center' as any,
+        }}
+      >
         <Image src="/logo.svg" width={400} height={400} alt="logo Image" />
         <h1 className="text-center text-4xl font-bold">Dev Quiz</h1>
-      </div>
-      <div className="absolute bottom-0 h-40 w-40">
-        <Loading />
+        <div className="w-1/2">
+          <Loading />
+        </div>
       </div>
     </div>
   );
