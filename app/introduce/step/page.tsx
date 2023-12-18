@@ -85,7 +85,7 @@ const StepPage = () => {
     "
     >
       <div className="absolute left-0 right-0 pt-10">
-        <Swiper slides={[Tutorial2Page, Tutorial3Page, Tutorial1Page]} />
+        <Swiper slides={[Tutorial1Page, Tutorial2Page, Tutorial3Page]} />
       </div>
       {/* button wrapper */}
       <div

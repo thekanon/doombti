@@ -1,30 +1,38 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IQuestionContainerProps } from '@/app/lib/definitions';
 
 import IconQuestion from './IconQuestion';
 import ProgressBar from '../common/Atoms/ProgressBar';
 import ButtonComponent from '../common/Atoms/ButtonComponent';
 
+import useQuestionStore from '@/app/lib/stores/questionStore';
+
 const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
-  const [percentage, setPercentage] = useState(0);
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const totalQuestions = questions.length;
+  // question 관련 state
+  const {
+    percentage,
+    questionIndex,
+    totalQuestions,
+    setQuestionList,
+    setTotalQuestions,
+    handleNext,
+    handleBack,
+    handleSubmit,
+  } = useQuestionStore();
 
-  const handleNext = () => {
-    setPercentage(((questionIndex + 1) / totalQuestions) * 100);
-    setQuestionIndex(questionIndex + 1);
-  };
-  const handleBack = () => {
-    setPercentage(
-      ((questionIndex - 1 > 0 ? questionIndex - 1 : 0) / totalQuestions) * 100,
-    );
+  // question 초기화
+  useEffect(() => {
+    if (questions?.length === 0) {
+      setQuestionList([]);
+    } else {
+      setQuestionList(questions);
+    }
+    setTotalQuestions(questions.length);
+  }, []);
 
-    setQuestionIndex(questionIndex - 1);
-  };
-  const handleSubmit = () => {
-    setPercentage(100);
-    console.log('submit');
+  const handleIconClick = (index: number) => {
+    console.log('handleIconClick', index);
   };
 
   return (
@@ -37,11 +45,12 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
           title={questions[questionIndex].title}
           description={questions[questionIndex].category}
           questions={questions[questionIndex].options}
+          onClick={handleIconClick}
         />
       </div>
       {/* fixed footer */}
       <div
-        className="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-4 bg-white"
+        className="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-4 bg-white p-4"
         style={{ height: '10vh' }}
       >
         {questionIndex > 0 && (

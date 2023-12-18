@@ -41,4 +41,21 @@ input[type='number']::-webkit-outer-spin-button {
   gap: 4px;
   flex: 1 0 0;
   align-self: stretch;
+  text-align: left;
+}
+@keyframes clickAnimation {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2); /* 확대 비율 조정 가능 */
+  }
+}
+.click-effect {
+  animation: clickAnimation 0.5s ease; /* 지속 시간과 타이밍 함수 조정 가능 */
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
 }

@@ -91,6 +91,7 @@ export interface IIConQuestion {
   title: string;
   description: string;
   questions: QuestionOption[];
+  onClick: (id: number) => void;
 }
 
 export type QuestionOption = {

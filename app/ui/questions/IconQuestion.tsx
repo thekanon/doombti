@@ -15,8 +15,10 @@ const IconQuestion = (props: IIConQuestion) => {
         p-2
       "
       >
+        <div className="Body XLarge Regular flex w-full items-start">
+          {props.description}
+        </div>
         <div className="Heading4 Bold break-keep">{props.title}</div>
-        <div className="Body XLarge Regular">{props.description}</div>
         <div
           className="flex w-full flex-col flex-wrap items-center justify-center gap-4
         "
@@ -24,9 +26,11 @@ const IconQuestion = (props: IIConQuestion) => {
           {props.questions.map((question, index) => (
             <IconButton
               key={index}
-              icon={icons[index % icons.length]}
+              icon={'Tick Square'}
               text={question.text}
               color={colors[index % colors.length]}
+              onClick={() => props.onClick(index)}
+              clickEffect={true}
             />
           ))}
         </div>

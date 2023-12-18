@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Icon from '../Atoms/Icon';
-/*
- */
+
 interface IIconButton {
   icon: string;
   color: string;
@@ -9,6 +8,7 @@ interface IIconButton {
   theme?: string;
   className?: string;
   onClick?: () => void;
+  clickEffect?: boolean;
 }
 const IconButton = ({
   icon,
@@ -17,7 +17,10 @@ const IconButton = ({
   className,
   theme = 'light',
   onClick,
+  clickEffect = false,
 }: IIconButton) => {
+  const [isClicked, setIsClicked] = useState(false);
+
   const leftClassName = `
         left-icon
         rounded-bl-lg 
@@ -31,12 +34,25 @@ const IconButton = ({
         ${color}
   `;
   const rightClassName = `rounded-tr-lg rounded-br-lg border-t border-r border-b border-gray-300`;
-  console.log(icon);
+  const clickedClass = isClicked ? 'click-effect' : '';
+
+  const handleButtonClick = () => {
+    if (clickEffect) {
+      setIsClicked(true);
+      setTimeout(() => setIsClicked(false), 500); // 애니메이션 시간에 맞춰 상태를 초기화
+    }
+
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <button
-      onClick={onClick}
+      onClick={handleButtonClick}
       className={`${className}
-      icon-button
+      icon-button 
+      ${clickEffect ? clickedClass : ''}
     `}
     >
       <div className={`${leftClassName}`}>

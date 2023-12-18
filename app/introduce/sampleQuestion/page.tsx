@@ -1,11 +1,12 @@
 import React from 'react';
-import { Question } from '@/app/lib/definitions';
 
 import QuestionContainer from '@/app/ui/questions/QuestionContainer';
 
+import { Question } from '@/app/lib/definitions';
 import { getQuestionsWithOptions } from '@/app/lib/data';
 
 const SampleQuestionPage = async () => {
+  // 타입 단언을 줄이자
   // const questions = (await getQuestionsWithOptions()) as Question[];
   const queryResultRow = await getQuestionsWithOptions();
   function isQuestion(obj: any): obj is Question {

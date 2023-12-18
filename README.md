@@ -56,3 +56,9 @@ tailwind 개어렵다.
 
 1. 아이콘 버튼 클릭했을때 정보 가져오도록 해야함
 2. Zustand를 이용하여 iconButton 핸들링
+   - pnpm install zustand
+
+# 문제점
+
+서버사이드에서 api 요청 후 응답 데이터를 props으로 데이터 넘기는데 이를 클라이언트 사이드에서 이를 zustand store에 넣는 불필요한 과정이 있음. 가능하다면 서버사이드에서 바로 zustand store에 넣고싶음
+-> use Effect가 답인가
