@@ -6,6 +6,7 @@ interface IconProps {
   type: string;
   theme: string;
   leftMargin?: boolean;
+  size?: number;
 }
 
 const iconMappings = (theme: string, type: string) => {
@@ -19,12 +20,12 @@ const iconMappings = (theme: string, type: string) => {
   }
 };
 
-const Icon = ({ type, theme, leftMargin = true }: IconProps) => {
+const Icon = ({ type, theme, leftMargin = true, size = 20 }: IconProps) => {
   const iconSrc = iconMappings(theme, type);
   if (iconSrc) {
     return (
       <div className={leftMargin ? 'ml-2' : ''}>
-        <Image src={iconSrc} alt={`${type} Icon`} width={20} height={20} />
+        <Image src={iconSrc} alt={`${type} Icon`} width={size} height={size} />
       </div>
     );
   }

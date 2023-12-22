@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Icon from '../Atoms/Icon';
 
 interface IIconButton {
@@ -9,6 +9,8 @@ interface IIconButton {
   className?: string;
   onClick?: () => void;
   clickEffect?: boolean;
+  selected?: boolean;
+  size?: number;
 }
 const IconButton = ({
   icon,
@@ -17,10 +19,9 @@ const IconButton = ({
   className,
   theme = 'light',
   onClick,
-  clickEffect = false,
+  size = 20,
+  selected = false,
 }: IIconButton) => {
-  const [isClicked, setIsClicked] = useState(false);
-
   const leftClassName = `
         left-icon
         rounded-bl-lg 
@@ -31,17 +32,40 @@ const IconButton = ({
         border-gray-300
         items-center
         max-w-[60px]
+        min-h-[80px]
         ${color}
   `;
-  const rightClassName = `rounded-tr-lg rounded-br-lg border-t border-r border-b border-gray-300`;
-  const clickedClass = isClicked ? 'click-effect' : '';
+  const clickedLeftClassName = `
+        left-icon
+        rounded-bl-lg 
+        rounded-tl-lg 
+        border-b-2
+        border-l-2
+        border-t-2
+        border-blue-500
+        items-center
+        max-w-[60px]
+        min-h-[80px]
+        ${color}
+  `;
+  const rightClassName = `
+    rounded-tr-lg 
+    rounded-br-lg 
+    border-t 
+    border-r 
+    border-b 
+    border-gray-300
+  `;
+  const clickedRightClassName = `
+    rounded-tr-lg 
+    rounded-br-lg 
+    border-t-2
+    border-r-2
+    border-b-2
+    border-blue-500
+  `;
 
   const handleButtonClick = () => {
-    if (clickEffect) {
-      setIsClicked(true);
-      setTimeout(() => setIsClicked(false), 500); // 애니메이션 시간에 맞춰 상태를 초기화
-    }
-
     if (onClick) {
       onClick();
     }
@@ -52,13 +76,19 @@ const IconButton = ({
       onClick={handleButtonClick}
       className={`${className}
       icon-button 
-      ${clickEffect ? clickedClass : ''}
     `}
     >
-      <div className={`${leftClassName}`}>
-        <Icon type={icon} theme={theme} leftMargin={false} />
+      <div
+        className={`${!selected ? leftClassName : clickedLeftClassName}
+      `}
+      >
+        {selected && (
+          <Icon size={size} type={icon} theme={theme} leftMargin={false} />
+        )}
       </div>
-      <div className={`${rightClassName}`}>{text}</div>
+      <div className={`${!selected ? rightClassName : clickedRightClassName}`}>
+        {text}
+      </div>
     </button>
   );
 };

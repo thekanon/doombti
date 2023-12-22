@@ -42,6 +42,7 @@ input[type='number']::-webkit-outer-spin-button {
   flex: 1 0 0;
   align-self: stretch;
   text-align: left;
+  word-break: keep-all;
 }
 @keyframes clickAnimation {
   0%,

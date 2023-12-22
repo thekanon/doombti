@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import lottie from 'lottie-web';
+import './LoadingAnimation.css';
 
 const LoadingAnimation = () => {
   const animationContainer = useRef(null);
@@ -19,7 +20,7 @@ const LoadingAnimation = () => {
     return () => {};
   }, []);
 
-  return <div ref={animationContainer} />;
+  return <div className="animate-fade-in" ref={animationContainer} />;
 };
 
 export default LoadingAnimation;

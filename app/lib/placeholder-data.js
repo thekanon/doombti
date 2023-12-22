@@ -229,6 +229,14 @@ const questions = [
     icon: 'https://img.icons8.com/color/48/000000/question.png',
     answerId: '223e4567-e89b-12d3-a456-426614174003',
   },
+  {
+    id: 'c9b1a8f7-3c7a-4c9b-a3c4-3c15dbb2f7e6',
+    title: 'JavaScript/Observer에서 어떻게 이벤트 감시자를 만들 수 있나요?',
+    category: 'JavaScript/Observer',
+    createdAt: 1602624845,
+    icon: 'https://img.icons8.com/color/48/000000/question.png',
+    answerId: '3b241101-e2bb-4255-8caf-4136c566a962',
+  },
 ];
 
 const questionOptions = [
@@ -338,6 +346,31 @@ const questionOptions = [
     id: '223e4567-e89b-12d3-a456-426614174003',
     questionId: '123e4567-e89b-12d3-a456-426614174003',
     text: '이벤트가 최상위 요소에서 시작하여 실제 이벤트 대상까지 도달하는 두 단계의 과정',
+  },
+  // 추가 문항 5의 옵션
+  {
+    id: 'bb9a0a6a-f07c-4dfe-9d38-5437e1d3a7b9',
+    questionId: 'c9b1a8f7-3c7a-4c9b-a3c4-3c15dbb2f7e6',
+    text: '이벤트 핸들러를 등록하는 방법',
+    value: 1,
+  },
+  {
+    id: '0ce2e87d-8dfb-448e-9bea-9f5e65c9e276',
+    questionId: 'c9b1a8f7-3c7a-4c9b-a3c4-3c15dbb2f7e6',
+    text: '옵저버 패턴의 개념',
+    value: 2,
+  },
+  {
+    id: '5d9a2a52-4134-4b9c-94e6-4c3b235781dd',
+    questionId: 'c9b1a8f7-3c7a-4c9b-a3c4-3c15dbb2f7e6',
+    text: '옵저버 패턴을 구현하는 방법',
+    value: 3,
+  },
+  {
+    id: 'bd437da8-8d25-4b08-85a0-0e6b01442862',
+    questionId: 'c9b1a8f7-3c7a-4c9b-a3c4-3c15dbb2f7e6',
+    text: '이벤트 감시자 패턴의 활용 예시',
+    value: 4,
   },
 ];
 

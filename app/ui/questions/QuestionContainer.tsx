@@ -14,8 +14,11 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
     percentage,
     questionIndex,
     totalQuestions,
+    questionList,
+    selectedQuestion,
     setQuestionList,
     setTotalQuestions,
+    setSelectedQuestion,
     handleNext,
     handleBack,
     handleSubmit,
@@ -29,10 +32,14 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
       setQuestionList(questions);
     }
     setTotalQuestions(questions.length);
+    console.log(questions);
   }, []);
 
   const handleIconClick = (index: number) => {
     console.log('handleIconClick', index);
+    console.log(questionIndex);
+    console.log(questionList[questionIndex].options[index]);
+    setSelectedQuestion(index);
   };
 
   return (
@@ -46,6 +53,7 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
           description={questions[questionIndex].category}
           questions={questions[questionIndex].options}
           onClick={handleIconClick}
+          selectedQuestion={selectedQuestion}
         />
       </div>
       {/* fixed footer */}

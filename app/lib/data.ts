@@ -249,6 +249,7 @@ export async function getQuestionsWithOptions() {
         q.id, q.title, q.category, q.createdat, q.icon, q.answerid
       LIMIT 5;
     `;
+
     return result.rows;
   } catch (error) {
     console.error('Failed to fetch questions with options:', error);

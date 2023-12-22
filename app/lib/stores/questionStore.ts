@@ -7,10 +7,12 @@ interface QuestionState {
   percentage: number;
   questionIndex: number;
   totalQuestions: number;
+  selectedQuestion: number | null;
   setPercentage: (percentage: number) => void;
   setQuestionIndex: (index: number) => void;
   setTotalQuestions: (total: number) => void;
   setQuestionList: (questions: Question[]) => void;
+  setSelectedQuestion: (id: number) => void;
   handleNext: () => void;
   handleBack: () => void;
   handleSubmit: () => void;
@@ -21,6 +23,7 @@ const useQuestionStore = create<QuestionState>()((set) => ({
   questionIndex: 0,
   totalQuestions: 0,
   questionList: [],
+  selectedQuestion: null,
   setPercentage: (percentage) => set({ percentage: percentage }),
   setQuestionIndex: (index) => set({ questionIndex: index }),
   setQuestionList: (questions: Question[]) => set({ questionList: questions }),
@@ -32,6 +35,7 @@ const useQuestionStore = create<QuestionState>()((set) => ({
       return {
         questionIndex: newQuestionIndex,
         percentage: newPercentage,
+        selectedQuestion: null,
       };
     }),
   handleBack: () =>
@@ -45,6 +49,7 @@ const useQuestionStore = create<QuestionState>()((set) => ({
       };
     }),
   handleSubmit: () => set({ percentage: 100 }),
+  setSelectedQuestion: (id) => set({ selectedQuestion: id }),
 }));
 
 export default useQuestionStore;

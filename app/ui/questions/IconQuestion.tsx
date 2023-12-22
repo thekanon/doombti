@@ -31,6 +31,8 @@ const IconQuestion = (props: IIConQuestion) => {
               color={colors[index % colors.length]}
               onClick={() => props.onClick(index)}
               clickEffect={true}
+              selected={props.selectedQuestion === index}
+              size={50}
             />
           ))}
         </div>

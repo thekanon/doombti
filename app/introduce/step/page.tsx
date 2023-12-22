@@ -20,7 +20,9 @@ const Tutorial1Page = {
       />
       <div className="max-w-xl pb-2 pt-4">
         <h1 className="Bold text-2xl	">
-          매일 다른 문제를 풀고 다른 친구들과 공유해보세요
+          매일 다른 문제를 풀고
+          <br />
+          다른 친구들과 공유해보세요
         </h1>
       </div>
     </div>
@@ -78,6 +80,10 @@ const Tutorial3Page = {
 
 const StepPage = () => {
   const router = useRouter();
+
+  useEffect(() => {
+    router.prefetch('./sampleQuestion');
+  }, []);
 
   return (
     <div
