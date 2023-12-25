@@ -113,3 +113,26 @@ export type Question = {
 export type IQuestionContainerProps = {
   questions: Question[];
 };
+
+export interface IAnswerProps {
+  id: string;
+  title: string;
+  text: string;
+  isCorrect: boolean;
+  answerText: string;
+  answerId: string;
+}
+
+export interface IAnswerListProps {
+  answers: IAnswerProps[];
+}
+
+export interface IConfirmDialogProps {
+  isOpen: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
+  title?: string;
+  message: string;
+  confirmText?: string;
+  cancelText?: string;
+}

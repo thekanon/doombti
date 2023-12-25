@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        'slide-in': 'slideInFromLeft 0.5s ease-out',
+      },
+
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',
       },

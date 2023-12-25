@@ -306,3 +306,14 @@ body {
   background: var(--primary-500) !important;
   border-radius: 100px !important;
 }
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
