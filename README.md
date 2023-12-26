@@ -101,3 +101,23 @@ loading을 스켈레톤으로 수정함
 # 문제 풀때마다 서버에 저장해야할텐데
 
 - 일단 샘플은 서버에 저장하지 말자
+
+# GPT 프롬프트 작성
+
+1. If I give you a 'category', you create a variable called question
+2. The question should be the same structure as below
+   {
+   "category": "JavaScript/Scope",
+   "question": "자바스크립트에서 '변수의 범위(scope)'에 대한 설명으로 올바른 것은 무엇입니까?",
+   "options": [
+   "'let' 키워드로 선언된 변수는 함수 레벨 스코프를 가집니다.",
+   "전역 변수는 코드의 어느 곳에서나 접근할 수 있습니다.",
+   "'var' 키워드로 선언된 변수는 블록 레벨 스코프를 가집니다.",
+   "지역 변수는 선언된 함수 내부에서만 접근할 수 있습니다.",
+   ],
+   "correct_answer": 1
+   "answer_description": "자바스크립트에서 전역 변수는 코드의 어느 곳에서나 접근할 수 있습니다. 이는 전역 변수가 전체 스크립트에 걸쳐 존재하며, 어떤 함수나 블록 내부가 아닌 최상위 레벨에서 선언됐기 때문입니다. 전역 변수의 이러한 특성은 강력하지만, 예상치 못한 충돌이나 오류를 야기할 수 있어 주의해서 사용해야 합니다. 반면에, 지역 변수(함수 내부에서 선언된 변수)는 해당 함수 내에서만 접근 가능하며, 'let'과 'const'는 블록 레벨 스코프를, 'var'는 함수 레벨 스코프를 가집니다."
+   }
+3. All contents should be written in Korean, and returned to code blocks.
+4. It's not just a terminology description, but it's a key and difficult question needed in practice. Please.
+   example) JavaScript의 "Promise" 객체는 어떤 용도로 사용되나요?, JavaScript/Observer에서 어떻게 이벤트 감시자를 만들 수 있나요?

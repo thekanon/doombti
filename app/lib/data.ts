@@ -234,19 +234,21 @@ export async function getQuestionsWithOptions() {
   try {
     const result = await sql`
       SELECT 
-        q.id AS question_id,
-        q.title,
-        q.category,
-        q.createdat,
-        q.icon,
-        q.answerid,
-        json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
+          q.id AS question_id,
+          q.title,
+          q.category,
+          q.createdat,
+          q.icon,
+          q.answerid,
+          json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
       FROM 
-        questions q
+          questions q
       JOIN 
-        questionoptions o ON q.id = o.questionid
+          questionoptions o ON q.id = o.questionid
       GROUP BY 
-        q.id, q.title, q.category, q.createdat, q.icon, q.answerid
+          q.id, q.title, q.category, q.createdat, q.icon, q.answerid
+      ORDER BY 
+          RANDOM()
       LIMIT 5;
     `;
 

@@ -191,6 +191,8 @@ const questions = [
     createdAt: 1602624845,
     icon: 'https://img.icons8.com/color/48/000000/question.png',
     answerId: '3b241101-e2bb-4255-8caf-4136c566a962',
+    answerDescription:
+      'JavaScript에서의 hoisting은 선언들을 현재 스코프(스크립트나 함수)의 최상단으로 이동시키는 기본 행동을 말합니다. 이는 변수와 함수 선언이 코드가 실행되기 전에 처리된다는 것을 의미합니다, 심지어 그것들이 스크립트에서 뒤에 나타난다 하더라도 말이죠. 하지만, 할당은 hoist되지 않으며 오직 선언만이 그렇습니다. 이러한 행동은 함수 선언 이전에 함수를 호출할 수 있게 해줍니다. JavaScript에서 스코프를 관리하고 참조 오류를 피하는 데에 hoisting을 이해하는 것이 중요합니다.',
   },
   // 추가 문항 1
   {
