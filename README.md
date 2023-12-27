@@ -121,3 +121,9 @@ loading을 스켈레톤으로 수정함
 3. All contents should be written in Korean, and returned to code blocks.
 4. It's not just a terminology description, but it's a key and difficult question needed in practice. Please.
    example) JavaScript의 "Promise" 객체는 어떤 용도로 사용되나요?, JavaScript/Observer에서 어떻게 이벤트 감시자를 만들 수 있나요?
+
+# 선호하는 언어를 선택하면 그 언어로 문제가 나오도록
+
+- 일단 열심히 추가한 insert 문제들을 한번에 불러오자.
+- select category 페이지를 만들자.
+- 카테고리 목록을 보여주고 클릭 시 해당 카테고리를 중복으로 선택할 수 있는 react 컴포넌트를 만들어보자.

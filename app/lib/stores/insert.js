@@ -6,7 +6,7 @@
   JavaScript에서 "Event Bubbling"과 "Event Capturing"은 무엇을 의미하나요?
 */
 
-const questionData2 = [
+const questionData = [
   {
     category: 'JavaScript/Event',
     question:
@@ -747,7 +747,7 @@ const questionData2 = [
       '옵저버 패턴은 객체 간의 느슨한 결합을 제공하며, 주로 다양한 객체 간의 상호 작용을 관리할 때 사용됩니다. 일반적인 이벤트 처리는 주로 단일 요소 또는 컴포넌트의 이벤트 처리에 사용됩니다.',
   },
   {
-    category: 'TypeScript/타입스크립트의 필요성',
+    category: 'TypeScript/Need for Types in JavaScript',
     question:
       'TypeScript와 JavaScript의 주요 차이점은 무엇이며, 이러한 차이점이 개발 프로세스에 어떤 영향을 미치나요?',
     options: [
@@ -761,7 +761,7 @@ const questionData2 = [
       'TypeScript는 정적 타입 검사를 제공하며, 변수의 데이터 타입을 명시적으로 선언해야 합니다. JavaScript는 동적 타입 언어로, 타입을 명시적으로 선언하지 않습니다. 이러한 차이점은 개발 프로세스에서 코드의 안정성과 가독성을 향상시킵니다.',
   },
   {
-    category: 'TypeScript/타입스크립트의 필요성',
+    category: 'TypeScript/Need for Types in JavaScript',
     question:
       'TypeScript를 사용하면 개발 생산성을 어떻게 향상시킬 수 있으며, 어떤 상황에서 TypeScript를 선택해야 하나요?',
     options: [
@@ -775,7 +775,7 @@ const questionData2 = [
       'TypeScript는 정적 타입 검사를 통해 코드의 안정성을 높이고 오류를 줄이므로 개발 생산성을 향상시킵니다. 특히 대규모 프로젝트와 협업 환경에서 유용하며, 코드의 가독성을 향상시켜 유지보수성을 높입니다.',
   },
   {
-    category: 'TypeScript/타입스크립트의 필요성',
+    category: 'TypeScript/Need for Types in JavaScript',
     question:
       'TypeScript와 JavaScript의 생태계는 어떻게 다르며, 어떤 라이브러리와 프레임워크에서 TypeScript를 더 많이 사용하나요?',
     options: [
@@ -789,7 +789,7 @@ const questionData2 = [
       'TypeScript는 정적 타입 검사를 제공하므로, 대규모 및 엔터프라이즈 프로젝트에서 주로 사용됩니다. Angular와 같은 프레임워크에서 TypeScript를 더 많이 사용하며, 대규모 프로젝트에서는 코드의 안정성을 높이는 데 도움이 됩니다.',
   },
   {
-    category: 'TypeScript/타입스크립트의 필요성',
+    category: 'TypeScript/Need for Types in JavaScript',
     question:
       'TypeScript의 타입 시스템은 어떻게 동작하며, 어떤 이점을 제공하나요?',
     options: [
@@ -803,7 +803,7 @@ const questionData2 = [
       'TypeScript의 타입 시스템은 정적 타입 검사를 수행하며, 변수와 함수의 입력 및 출력 타입을 명시적으로 지정할 수 있습니다. 이로써 오류를 사전에 방지하고 가독성을 향상시킵니다.',
   },
   {
-    category: 'TypeScript/타입스크립트의 필요성',
+    category: 'TypeScript/Need for Types in JavaScript',
     question:
       'TypeScript 코드는 어떻게 컴파일되며, 컴파일된 JavaScript 코드는 어떻게 동작하나요?',
     options: [
@@ -817,7 +817,7 @@ const questionData2 = [
       'TypeScript 코드는 TypeScript 컴파일러를 사용하여 JavaScript 코드로 변환됩니다. 컴파일된 JavaScript 코드는 브라우저 또는 Node.js 환경에서 실행됩니다.',
   },
   {
-    category: 'TypeScript/기본 타입',
+    category: 'TypeScript/The Basics of Types',
     question:
       'TypeScript에서 타입 추론(Type Inference)은 무엇이며, 코드에서 어떻게 작동하나요?',
     options: [
@@ -831,7 +831,7 @@ const questionData2 = [
       '타입 추론은 TypeScript 컴파일러가 변수 또는 표현식의 타입을 자동으로 추측하는 기능입니다. 변수를 선언할 때 타입을 명시적으로 지정하지 않아도 컴파일러가 타입을 추론합니다.',
   },
   {
-    category: 'TypeScript/기본 타입',
+    category: 'TypeScript/The Basics of Types',
     question:
       'TypeScript에서 타입 단언(Type Assertion)은 무엇이며, 어떤 상황에서 사용되나요?',
     options: [
@@ -845,7 +845,7 @@ const questionData2 = [
       "타입 단언은 개발자가 컴파일러에게 '이 변수는 이 타입이다'라고 명시적으로 알려주는 것입니다. 주로 개발자가 컴파일러의 타입 추론을 무시하고 자신이 타입을 정확히 알고 있는 경우에 사용됩니다.",
   },
   {
-    category: 'TypeScript/기본 타입',
+    category: 'TypeScript/The Basics of Types',
     question:
       'TypeScript에서 타입 가드(Type Guard)는 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -859,7 +859,7 @@ const questionData2 = [
       '타입 가드는 특정 타입의 변수를 검사하여 해당 변수의 타입 범위를 좁히는 역할을 합니다. 주로 조건문 또는 사용자 정의 함수를 통해 구현되며, 코드의 타입 안정성을 높이는 데 도움을 줍니다.',
   },
   {
-    category: 'TypeScript/기본 타입',
+    category: 'TypeScript/The Basics of Types',
     question:
       "TypeScript에서 'null'과 'undefined' 타입은 어떤 역할을 하며, 어떤 상황에서 사용되나요?",
     options: [
@@ -873,7 +873,7 @@ const questionData2 = [
       "'null'과 'undefined' 타입은 변수에 값이 없음을 나타내는 타입으로, 주로 초기화되지 않은 변수 또는 비어 있는 변수를 표현하는 데 사용됩니다. 이러한 타입을 사용하여 코드의 안정성을 향상시킬 수 있습니다.",
   },
   {
-    category: 'TypeScript/기본 타입',
+    category: 'TypeScript/The Basics of Types',
     question:
       "TypeScript에서 'never' 타입은 무엇이며, 어떤 상황에서 유용하게 쓰이나요?",
     options: [
@@ -887,7 +887,7 @@ const questionData2 = [
       "'never' 타입은 함수의 반환 값으로 사용되며, 해당 함수가 절대로 종료되지 않음을 나타냅니다. 주로 무한 루프나 예외를 던지는 함수에서 사용되며, 코드의 안정성을 높이는 데 도움을 줍니다.",
   },
   {
-    category: 'TypeScript/기본 타입/advance',
+    category: 'TypeScript/The Basics of Types/advance',
     question:
       'TypeScript에서 유니언 타입(Union Type)은 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -901,7 +901,7 @@ const questionData2 = [
       "유니언 타입은 여러 타입 중 하나일 수 있는 변수를 표현하는 방법으로, '|' 기호로 타입을 연결하여 사용합니다. 이를 통해 다양한 입력을 받는 함수나 변수를 정의하거나, 조건부 동작을 구현할 수 있습니다.",
   },
   {
-    category: 'TypeScript/기본 타입/advance',
+    category: 'TypeScript/The Basics of Types/advance',
     question:
       '유니언 타입과 함께 타입 가드(Type Guard)는 어떻게 사용되며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -915,7 +915,7 @@ const questionData2 = [
       '타입 가드는 조건문을 사용하여 변수의 타입 범위를 좁히는 역할을 합니다. 유니언 타입과 함께 사용하면 특정 조건을 만족하는 경우 해당 변수의 타입을 좁힐 수 있으며, 코드의 타입 안정성을 높이는 데 도움을 줍니다.',
   },
   {
-    category: 'TypeScript/기본 타입/advance',
+    category: 'TypeScript/The Basics of Types/advance',
     question:
       'TypeScript에서 타입 별칭(Type Alias)은 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -929,7 +929,7 @@ const questionData2 = [
       "타입 별칭은 복잡한 타입을 간결하게 표현하기 위해 사용되는 기능으로, 'type' 키워드를 사용하여 타입을 정의합니다. 이를 통해 코드의 가독성을 향상시키고 중복을 줄일 수 있습니다.",
   },
   {
-    category: 'TypeScript/기본 타입/advance',
+    category: 'TypeScript/The Basics of Types/advance',
     question:
       'TypeScript에서 인덱스 시그니처(Index Signature)는 무엇이며, 어떤 상황에서 사용되나요?',
     options: [
@@ -943,7 +943,7 @@ const questionData2 = [
       '인덱스 시그니처는 객체의 프로퍼티 이름과 타입을 동적으로 정의하기 위한 메커니즘으로, 객체가 동적 프로퍼티를 가질 때 사용됩니다. 이를 통해 객체의 동적 프로퍼티를 정의하고 접근할 수 있습니다.',
   },
   {
-    category: 'TypeScript/기본 타입/advance',
+    category: 'TypeScript/The Basics of Types/advance',
     question:
       'TypeScript에서 널 병합 연산자(Nullish Coalescing Operator)는 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -957,7 +957,7 @@ const questionData2 = [
       "널 병합 연산자는 변수가 'null' 또는 'undefined'일 때 기본값을 제공하는 연산자로, '??' 기호로 표시됩니다. 이를 통해 변수가 존재하지 않는 경우 기본값을 사용할 수 있으며, 코드의 가독성을 향상시키는 데 도움을 줍니다.",
   },
   {
-    category: 'TypeScript/함수와 매개변수 타이핑',
+    category: 'TypeScript/Functions and Parameter Typing',
     question:
       'TypeScript에서 선택적 매개변수(Optional Parameters)는 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -971,7 +971,7 @@ const questionData2 = [
       '선택적 매개변수는 함수의 매개변수 중에서 일부를 생략할 수 있는 매개변수를 나타냅니다. 이를 통해 함수 호출 시 일부 매개변수를 제공하지 않아도 되며, 기본값을 설정하여 유연하게 사용할 수 있습니다.',
   },
   {
-    category: 'TypeScript/함수와 매개변수 타이핑',
+    category: 'TypeScript/Functions and Parameter Typing',
     question:
       'TypeScript에서 디폴트 매개변수 값(Default Parameter Values)은 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -985,7 +985,7 @@ const questionData2 = [
       '디폴트 매개변수 값은 함수의 매개변수에 기본값을 설정하는 기능으로, 매개변수를 생략할 경우 기본값이 자동으로 사용됩니다. 이를 통해 함수 호출 시 일부 매개변수를 제공하지 않아도 함수를 호출할 수 있습니다.',
   },
   {
-    category: 'TypeScript/함수와 매개변수 타이핑',
+    category: 'TypeScript/Functions and Parameter Typing',
     question:
       'TypeScript에서 레스트 매개변수(Rest Parameters)는 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -999,7 +999,7 @@ const questionData2 = [
       '레스트 매개변수는 함수의 매개변수 중에서 나머지 매개변수를 배열로 받아들이는 매개변수입니다. 이를 통해 가변 길이 인수 목록을 처리하거나, 여러 개의 인수를 배열로 다룰 때 유용합니다.',
   },
   {
-    category: 'TypeScript/함수와 매개변수 타이핑',
+    category: 'TypeScript/Functions and Parameter Typing',
     question:
       'TypeScript에서 콜백 함수 타이핑(Callback Function Typing)은 무엇이며, 어떻게 사용되나요?',
     options: [
@@ -1013,7 +1013,7 @@ const questionData2 = [
       '콜백 함수 타이핑은 함수의 매개변수로 콜백 함수를 받아들일 때 해당 콜백 함수의 타입을 정의하는 방법으로, 이를 통해 콜백 함수의 형태와 반환 타입을 명확히 지정할 수 있습니다. 이는 비동기 작업을 다룰 때 코드의 안정성을 높이는 데 도움을 줍니다.',
   },
   {
-    category: 'TypeScript/함수와 매개변수 타이핑',
+    category: 'TypeScript/Functions and Parameter Typing',
     question:
       'TypeScript에서 함수 오버로딩(Function Overloading)은 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1027,7 +1027,7 @@ const questionData2 = [
       '함수 오버로딩은 동일한 함수 이름을 가지면서 다양한 매개변수 타입 또는 개수를 처리할 수 있는 기능으로, 함수의 다양한 사용 방법을 명시적으로 정의할 때 사용됩니다. 이를 통해 함수의 다양한 사용 시나리오를 처리하고 가독성을 향상시킬 수 있습니다.',
   },
   {
-    category: 'TypeScript/인터페이스와 클래스',
+    category: 'TypeScript/Interfaces and Classes',
     question:
       'TypeScript에서 추상 클래스(Abstract Class)는 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1041,7 +1041,7 @@ const questionData2 = [
       "추상 클래스는 일부 메서드를 구현하고 나머지 메서드는 파생 클래스에서 구현하도록 강제하는 클래스로, 'abstract' 키워드를 사용하여 정의됩니다. 이를 통해 클래스 계층 구조를 정의하고 공통 동작을 공유하거나, 메서드의 구현을 강제할 수 있습니다.",
   },
   {
-    category: 'TypeScript/인터페이스와 클래스',
+    category: 'TypeScript/Interfaces and Classes',
     question:
       'TypeScript에서 인터페이스 상속(Interface Inheritance)은 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1055,7 +1055,7 @@ const questionData2 = [
       "인터페이스 상속은 한 인터페이스가 다른 인터페이스의 멤버를 상속받는 것을 의미하며, 'extends' 키워드를 사용하여 정의됩니다. 이를 통해 인터페이스 간의 관계를 정의하고, 코드 재사용과 확장성을 촉진할 수 있습니다.",
   },
   {
-    category: 'TypeScript/인터페이스와 클래스',
+    category: 'TypeScript/Interfaces and Classes',
     question:
       'TypeScript에서 클래스 인터페이스(Class Interface)는 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1069,7 +1069,7 @@ const questionData2 = [
       '클래스 인터페이스는 클래스의 구조를 정의하고 해당 구조를 따르는 클래스를 선언하는 인터페이스입니다. 이를 통해 클래스의 메서드와 프로퍼티를 명시적으로 정의하고, 클래스 간의 관계를 강화할 수 있습니다. 클래스와 인터페이스 간의 관계를 강조하는 데 사용됩니다.',
   },
   {
-    category: 'TypeScript/인터페이스와 클래스',
+    category: 'TypeScript/Interfaces and Classes',
     question:
       'TypeScript에서 인터페이스 확장(Interface Extension)은 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1083,7 +1083,7 @@ const questionData2 = [
       "인터페이스 확장은 이미 정의된 인터페이스에 새로운 멤버를 추가하거나 기존 멤버를 확장하는 방법으로, 'extends' 키워드를 사용하여 다른 인터페이스를 기반으로 새로운 인터페이스를 정의할 때 사용됩니다. 이를 통해 인터페이스 간의 관계를 강화하고, 코드 재사용을 촉진할 수 있습니다.",
   },
   {
-    category: 'TypeScript/인터페이스와 클래스',
+    category: 'TypeScript/Interfaces and Classes',
     question:
       'TypeScript에서 클래스 데코레이터(Class Decorator)는 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1097,7 +1097,7 @@ const questionData2 = [
       "클래스 데코레이터는 클래스 선언을 수정하거나 클래스 생성자를 바꿀 수 있는 함수로, 클래스 선언 바로 위에 '@' 기호를 사용하여 적용됩니다. 이를 통해 클래스의 동작을 수정하거나 확장할 수 있으며, 주로 라이브러리나 프레임워크에서 사용되어 클래스에 기능을 추가하는 데 유용합니다.",
   },
   {
-    category: 'TypeScript/제네릭',
+    category: 'TypeScript/Generics',
     question:
       'TypeScript에서 제네릭 클래스(Generic Class)는 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1111,7 +1111,7 @@ const questionData2 = [
       "제네릭 클래스는 클래스 내부에서 사용하는 데이터 타입을 외부에서 지정할 수 있는 클래스로, 'class' 키워드 뒤에 '<T>'와 같이 타입 매개변수를 정의합니다. 이를 통해 클래스를 여러 데이터 타입에 대해 재사용하고, 타입 안정성을 유지할 수 있습니다.",
   },
   {
-    category: 'TypeScript/제네릭',
+    category: 'TypeScript/Generics',
     question:
       'TypeScript에서 제네릭 함수(Generic Function)는 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1125,7 +1125,7 @@ const questionData2 = [
       "제네릭 함수는 함수 내부에서 사용하는 데이터 타입을 외부에서 지정할 수 있는 함수로, 함수 이름 뒤에 '<T>'와 같이 타입 매개변수를 정의합니다. 이를 통해 함수를 여러 데이터 타입에 대해 재사용하고, 타입 안정성을 유지할 수 있습니다.",
   },
   {
-    category: 'TypeScript/제네릭',
+    category: 'TypeScript/Generics',
     question:
       'TypeScript에서 제네릭 인터페이스(Generic Interface)는 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1139,7 +1139,7 @@ const questionData2 = [
       "제네릭 인터페이스는 인터페이스 내부에서 사용하는 데이터 타입을 외부에서 지정할 수 있는 인터페이스로, 'interface' 키워드 뒤에 '<T>'와 같이 타입 매개변수를 정의합니다. 이를 통해 인터페이스를 여러 데이터 타입에 대해 재사용하고, 코드의 재사용성과 유지보수성을 향상시킬 수 있습니다.",
   },
   {
-    category: 'TypeScript/제네릭',
+    category: 'TypeScript/Generics',
     question:
       'TypeScript에서 제네릭 타입 제한(Generic Type Constraint)은 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1153,7 +1153,7 @@ const questionData2 = [
       "제네릭 타입 제한은 제네릭 타입 매개변수에 특정 타입 또는 속성을 제한하는 방법으로, 'extends' 키워드를 사용하여 타입 제한을 정의합니다. 이를 통해 특정 타입을 준수하는 값만 사용할 수 있으며, 타입 안정성을 유지할 때 유용합니다.",
   },
   {
-    category: 'TypeScript/제네릭',
+    category: 'TypeScript/Generics',
     question:
       'TypeScript에서 제네릭 유틸리티 타입(Generic Utility Types)은 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1167,7 +1167,7 @@ const questionData2 = [
       "제네릭 유틸리티 타입은 기본 타입을 조작하고 변환하기 위한 내장 타입 중 하나로, 'Partial', 'Pick', 'Record' 등이 있습니다. 이를 통해 타입을 변환하거나 재사용하며, 코드의 재사용성과 가독성을 향상시키는 데 도움을 줍니다.",
   },
   {
-    category: 'TypeScript/제네릭',
+    category: 'TypeScript/Generics',
     question:
       'TypeScript에서 제네릭 함수 시그니처(Generic Function Signature)는 무엇이며, 어떻게 사용되나요?',
     options: [
@@ -1181,7 +1181,7 @@ const questionData2 = [
       "제네릭 함수 시그니처는 함수의 매개변수와 반환 타입에 제네릭 타입 매개변수를 적용하는 방법으로, 함수 이름 뒤에 '<T>'와 같이 타입 매개변수를 정의합니다. 이를 통해 함수를 여러 데이터 타입에 대해 사용하고, 타입 안정성을 유지할 수 있습니다.",
   },
   {
-    category: 'TypeScript/제네릭',
+    category: 'TypeScript/Generics',
     question:
       'TypeScript에서 제네릭 클래스와 상속을 어떻게 함께 사용할 수 있으며, 어떤 이점이 있나요?',
     options: [
@@ -1195,7 +1195,7 @@ const questionData2 = [
       '제네릭 클래스는 클래스 내부에서 사용하는 데이터 타입을 외부에서 지정할 수 있는 클래스로, 상속 시에도 타입 매개변수를 그대로 사용하여 하위 클래스에서 다양한 타입을 다룰 수 있습니다. 이를 통해 코드의 재사용성을 높이고 타입 안정성을 유지할 수 있습니다.',
   },
   {
-    category: 'TypeScript/제네릭',
+    category: 'TypeScript/Generics',
     question:
       '키오스크 제어 시스템을 개발할 때 TypeScript 제네릭을 어떻게 활용할 수 있으며, 어떤 이점이 있나요?',
     options: [
@@ -1209,7 +1209,7 @@ const questionData2 = [
       '키오스크 제어 시스템에서는 다양한 하드웨어 및 데이터 소스와 상호 작용해야 하므로 TypeScript 제네릭을 활용하여 다양한 타입을 동적으로 처리하고 관리할 수 있습니다. 이를 통해 코드의 재사용성을 높이고 유지보수성을 향상시킬 수 있습니다.',
   },
   {
-    category: 'TypeScript/제네릭',
+    category: 'TypeScript/Generics',
     question:
       '비동기 프로그래밍에서 TypeScript 제네릭을 어떻게 활용할 수 있으며, 어떤 이점이 있나요?',
     options: [
@@ -1223,7 +1223,7 @@ const questionData2 = [
       '비동기 프로그래밍에서 TypeScript 제네릭을 사용하여 Promise와 같은 비동기 작업의 결과 타입을 동적으로 처리하고, 타입 안정성을 유지할 수 있습니다. 이를 통해 비동기 코드를 보다 안정적으로 작성하고 유지보수하기 쉽게 만들 수 있습니다.',
   },
   {
-    category: 'TypeScript/제네릭',
+    category: 'TypeScript/Generics',
     question:
       '제네릭을 활용하여 데이터 컬렉션을 구현할 때 어떤 장점이 있으며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1237,7 +1237,7 @@ const questionData2 = [
       '제네릭을 활용한 데이터 컬렉션은 다양한 데이터 타입을 저장하고 다룰 수 있으며, 타입 안정성을 유지할 수 있습니다. 이를 통해 데이터 컬렉션을 사용하는 코드에서 타입 에러를 사전에 방지하고 안정적인 코드를 작성할 수 있습니다.',
   },
   {
-    category: 'TypeScript/고급 타입 조작',
+    category: 'TypeScript/Advanced Types',
     question:
       'TypeScript에서 조건부 타입(Conditional Types)은 무엇이며, 어떤 상황에서 유용하게 쓰이나요?',
     options: [
@@ -1251,7 +1251,7 @@ const questionData2 = [
       '조건부 타입은 입력 타입에 따라 다른 타입을 반환하는 타입으로, 입력 타입이 지정한 타입을 확장하는 경우와 그렇지 않은 경우에 따라 다른 타입을 사용할 수 있습니다. 이를 통해 유연한 타입 변환과 제네릭 타입 처리를 할 수 있습니다.',
   },
   {
-    category: 'TypeScript/고급 타입 조작',
+    category: 'TypeScript/Advanced Types',
     question:
       'TypeScript에서 맵드 타입(Mapped Types)은 무엇이며, 어떻게 사용되나요?',
     options: [
@@ -1265,7 +1265,7 @@ const questionData2 = [
       '맵드 타입은 기존 타입의 각 속성을 변환하여 새로운 타입을 생성하는 타입으로, 각 속성의 타입을 변경하거나 선택적 속성으로 만들거나 읽기 전용으로 변경할 수 있습니다. 이를 통해 기존 타입을 변형하거나 확장할 수 있습니다.',
   },
   {
-    category: 'TypeScript/고급 타입 조작',
+    category: 'TypeScript/Advanced Types',
     question:
       'TypeScript에서 문자열 리터럴 타입(String Literal Types)과 유니온 타입(Union Types)은 무엇이며, 어떻게 사용되나요?',
     options: [
@@ -1279,7 +1279,7 @@ const questionData2 = [
       '문자열 리터럴 타입은 문자열 값 중 하나를 나타내는 타입으로, 유니온 타입은 여러 타입 중 하나를 나타내는 타입으로 사용됩니다. 문자열 리터럴 타입은 정적 타입 검사를 향상시키고 코드 가독성을 높이는 데 유용하며, 유니온 타입은 여러 타입을 다룰 때 유용합니다.',
   },
   {
-    category: 'TypeScript/고급 타입 조작',
+    category: 'TypeScript/Advanced Types',
     question:
       'TypeScript에서 인덱스 타입(Index Types)과 문자열 인덱스 시그니처(String Index Signature)은 무엇이며, 어떻게 사용되나요?',
     options: [
@@ -1293,7 +1293,7 @@ const questionData2 = [
       '인덱스 타입은 객체의 속성 이름을 사용하여 해당 속성의 타입을 동적으로 지정하는 기능이며, 문자열 인덱스 시그니처는 객체에서 문자열로 인덱싱할 때 사용됩니다. 이를 통해 객체의 동적 속성을 다룰 수 있습니다.',
   },
   {
-    category: 'TypeScript/고급 타입 조작',
+    category: 'TypeScript/Advanced Types',
     question:
       'TypeScript에서 레스트 파라미터(Rest Parameters)와 스프레드 연산자(Spread Operator)는 무엇이며, 어떻게 활용되나요?',
     options: [
@@ -1307,7 +1307,7 @@ const questionData2 = [
       "레스트 파라미터는 함수의 매개변수 앞에 '...'을 붙여 여러 개의 인자를 배열로 받는 방법이며, 스프레드 연산자는 배열이나 객체를 풀어서 개별 요소로 분리하는 방법입니다. 이를 통해 가변 인자를 다루거나 배열/객체를 복제하고 확장할 때 유용합니다. 레스트 파라미터는 함수가 불특정 다수의 인자를 배열로 받아 처리할 수 있게 해주며, 스프레드 연산자는 배열이나 객체의 요소를 개별적으로 펼쳐 새로운 배열이나 객체를 생성하거나 기존 배열/객체에 병합할 때 사용됩니다. 이러한 기능은 코드의 가독성과 유연성을 향상시키며, 다양한 상황에서 유용하게 활용됩니다.",
   },
   {
-    category: 'TypeScript/고급 타입 조작',
+    category: 'TypeScript/Advanced Types',
     question:
       'TypeScript에서 템플릿 리터럴 타입(Template Literal Types)은 무엇이며, 어떻게 사용되나요?',
     options: [
@@ -1321,7 +1321,7 @@ const questionData2 = [
       '템플릿 리터럴 타입은 문자열 리터럴 타입을 확장한 것으로, 템플릿 문자열에서 사용되는 문자열 값의 구조를 정의하는 타입입니다. 이를 통해 문자열 패턴을 체크하고 유용한 타입을 생성할 수 있습니다.',
   },
   {
-    category: 'TypeScript/고급 타입 조작',
+    category: 'TypeScript/Advanced Types',
     question:
       'TypeScript에서 재귀 타입(Recursive Types)은 무엇이며, 어떻게 사용되나요?',
     options: [
@@ -1335,7 +1335,7 @@ const questionData2 = [
       '재귀 타입은 타입 정의 내에서 자기 자신을 참조하는 타입으로, 복잡한 데이터 구조를 정의하고 다룰 때 유용합니다. 트리 구조나 중첩된 객체와 같은 데이터를 다룰 때 재귀 타입을 활용할 수 있습니다.',
   },
   {
-    category: 'TypeScript/고급 타입 조작',
+    category: 'TypeScript/Advanced Types',
     question:
       'TypeScript에서 좌측 연산자(Infer)와 조건부 추론(Conditional Inference)은 무엇이며, 어떻게 사용되나요?',
     options: [
@@ -1349,7 +1349,7 @@ const questionData2 = [
       "좌측 연산자(Infer)와 조건부 추론(Conditional Inference)은 함수의 반환 타입에서 타입 매개변수를 추론하는 데 사용됩니다. 반환 타입 내부에서 'infer' 키워드를 활용하며, 조건부 타입과 함께 사용하여 타입 추론을 정교하게 처리할 수 있습니다.",
   },
   {
-    category: 'TypeScript/고급 타입 조작',
+    category: 'TypeScript/Advanced Types',
     question:
       'TypeScript에서 전개된 조건부 타입(Spread Conditional Types)은 무엇이며, 어떻게 활용되나요?',
     options: [
@@ -1363,7 +1363,7 @@ const questionData2 = [
       "전개된 조건부 타입은 조건부 타입과 함께 사용되며, 다양한 유형의 조건부 타입을 합칠 때 유용합니다. 'T extends U ? X : Y' 형태로 사용되며, 'X'와 'Y'의 조건부 타입을 전개하여 새로운 조건부 타입을 생성합니다.",
   },
   {
-    category: 'TypeScript/고급 타입 조작',
+    category: 'TypeScript/Advanced Types',
     question:
       'TypeScript에서 타입 별칭(Type Aliases)과 선언 병합(Declaration Merging)은 무엇이며, 어떻게 사용되나요?',
     options: [
@@ -2008,9 +2008,6 @@ const questionData2 = [
     answer_description:
       "JavaScript에서 'var a;'와 같이 변수를 선언하면 변수는 'undefined' 값으로 초기화됩니다. 'typeof a;'는 변수 'a'의 데이터 유형을 확인하는데, 여기서 'a'는 'undefined' 값이므로 'typeof a;'의 결과도 'undefined'가 됩니다. 그러나 'b'는 선언되지 않은 변수이므로 'typeof b;'를 실행하면 'undefined'가 아니라 오류가 발생합니다.",
   },
-];
-// 20231227 algorithm
-const questionData = [
   {
     category: 'Computer Engineering/Algorithm',
     question:
@@ -3568,3 +3565,8 @@ const questionData = [
       '`__proto__` 속성은 객체의 프로토타입을 나타내는 속성으로, 객체 위임에서는 해당 속성을 통해 객체의 프로토타입을 변경하거나 프로토타입 체인을 따라갈 수 있습니다.',
   },
 ];
+
+module.exports = {
+  questionData: questionData,
+  // 필요한 경우, 다른 속성이나 메서드도 추가할 수 있습니다.
+};

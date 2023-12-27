@@ -8,7 +8,9 @@ import {
   User,
   Revenue,
 } from './definitions';
+
 import { formatCurrency } from './utils';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.
@@ -231,6 +233,8 @@ export async function getUser(email: string) {
 }
 
 export async function getQuestionsWithOptions() {
+  noStore();
+
   try {
     const result = await sql`
       SELECT 
@@ -256,5 +260,22 @@ export async function getQuestionsWithOptions() {
   } catch (error) {
     console.error('Failed to fetch questions with options:', error);
     throw new Error('Failed to fetch questions with options.');
+  }
+}
+
+export async function getCategoryList() {
+  noStore();
+
+  try {
+    const result = await sql`
+      select distinct Category 
+      from Questions
+      order by Category;
+    `;
+
+    return result.rows;
+  } catch (error) {
+    console.error('Failed to fetch category list:', error);
+    throw new Error('Failed to fetch category list.');
   }
 }

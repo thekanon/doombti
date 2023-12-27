@@ -60,3 +60,13 @@ input[type='number']::-webkit-outer-spin-button {
 button {
   -webkit-tap-highlight-color: transparent;
 }
+.checkbox-custom {
+  accent-color: #6949ff;
+}
+.checkbox-custom:checked {
+  background-color: #6949ff !important;
+  border-color: #6949ff !important;
+}
+.checkbox-custom:focus {
+  outline: 2px solid #6949ff !important;
+}
