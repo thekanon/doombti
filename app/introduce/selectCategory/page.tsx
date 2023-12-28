@@ -1,6 +1,6 @@
 import React from 'react';
 import { getCategoryList } from '@/app/lib/data';
-import SelectCategoryContainer from '@/app/ui/selector/selectCategoryContainer';
+import SelectCategoryContainer from '@/app/ui/containers/SelectCategoryContainer';
 
 const SelectCategory = async () => {
   const categoryListResultRow = await getCategoryList();

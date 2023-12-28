@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { IQuestionContainerProps } from '@/app/lib/definitions';
 
-import IconQuestion from './IconQuestion';
+import IconQuestion from '../questions/IconQuestion';
 import ProgressBar from '../common/Atoms/ProgressBar';
 import ConfirmDialog from '../common/Molecules/ConfirmDialog';
 import ButtonComponent from '../common/Atoms/ButtonComponent';

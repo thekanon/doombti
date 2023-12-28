@@ -1,9 +1,9 @@
+'use client';
 import React from 'react';
+import DashboardContainer from '../ui/containers/DashboardContainer';
 
-const DashboardPage = () => {
-  <>
-    <h1>Dashboard</h1>
-  </>;
+const DasgboardPage = () => {
+  return <DashboardContainer />;
 };
 
-export default DashboardPage;
+export default DasgboardPage;

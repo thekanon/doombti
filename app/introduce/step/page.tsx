@@ -4,6 +4,7 @@ import Swiper from '@/app/ui/common/Molecules/Swiper';
 import ButtonComponent from '@/app/ui/common/Atoms/ButtonComponent';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import useUserStore from '@/app/lib/stores/authStore';
 
 const Tutorial1Page = {
   content: (
@@ -80,6 +81,7 @@ const Tutorial3Page = {
 
 const StepPage = () => {
   const router = useRouter();
+  const { uid } = useUserStore();
 
   useEffect(() => {
     router.prefetch('./sampleQuestion');
@@ -115,7 +117,8 @@ const StepPage = () => {
           styleType="filled"
           text="바로 시작하기"
           onClick={() => {
-            router.push('../signin');
+            if (uid) router.push('../dashboard');
+            else router.push('../signIn');
           }}
         ></ButtonComponent>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import QuestionContainer from '@/app/ui/questions/QuestionContainer';
+import QuestionContainer from '@/app/ui/containers/QuestionContainer';
 
 import { Question } from '@/app/lib/definitions';
 import { getQuestionsWithOptions } from '@/app/lib/data';

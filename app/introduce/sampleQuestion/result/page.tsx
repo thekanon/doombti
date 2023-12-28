@@ -1,5 +1,5 @@
 import React from 'react';
-import AnswerContainer from '@/app/ui/answer/AnswerContainer';
+import AnswerContainer from '@/app/ui/containers/AnswerContainer';
 
 const SampleAnswerPage = async () => {
   // const queryResultRow = await getQuestionsWithOptions();

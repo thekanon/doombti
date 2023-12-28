@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect } from 'react';
 import useQuestionStore from '@/app/lib/stores/questionStore';
-import AnswerList from './AnswerList';
+import AnswerList from '../answer/AnswerList';
 import { useRouter } from 'next/navigation';
 
 const AnswerContainer = () => {
