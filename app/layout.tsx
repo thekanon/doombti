@@ -1,7 +1,9 @@
+// root layout
 import '@/app/ui/global.css';
 import './globals.css';
 import './styles/atoms.css';
 import { Nunito } from 'next/font/google';
+import '@/firebase/firebaseInit';
 
 const inter = Nunito({
   subsets: ['latin'],

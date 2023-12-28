@@ -113,7 +113,10 @@ const StepPage = () => {
           state="active"
           customStyle="w-full max-w-xl py-2"
           styleType="filled"
-          text="바로 가입하기"
+          text="바로 시작하기"
+          onClick={() => {
+            router.push('../signin');
+          }}
         ></ButtonComponent>
       </div>
     </div>
