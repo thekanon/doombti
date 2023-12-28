@@ -1,9 +1,9 @@
-// root layout
+import '@/firebase/firebaseInit';
 import '@/app/ui/global.css';
 import './globals.css';
 import './styles/atoms.css';
 import { Nunito } from 'next/font/google';
-import '@/firebase/firebaseInit';
+import CombinedProvider from '@/providers/CombinedProvider';
 
 const inter = Nunito({
   subsets: ['latin'],
@@ -17,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={inter.className}>
-      <body>{children}</body>
+      <body>
+        <CombinedProvider>{children}</CombinedProvider>
+      </body>
     </html>
   );
 }
