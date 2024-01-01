@@ -1,5 +1,8 @@
 import create from 'zustand';
 import { devtools } from 'zustand/middleware';
+// firebase logout
+import { signOut } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 interface UserState {
   displayName: string;
@@ -9,6 +12,7 @@ interface UserState {
   solvedQuestionList: string[];
   setUserData: (user: any) => void;
   setSolvedQuestionList: (solvedQuestionList: string[]) => void;
+  logout: () => void;
 }
 
 const useUserStore = create<UserState>()(
@@ -22,6 +26,18 @@ const useUserStore = create<UserState>()(
     setSolvedQuestionList: (solvedQuestionList: string[]) =>
       set((state) => ({ solvedQuestionList })),
     setUserData: (user: any) => set((state) => ({ ...user })),
+    logout: () =>
+      set((state) => {
+        const auth = getAuth();
+        signOut(auth);
+        return {
+          displayName: '',
+          email: '',
+          photoURL: '',
+          uid: '',
+          solvedQuestionList: [],
+        };
+      }),
   })),
 );
 

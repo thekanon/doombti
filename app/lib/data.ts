@@ -222,15 +222,15 @@ export async function fetchFilteredCustomers(query: string) {
   }
 }
 
-export async function getUser(email: string) {
-  try {
-    const user = await sql`SELECT * FROM users WHERE email=${email}`;
-    return user.rows[0] as User;
-  } catch (error) {
-    console.error('Failed to fetch user:', error);
-    throw new Error('Failed to fetch user.');
-  }
-}
+// export async function getUser(email: string) {
+//   try {
+//     const user = await sql`SELECT * FROM users WHERE email=${email}`;
+//     return user.rows[0] as User;
+//   } catch (error) {
+//     console.error('Failed to fetch user:', error);
+//     throw new Error('Failed to fetch user.');
+//   }
+// }
 
 export async function getQuestionsWithOptions() {
   noStore();
@@ -279,3 +279,100 @@ export async function getCategoryList() {
     throw new Error('Failed to fetch category list.');
   }
 }
+
+export async function getUser(id: string) {
+  try {
+    const user = await sql`SELECT * FROM users WHERE uid=${id}`;
+    return user.rows[0] as User;
+  } catch (error) {
+    console.error('Failed to fetch user:', error);
+    throw new Error('Failed to fetch user.');
+  }
+}
+
+export async function fetchAfterRegisterQuestions() {
+  try {
+    const result = await sql`
+      SELECT 
+          s.id AS survey_id,
+          s.title,
+          s.category,
+          s.createdat,
+          s.icon,
+          cq.display_order,
+          json_agg(
+            json_build_object(
+              'id', so.id, 
+              'category', so.survey_category, 
+              'text', so.survey_text
+            )
+          ) 
+          AS options
+      FROM 
+          surveys s
+      JOIN 
+          survey_options so ON s.id = so.survey_id
+      JOIN
+          conditional_questions cq ON s.id = cq.surveyid
+      WHERE
+          cq.condition_type = 'AfterRegistration'
+      GROUP BY 
+          s.id, s.title, s.category, s.createdat, s.icon, cq.display_order
+      ORDER BY 
+          cq.display_order;
+    `;
+
+    return result.rows;
+  } catch (error) {
+    console.error('Failed to fetch questions with options:', error);
+    throw new Error('Failed to fetch questions with options.');
+  }
+}
+
+// export async function upsertUserSurveyResponses(userId, answerList) {
+//   try {
+//     // 현재 시간을 epoch 시간으로 변환
+//     const createdAt = Date.now();
+
+//     // 각 답변에 대한 삽입 또는 업데이트 쿼리를 실행
+//     await Promise.all(
+//       answerList.map(async (answer) => {
+//         await sql`
+//         INSERT INTO user_survey_responses (
+//           surveyId,
+//           userId,
+//           createdAt,
+//           answer
+//         ) VALUES (
+//           ${answer.id},
+//           ${userId},
+//           ${createdAt},
+//           ${answer.text}
+//         )
+//         ON CONFLICT (surveyId, userId) DO UPDATE SET
+//           createdAt = ${createdAt},
+//           answer = ${answer.text};
+//       `;
+//       }),
+//     );
+
+//     console.log('Responses successfully upserted');
+//   } catch (error) {
+//     console.error('Database Error:', error);
+//     throw new Error('Failed to upsert survey responses.');
+//   }
+// }
+
+// export async function insertUser(user: User) {
+//   try {
+//     const result = await sql`
+//       INSERT INTO users (uid, email, name, image_url)
+//       VALUES (${user.uid}, ${user.email}, ${user.name}, ${user.image_url})
+//       RETURNING *;
+//     `;
+//     return result.rows[0] as User;
+//   } catch (error) {
+//     console.error('Failed to insert user:', error);
+//     throw new Error('Failed to insert user.');
+//   }
+// }

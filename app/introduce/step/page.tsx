@@ -118,7 +118,7 @@ const StepPage = () => {
           text="바로 시작하기"
           onClick={() => {
             if (uid) router.push('../dashboard');
-            else router.push('../signIn');
+            else router.push('../signin');
           }}
         ></ButtonComponent>
       </div>

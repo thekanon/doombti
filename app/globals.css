@@ -317,3 +317,62 @@ body {
     opacity: 1;
   }
 }
+
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* 전체 화면 너비를 채움 */
+  height: 100%; /* 전체 화면 높이를 채움 */
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명한 회색 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 다른 요소들 위에 표시되도록 z-index 설정 */
+}
+.loading-container > div {
+  width: 40%;
+}
+
+.btn-google {
+  border: 1px solid var(--greyscale-400);
+  color: var(--greyscale-900);
+}
+
+.btn-kakao {
+  background-color: #fee500; /* 카카오 브랜드 색상 */
+  color: var(--greyscale-900);
+}
+
+.btn-apple {
+  background-color: #000; /* 애플 브랜드 색상 */
+  color: var(--white);
+}
+
+/* 버튼 내부 아이콘 위치 조정 */
+.btn-icon {
+  display: inline-block;
+  margin-right: 8px;
+  /* 필요에 따라 아이콘 크기 및 정렬 조정 */
+}
+
+/* 화면 크기에 따라 다른 스타일 적용 */
+
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    padding: 2rem;
+  }
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr; /* 모바일에서는 한 열만 */
+  }
+
+  .dashboard-button {
+    font-size: 1rem; /* 버튼 폰트 크기 증가 */
+    padding: 0.75rem 1.5rem; /* 버튼 패딩 증가 */
+  }
+}

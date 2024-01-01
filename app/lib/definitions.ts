@@ -2,12 +2,12 @@
 // It describes the shape of the data, and what data type each property should accept.
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
-export type User = {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-};
+// export type User = {
+//   id: string;
+//   name: string;
+//   email: string;
+//   password: string;
+// };
 
 export type Customer = {
   id: string;
@@ -98,6 +98,7 @@ export interface IIConQuestion {
 export type QuestionOption = {
   id: string;
   question_id: string;
+  category?: string;
   text: string;
 };
 export type Question = {
@@ -135,4 +136,12 @@ export interface IConfirmDialogProps {
   message: string;
   confirmText?: string;
   cancelText?: string;
+}
+
+export interface User {
+  uid: string; // UUID
+  job_id: string; // UUID, 외래 키 참조
+  favorite_technology_id: string; // UUID, 외래 키 참조
+  continuous_goal_achievement: boolean;
+  set_goal: number; // 숫자로 표현된 목표
 }

@@ -7,6 +7,8 @@ const IconQuestion = (props: IIConQuestion) => {
   const colors = COLOR_LIST;
   const icons = ICON_LIST;
 
+  console.log(props);
+
   return (
     <>
       {/* <div>What type of account do you like to create? 👦</div> */}

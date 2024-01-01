@@ -129,3 +129,235 @@ loading을 스켈레톤으로 수정함
 - 카테고리 목록을 보여주고 클릭 시 해당 카테고리를 중복으로 선택할 수 있는 react 컴포넌트를 만들어보자.
 
 # 회원가입 완료
+
+- 회원가입 되면 해당 계정으로 로그인 할 수 있도록 추가 정보를 입력할 수 있어야 함
+- 직무, 선호 언어, 연차, 좋아하는 기술을 선택할 수 있어야 함.
+- ## 추가 정보 입력 하는 qusetion 페이지
+
+  거의 다 끝났어요.
+  필수는 아니지만 여러분들에 대해 더 알고싶은 것이 있어요.
+  직무
+  아직 직무가 없어요
+  프론트엔드
+  백엔드
+  앱
+  데이터
+  디자인
+  기획
+  마케팅
+  기타
+
+  기술
+
+1. 아직 직무가 없어요
+   JavaScript
+   Python
+   HTML/CSS
+   SQL
+   Java
+   C#
+   PHP
+   Ruby
+   Swift
+   Kotlin
+2. 프론트엔드
+   JavaScript (React, Angular, Vue.js)
+   TypeScript
+   HTML/CSS (Sass, Less)
+   Webpack
+   Node.js
+   GraphQL
+   Redux
+   Bootstrap
+   jQuery
+   Gatsby
+3. 백엔드
+   Python (Django, Flask)
+   Java (Spring, Hibernate)
+   Node.js (Express)
+   Ruby on Rails
+   C# (ASP.NET)
+   PHP (Laravel)
+   Go
+   SQL (MySQL, PostgreSQL)
+   NoSQL (MongoDB)
+   Docker
+4. 앱
+   Swift (iOS)
+   Kotlin (Android)
+   Java (Android)
+   React Native
+   Flutter
+   Xamarin
+   Objective-C (iOS)
+   Cordova
+   Firebase
+   C#
+5. 데이터
+   Python
+   Pandas
+   NumPy
+   R
+   SQL
+   NoSQL
+   Hadoop
+   Spark
+   TensorFlow
+   Keras
+   PyTorch
+   Jupyter
+6. 디자인
+   JavaScript
+   HTML/CSS
+   Adobe XD
+   Sketch
+   Figma
+   InVision
+   Photoshop
+   Illustrator
+   After Effects
+   Axure
+7. 기획
+   SQL
+   Python
+   JavaScript
+   Java
+   R
+   PHP
+   C#
+   Excel VBA
+   Swift
+   Kotlin
+8. 마케팅
+   JavaScript
+   HTML/CSS
+   Python
+   SQL
+   PHP
+   Ruby
+   Java
+   C#
+   Excel VBA
+   R
+9. 기타
+   Python
+   JavaScript
+   Java
+   C++
+   C#
+   Ruby
+   PHP
+   Go
+   Rust
+   TypeScript
+
+연차
+아직 경력이 없어요
+1년 미만
+1~3년
+3~5년
+5~10년
+10년 이상
+
+특별히 좋아하는 기술
+컴퓨터 공학의 기초를 단단히 쌓고싶어요.
+알고리즘을 틈틈히 공부하고 싶어요.
+데이터 분석/시각화 등 데이터를 활용하는 것에 고민이 많아요.
+프롬프트 엔지니어링 등 AI에 대해 배워보고 싶어요.
+성장에 대해 고민하고, 커리어를 발전시키는것을 고민하고 있어요'
+트렌디한 프론트엔드 기술에 관심이 많아요.
+트렌디한 백엔드 기술에 관심이 많아요.
+제가 가진 기술로 뭔갈 해서 수익을 내고 싶어요.
+
+MBTI
+ISTJ
+ISFJ
+INFJ
+INTJ
+ISTP
+ISFP
+INFP
+INTP
+ESTP
+ESFP
+ENFP
+ENTP
+ESTJ
+ESFJ
+ENFJ
+ENTJ
+
+# 회원가입 프로세스
+
+구글 계정으로 연동 시
+로그인 성공 시 uid로 유저를 가져옴
+유저가 없으면 setRegister
+유저가 있으면 dashboard로 이동
+
+User가 푼 문제 테이블
+uid - primary key
+questionId - question 테이블의 id
+userId - Users 테이블의 uid
+createdAt - 푼 날짜
+answer - 푼 답
+correct - 맞았는지 틀렸는지
+
+User가 응답한 설문 테이블
+uid - primary key
+surveyId - survey 테이블의 id
+userId - Users 테이블의 uid
+createdAt - 설문 날짜
+answer - 응답한 답
+
+Users 테이블
+uid - primary key
+직무 - 직무에 대한 id(특정 survey_options 테이블의 id) ㅜ
+좋아하는 기술 - 좋아하는 기술에 대한 id(특정 survey_options 테이블의 id)
+연속 목표 달성 - 연속 목표 달성 여부(true, false)
+설정한 목표 - 설정한 목표(숫자)
+
+# 클라이언트 api 호출
+
+pnpm install react-query
+pnpm install axios
+
+# 회원가입 완료 후 추가 정보 페이지
+
+전부 선택 후 submit 누르면 서버에 저장
+-> 서버에 저장하고 로그인 페이지로 이동
+
+## 직무 선택 시 선호기술 필터링
+
+현재 index가 1인 경우
+answerList[0]의 text로 필터링
+
+## 회원가입 제출 버튼 눌렀을때 동작
+
+0. 결과 페이지로 이동해야함
+1. 유저 정보를 서버에 저장해야함
+   유저 정보 : 파이어베이스 uid, 닉네임, 이메일, 직무, 선호기술, 연차, 좋아하는 기술, mbti, 목표, 목표 달성 여부
+   아직 선호기술, 연차, MBTI는 구현하지 않음 - 컬럼 추가 및 설정 변경
+   - likedTechOption
+   - careerYearNumber
+   - mbti
+2. 유저가 응답한 설문을 서버에 저장해야함
+3. 대시보드로 이동해야함
+
+이 데이터베이스에서
+users의 favorite_technology_id에
+survey_options의 특정 id를 복수로 저장할 수 있는 일반적인 방법이 있을까?
+
+제출 버튼 눌렀을때 회원가입 정보 입력끗
+
+## 대시보드에서 데이터 가져오기
+
+서버사이드에서 가져올 수 있으면 좋겠는데
+서버사이드에서 파이어베이스 uid를 가져올 수 있을까?
+https://velog.io/@sanglee/Next.js-Firebase%EB%A1%9C-%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EB%A7%8C%EB%93%A4%EA%B8%B0
+
+있다.
+방법
+
+1. firebase SDK admin 설정
+2. getAuth 이후 토큰을 쿠키에 저장(nookies 사용)
+3. 페이지 서버사이드에서 쿠키를 가져와서 사용

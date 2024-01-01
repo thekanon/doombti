@@ -1,56 +1,104 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import useUserStore from '@/app/lib/stores/authStore';
 import { useRouter } from 'next/navigation';
+import { fetchUserData } from '@/app/api/users';
+import LoadingAnimation from '../ui/common/Atoms/Loading';
 
 const SignInPage = () => {
   const router = useRouter();
-  const auth = getAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const auth = useUserStore.getState().uid;
 
   useEffect(() => {
-    if (auth.currentUser) {
+    if (auth !== '') {
       router.push('/dashboard');
     }
   }, []);
 
   const handleSignIn = () => {
+    const auth = getAuth();
+    setIsLoading(true);
     signInWithPopup(auth, new GoogleAuthProvider())
       .then((result) => {
-        // 이 부분에서 사용자 정보를 처리하거나 다른 페이지로 리디렉션 할 수 있습니다.
         console.log('User signed in: ', result.user);
-        // router.push('/dashboard');
+        fetchUserData(result.user.uid).then((res) => {
+          setIsLoading(false);
+          if (res.length === 1) {
+            router.push('/dashboard');
+          } else {
+            router.push('/introduce/setRegister');
+          }
+        });
       })
       .catch((error) => {
+        setIsLoading(false);
         // 로그인 중 에러가 발생하면 여기에서 처리합니다.
         console.error('Error signing in: ', error);
         router.push('/introduce/step');
       });
   };
 
+  const handleAppleSignIn = () => {
+    alert('준비중입니다.');
+  };
+
+  const handleKakaoSignIn = () => {
+    alert('준비중입니다.');
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
+      {isLoading && (
+        <div className="loading-container">
+          <LoadingAnimation />
+        </div>
+      )}
       <div className="w-full max-w-xs rounded-lg bg-white px-6 py-8 shadow-md">
         <h1 className="mb-6 text-center text-2xl font-bold">
-          소셜 계정 로그인
+          소셜 계정으로 <br />
+          바로 시작할 수 있어요!
         </h1>
         <button
           onClick={handleSignIn}
-          className="mb-4 w-full rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700 focus:bg-blue-700 focus:outline-none"
+          className="btn-google mb-4 flex w-full items-center rounded px-4 py-2 focus:outline-none"
         >
-          Sign in with Google
+          <span className="btn-icon">
+            <img
+              src="/Iconly/Button/google.svg"
+              alt="Google"
+              style={{ width: '24px', height: '24px' }}
+            />
+          </span>
+          <span className="flex-grow text-center">Google로 시작하기</span>
         </button>
-        <br />
+
         <button
-          disabled
-          className="mb-4 w-full rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700 focus:bg-blue-700 focus:outline-none"
+          onClick={handleAppleSignIn}
+          className="btn-apple mb-4 flex w-full items-center rounded px-4 py-2 focus:outline-none"
         >
-          Sign in with Kakao(준비중)
+          <span className="btn-icon">
+            <img
+              src="/Iconly/Button/white-apple.svg"
+              alt="Google"
+              style={{ width: '24px', height: '24px' }}
+            />
+          </span>
+          <span className="flex-grow text-center">Apple로 시작하기</span>
         </button>
         <button
-          disabled
-          className="w-full rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700 focus:bg-blue-700 focus:outline-none"
+          onClick={handleKakaoSignIn}
+          className="btn-kakao mb-4 flex w-full items-center rounded px-4 py-2 focus:outline-none"
         >
-          Sign in with Apple(준비중)
+          <span className="btn-icon">
+            <img
+              src="/Iconly/Button/kakao.svg"
+              alt="Google"
+              style={{ width: '24px', height: '24px' }}
+            />
+          </span>
+          <span className="flex-grow text-center">카카오로 시작하기</span>
         </button>
       </div>
     </div>

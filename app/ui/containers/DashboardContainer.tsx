@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import useUserStore from '@/app/lib/stores/authStore';
 
@@ -14,19 +15,29 @@ const DashboardContainer = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4 p-4">
+    <div className="dashboard-container flex flex-col items-center justify-center space-y-4 p-4">
       <div className="w-full max-w-md rounded-lg bg-white p-4 shadow-lg">
         <h1 className="mb-2 text-2xl font-bold">Dashboard</h1>
-        <div className="mb-4 flex items-center justify-between">
+        <div className="dashboard-header mb-4 flex items-center justify-between">
           <div>
             <p className="font-semibold">Hi, {displayName}</p>
             <p className="text-sm text-gray-600">email: {email}</p>
           </div>
-          <button className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-700">
-            목표 설정
-          </button>
+          <div>
+            <button className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-700">
+              목표 설정
+            </button>
+            <button
+              className="ml-2 rounded bg-red-500 px-3 py-1 text-white hover:bg-red-700"
+              onClick={() => {
+                useUserStore.getState().logout();
+              }}
+            >
+              로그아웃
+            </button>
+          </div>
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="dashboard-grid grid grid-cols-2 gap-3">
           {cardData.map((card, index) => (
             <div
               key={index}
