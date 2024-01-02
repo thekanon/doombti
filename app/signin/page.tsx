@@ -9,10 +9,10 @@ import LoadingAnimation from '../ui/common/Atoms/Loading';
 const SignInPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const auth = useUserStore.getState().uid;
+  const { uid, setUserData } = useUserStore();
 
   useEffect(() => {
-    if (auth !== '') {
+    if (uid !== '') {
       router.push('/dashboard');
     }
   }, []);
@@ -25,6 +25,14 @@ const SignInPage = () => {
         console.log('User signed in: ', result.user);
         fetchUserData(result.user.uid).then((res) => {
           if (res.length === 1) {
+            const userInfo = res[0];
+            const { displayName, photoURL } = result.user;
+            console.log(userInfo);
+            setUserData({
+              ...userInfo,
+              displayName,
+              photoURL,
+            });
             router.push('/dashboard');
           } else {
             router.push('/introduce/setRegister');

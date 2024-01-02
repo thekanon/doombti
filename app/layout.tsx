@@ -4,9 +4,10 @@ import './globals.css';
 import './styles/atoms.css';
 import { Nunito } from 'next/font/google';
 import CombinedProvider from '@/providers/CombinedProvider';
-import nookies from 'nookies';
 import { cookies, headers } from 'next/headers';
 import { admin } from '@/firebase/firebaseAdmin';
+import { getUserInfo } from '@/app/lib/data';
+import { User } from './lib/definitions';
 
 const inter = Nunito({
   subsets: ['latin'],
@@ -18,30 +19,18 @@ async function loadAuth() {
     const cookieStore = cookies();
     const cookietoken = cookieStore.get('token');
 
-    if (!cookietoken) {
-      const error = new Error('No token found');
-      throw error;
+    if (!cookietoken || cookietoken?.value === '') {
+      return;
     }
+    console.log('cookietoken: ', cookietoken);
     const token = await admin.auth().verifyIdToken(cookietoken.value);
     const { uid, email } = token;
     console.log('uid, email: ', uid, email);
+    const userInfo = await getUserInfo(uid);
 
-    return {
-      props: { uid },
-    };
+    return userInfo[0];
   } catch (error) {
-    // token 쿠키가 없을 경우 또는 token 인증(verifyIdToken)에 실패한 경우
-    // login 페이지로 redirect
-    // context.res.writeHead(302, { Location: '/login' });
-    // context.res.end();
-
-    // NextResponse.redirect('./');
-
-    // 'as never'는 InferGetServerSidePropsType의 참조 이슈를 방지한다.
-    // 위 코드에서 사용자는 이미 redirect됨으로 리턴되는 props는 중요하지 않다.
-    return {
-      props: {} as never,
-    };
+    console.log('error', error);
   }
 }
 
@@ -50,12 +39,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const getCookie = await loadAuth();
-  console.log(getCookie);
+  const userInfo = (await loadAuth()) as User;
+  console.log('getCookie', userInfo);
   return (
     <html lang="ko" className={inter.className}>
       <body>
-        <CombinedProvider>{children}</CombinedProvider>
+        <CombinedProvider userInfo={userInfo}>{children}</CombinedProvider>
       </body>
     </html>
   );

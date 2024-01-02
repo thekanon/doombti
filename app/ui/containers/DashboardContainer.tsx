@@ -3,12 +3,19 @@ import React from 'react';
 import useUserStore from '@/app/lib/stores/authStore';
 
 const DashboardContainer = () => {
-  const displayName = useUserStore((state) => state.displayName);
-  const email = useUserStore((state) => state.email);
+  const {
+    displayName,
+    email,
+    job_description,
+    liked_technology,
+    careeryearnumber,
+    mbti,
+  } = useUserStore();
+
   const problemTypes = ['DP', 'BFS']; // 예시 문제 유형
 
   const cardData = [
-    { title: '직무', content: '프론트엔드 개발자' },
+    { title: '직무', content: job_description },
     { title: '푼 문제 수', content: '3' },
     { title: '연속 목표 달성', content: '3일' },
     { title: '오늘의 목표', content: '3문제 / 10문제' },
@@ -21,7 +28,7 @@ const DashboardContainer = () => {
         <div className="dashboard-header mb-4 flex items-center justify-between">
           <div>
             <p className="font-semibold">Hi, {displayName}</p>
-            <p className="text-sm text-gray-600">email: {email}</p>
+            <p className="text-sm text-gray-600">{email}</p>
           </div>
           <div>
             <button className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-700">

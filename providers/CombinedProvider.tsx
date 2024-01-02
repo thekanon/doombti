@@ -2,11 +2,17 @@
 import React from 'react';
 import FirebaseProvider from './FirebaseProvider';
 import ReactQueryProvider from './ReactQueryProvider';
+import { User } from '@/app/lib/definitions';
 
-const CombinedProvider = ({ children }: React.PropsWithChildren<{}>) => {
+export interface CombinedProviderProps {
+  children: React.ReactNode;
+  userInfo?: User;
+}
+
+const CombinedProvider = ({ userInfo, children }: CombinedProviderProps) => {
   return (
     <ReactQueryProvider>
-      <FirebaseProvider>{children}</FirebaseProvider>
+      <FirebaseProvider userInfo={userInfo}>{children}</FirebaseProvider>
     </ReactQueryProvider>
   );
 };

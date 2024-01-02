@@ -6,7 +6,9 @@ export async function POST(request: Request) {
     const req = await request.json();
     console.log(req);
     const result = await sql`
-      select
+    SELECT 
+        u.uid,
+        u.fb_uid,
         u.name,
         u.email,
         job_option.survey_text AS job_description,
@@ -15,11 +17,11 @@ export async function POST(request: Request) {
         tech_option.survey_text AS liked_technology,
         u.careeryearnumber,
         u.mbti
-      from 
+    FROM 
         users u
-      LEFT JOIN survey_options job_option ON u.job_id = job_option.id
-      LEFT JOIN survey_options tech_option ON u.likedtechoption = tech_option.id
-      where fb_uid = ${req.fb_uid};
+    LEFT JOIN survey_options job_option ON u.job_id = job_option.id
+    LEFT JOIN survey_options tech_option ON u.likedtechoption = tech_option.id
+    where fb_uid = ${req.fb_uid};
     `;
     return NextResponse.json({ result }, { status: 200 });
   } catch (error) {

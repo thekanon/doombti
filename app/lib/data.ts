@@ -329,6 +329,33 @@ export async function fetchAfterRegisterQuestions() {
   }
 }
 
+export async function getUserInfo(id: string) {
+  try {
+    const result = await sql`
+      select
+        u.uid,
+        u.fb_uid,
+        u.name,
+        u.email,
+        job_option.survey_text AS job_description,
+        u.continuous_goal_achievement,
+        u.set_goal,
+        tech_option.survey_text AS liked_technology,
+        u.careeryearnumber,
+        u.mbti
+      from 
+        users u
+      LEFT JOIN survey_options job_option ON u.job_id = job_option.id
+      LEFT JOIN survey_options tech_option ON u.likedtechoption = tech_option.id
+      where fb_uid = ${id};
+    `;
+    return result.rows;
+  } catch (error) {
+    console.error('Failed to fetch user info:', error);
+    throw new Error('Failed to fetch user info.');
+  }
+}
+
 // export async function upsertUserSurveyResponses(userId, answerList) {
 //   try {
 //     // 현재 시간을 epoch 시간으로 변환

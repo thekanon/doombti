@@ -139,9 +139,14 @@ export interface IConfirmDialogProps {
 }
 
 export interface User {
-  uid: string; // UUID
+  uid?: string; // UUID
   job_id: string; // UUID, 외래 키 참조
-  favorite_technology_id: string; // UUID, 외래 키 참조
-  continuous_goal_achievement: boolean;
   set_goal: number; // 숫자로 표현된 목표
+  name: string;
+  email: string;
+  job_description: string;
+  continuous_goal_achievement: boolean; // 목표 달성을 연속으로 했는지 여부
+  liked_technology: string;
+  careeryearnumber: string;
+  mbti: string;
 }

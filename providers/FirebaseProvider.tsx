@@ -7,10 +7,17 @@ import { getAuth, onAuthStateChanged, onIdTokenChanged } from 'firebase/auth';
 import firebaseConfig from '../firebase/firebaseClient';
 import useUserStore from '@/app/lib/stores/authStore';
 import nookies from 'nookies';
+import { User } from '@/app/lib/definitions';
+
+export interface FirebaseProviderProps {
+  children: React.ReactNode;
+  userInfo?: User;
+}
 
 export default function FirebaseProvider({
+  userInfo,
   children,
-}: React.PropsWithChildren<{}>) {
+}: FirebaseProviderProps) {
   const [isFirebaseInitialized, setFirebaseInitialized] = useState(false);
   const { setUserData } = useUserStore();
   const pathname = usePathname();
@@ -39,12 +46,21 @@ export default function FirebaseProvider({
       if (user) {
         const { uid, displayName, email, photoURL } = user;
         console.log('Logged in user:', user);
-        setUserData({
-          uid,
-          displayName,
-          email,
-          photoURL,
-        });
+
+        if (userInfo) {
+          setUserData({
+            ...userInfo,
+            displayName,
+            photoURL,
+          });
+        } else {
+          setUserData({
+            fb_uid: uid,
+            displayName,
+            email,
+            photoURL,
+          });
+        }
       } else {
         console.log(pathname);
         if (
