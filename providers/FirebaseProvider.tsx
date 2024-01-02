@@ -3,9 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { initializeApp, getApps } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, onIdTokenChanged } from 'firebase/auth';
 import firebaseConfig from '../firebase/firebaseClient';
 import useUserStore from '@/app/lib/stores/authStore';
+import nookies from 'nookies';
 
 export default function FirebaseProvider({
   children,
@@ -22,8 +23,19 @@ export default function FirebaseProvider({
 
     const auth = getAuth();
 
+    const unsubscribeTokenChange = onIdTokenChanged(auth, async (user) => {
+      if (!user) {
+        console.log('No user');
+        nookies.set(null, 'token', '', { path: '/' });
+        return;
+      }
+      const token = await user.getIdToken();
+      nookies.destroy(null, 'token');
+      nookies.set(null, 'token', token, { path: '/' });
+    });
+
     // 사용자 상태 변경 시 호출될 콜백 함수 등록
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribeAuthChange = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, displayName, email, photoURL } = user;
         console.log('Logged in user:', user);
@@ -48,7 +60,10 @@ export default function FirebaseProvider({
     });
 
     // 컴포넌트 언마운트 시 구독 해제
-    return () => unsubscribe();
+    return () => {
+      unsubscribeTokenChange();
+      unsubscribeAuthChange();
+    };
   }, [pathname]);
 
   return <>{children}</>; // Firebase 초기화 완료 후 자식 컴포넌트 렌더링

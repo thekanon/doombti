@@ -24,7 +24,6 @@ const SignInPage = () => {
       .then((result) => {
         console.log('User signed in: ', result.user);
         fetchUserData(result.user.uid).then((res) => {
-          setIsLoading(false);
           if (res.length === 1) {
             router.push('/dashboard');
           } else {
@@ -33,7 +32,6 @@ const SignInPage = () => {
         });
       })
       .catch((error) => {
-        setIsLoading(false);
         // 로그인 중 에러가 발생하면 여기에서 처리합니다.
         console.error('Error signing in: ', error);
         router.push('/introduce/step');
