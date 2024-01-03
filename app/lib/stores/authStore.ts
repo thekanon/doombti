@@ -1,3 +1,4 @@
+import { fetchUserData } from '@/app/api/users';
 import create from 'zustand';
 import { devtools } from 'zustand/middleware';
 // firebase logout
@@ -21,6 +22,7 @@ interface UserState {
   setUserData: (user: any) => void;
   setSolvedQuestionList: (solvedQuestionList: string[]) => void;
   logout: () => void;
+  me: () => void;
 }
 
 const useUserStore = create<UserState>()(
@@ -61,6 +63,16 @@ const useUserStore = create<UserState>()(
           solvedQuestionList: [],
         };
       }),
+    me: async () => {
+      console.log('me');
+      if (!getAuth().currentUser) return;
+      const user = getAuth().currentUser;
+      console.log(user);
+
+      const result = await fetchUserData(user?.uid);
+      const userData = result[0];
+      set((state) => ({ ...userData }));
+    },
   })),
 );
 

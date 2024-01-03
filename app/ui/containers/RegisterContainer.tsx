@@ -32,11 +32,16 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
     handleSubmit,
   } = useQuestionStore();
 
-  const { displayName, email, uid } = useUserStore();
+  const { displayName, email, uid, fb_uid, me } = useUserStore();
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const router = useRouter();
   const [optionList, setOptionList] = useState<QuestionOption[]>([]);
+
+  useEffect(() => {
+    if (!uid) return;
+    router.push('/dashboard');
+  }, [uid]);
 
   // question 초기화
   useEffect(() => {
@@ -91,10 +96,13 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
     const userData = {
       displayName,
       email,
+      fb_uid,
       uid,
     };
     const result = await registerUser(userData, answerList);
-    console.log(result);
+    if (result) {
+      me();
+    }
   };
 
   const handleCancel = () => {

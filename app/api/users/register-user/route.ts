@@ -5,7 +5,7 @@ export async function POST(request: Request) {
   try {
     const req = await request.json();
     // console.log(req);
-    const fb_uid = req.user.uid;
+    const fb_uid = req.user.fb_uid;
     const email = req.user.email;
     const name = req.user.displayName;
 
