@@ -32,7 +32,6 @@ export default function FirebaseProvider({
 
     const unsubscribeTokenChange = onIdTokenChanged(auth, async (user) => {
       if (!user) {
-        console.log('No user');
         nookies.set(null, 'token', '', { path: '/' });
         return;
       }
@@ -45,7 +44,6 @@ export default function FirebaseProvider({
     const unsubscribeAuthChange = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, displayName, email, photoURL } = user;
-        console.log('Logged in user:', user);
 
         if (userInfo) {
           setUserData({
@@ -62,7 +60,6 @@ export default function FirebaseProvider({
           });
         }
       } else {
-        console.log(pathname);
         if (
           pathname !== '/' &&
           pathname !== '/signin' &&
@@ -70,7 +67,6 @@ export default function FirebaseProvider({
         ) {
           router.replace('/');
         }
-        console.log('No user');
       }
       setFirebaseInitialized(true); // 사용자 상태 확인 후 Firebase 초기화 완료
     });

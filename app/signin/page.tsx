@@ -22,12 +22,10 @@ const SignInPage = () => {
     setIsLoading(true);
     signInWithPopup(auth, new GoogleAuthProvider())
       .then((result) => {
-        console.log('User signed in: ', result.user);
         fetchUserData(result.user.uid).then((res) => {
           if (res.length === 1) {
             const userInfo = res[0];
             const { displayName, photoURL } = result.user;
-            console.log(userInfo);
             setUserData({
               ...userInfo,
               displayName,

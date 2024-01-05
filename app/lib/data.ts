@@ -300,6 +300,7 @@ export async function fetchAfterRegisterQuestions() {
           s.createdat,
           s.icon,
           cq.display_order,
+          multiflag,
           json_agg(
             json_build_object(
               'id', so.id, 

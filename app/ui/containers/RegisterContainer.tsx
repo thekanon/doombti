@@ -83,10 +83,6 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
   };
 
   const handleSubmitClick = () => {
-    console.log('handleSubmitClick');
-    console.log(answerList);
-    console.log(questionList);
-
     setIsConfirmOpen(true);
     handleSubmit();
   };
@@ -108,8 +104,7 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
   const handleCancel = () => {
     // 삭제 로직 구현
     const currentPercentage = 100 / totalQuestions;
-    console.log(currentPercentage);
-    console.log(totalQuestions);
+
     setPercentage(100 - currentPercentage);
 
     setIsConfirmOpen(false); // 대화상자 닫기

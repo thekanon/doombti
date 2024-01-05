@@ -16,13 +16,11 @@ const AnswerContainer = () => {
       sessionStorage &&
       sessionStorage?.getItem('answerList')
     ) {
-      console.log(sessionStorage);
       const answerStr = sessionStorage?.getItem('answerList') || '';
       setAnswers(JSON.parse(answerStr));
     }
   }, [answerList]);
 
-  console.log(answerList);
   return (
     <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-white p-4 shadow-md">
       <h2 className="text-2xl font-bold">샘플 퀘스트</h2>

@@ -64,10 +64,8 @@ const useUserStore = create<UserState>()(
         };
       }),
     me: async () => {
-      console.log('me');
       if (!getAuth().currentUser) return;
       const user = getAuth().currentUser;
-      console.log(user);
 
       const result = await fetchUserData(user?.uid);
       const userData = result[0];

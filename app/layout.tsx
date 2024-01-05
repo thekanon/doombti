@@ -22,10 +22,8 @@ async function loadAuth() {
     if (!cookietoken || cookietoken?.value === '') {
       return;
     }
-    console.log('cookietoken: ', cookietoken);
     const token = await admin.auth().verifyIdToken(cookietoken.value);
     const { uid, email } = token;
-    console.log('uid, email: ', uid, email);
     const userInfo = await getUserInfo(uid);
 
     return userInfo[0];
@@ -40,7 +38,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const userInfo = (await loadAuth()) as User;
-  console.log('getCookie', userInfo);
   return (
     <html lang="ko" className={inter.className}>
       <body>

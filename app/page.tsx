@@ -8,7 +8,6 @@ export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('useEffect');
     router.prefetch('introduce/step');
     const timer = setTimeout(() => {
       if (localStorage && !localStorage?.getItem('visited')) {

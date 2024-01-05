@@ -30,7 +30,6 @@ export const MultiSelector: React.FC<MultiSelectorProps> = ({
         newSelected.includes(category.id),
       );
       onSelectionChange(selectedData);
-      console.log(selectedData);
 
       return newSelected;
     });

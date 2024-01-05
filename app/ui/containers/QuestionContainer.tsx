@@ -40,15 +40,12 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
       setQuestionList(questions);
     }
     setTotalQuestions(questions.length);
-    console.log(questions);
   }, []);
 
   const handleIconClick = (selectedIndex: number) => {
     const currentQuestion = questionList[questionIndex];
-    console.log('handleIconClick', selectedIndex);
 
     if (!currentQuestion) {
-      console.log('질문이 정의되지 않았습니다.');
       return;
     }
 
@@ -58,7 +55,6 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
     );
 
     if (!correctAnswer) {
-      console.log('정답이 정의되지 않았습니다.');
       return;
     }
 
@@ -76,10 +72,6 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
   };
 
   const handleSubmitClick = () => {
-    console.log('handleSubmitClick');
-    console.log(answerList);
-    console.log(questionList);
-
     setIsConfirmOpen(true);
     handleSubmit();
   };
@@ -87,8 +79,7 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
   const handleCancel = () => {
     // 삭제 로직 구현
     const currentPercentage = 100 / totalQuestions;
-    console.log(currentPercentage);
-    console.log(totalQuestions);
+
     setPercentage(100 - currentPercentage);
 
     setIsConfirmOpen(false); // 대화상자 닫기

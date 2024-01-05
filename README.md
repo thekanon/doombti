@@ -361,3 +361,5 @@ https://velog.io/@sanglee/Next.js-Firebase%EB%A1%9C-%EC%96%B4%ED%94%8C%EB%A6%AC%
 1. firebase SDK admin 설정
 2. getAuth 이후 토큰을 쿠키에 저장(nookies 사용)
 3. 페이지 서버사이드에서 쿠키를 가져와서 사용
+
+## mulri select 구현

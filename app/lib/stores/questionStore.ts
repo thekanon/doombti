@@ -9,7 +9,7 @@ interface QuestionState {
   percentage: number;
   questionIndex: number;
   totalQuestions: number;
-  selectedQuestion: number | null;
+  selectedQuestion: number | null | Array<number>;
   answerList: IAnswerProps[];
   setPercentage: (percentage: number) => void;
   setQuestionIndex: (index: number) => void;

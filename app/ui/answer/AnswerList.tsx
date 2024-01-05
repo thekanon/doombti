@@ -3,7 +3,6 @@ import Answer from './Answer';
 import { IAnswerListProps } from '@/app/lib/definitions';
 
 const AnswerList = ({ answers }: IAnswerListProps) => {
-  console.log(answers);
   return (
     <div>
       {answers.map((el, i) => (

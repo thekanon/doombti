@@ -1,15 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-// 화면 이동을 위한 React Router 등의 라이브러리를 여기에 추가
 
 const MobileLayout = ({ children }: { children: React.ReactNode }) => {
-  // 예시를 위한 핸들러 함수, 실제로는 페이지 이동 로직으로 대체해야 함
-  const handleClick = (path: string) => {
-    console.log(`Navigate to ${path}`);
-    // 페이지 이동 로직
-  };
-
   return (
     <div className="page-transition flex h-screen flex-col">
       <div className="page-transition flex-1 overflow-y-auto">{children}</div>

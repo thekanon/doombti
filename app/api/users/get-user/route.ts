@@ -4,7 +4,6 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const req = await request.json();
-    console.log(req);
     const result = await sql`
     SELECT 
         u.uid,

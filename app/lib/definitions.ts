@@ -92,7 +92,7 @@ export interface IIConQuestion {
   description: string;
   questions: QuestionOption[];
   onClick: (id: number) => void;
-  selectedQuestion: number | null;
+  selectedQuestion: number | null | Array<number>;
 }
 
 export type QuestionOption = {
@@ -109,6 +109,7 @@ export type Question = {
   icon: string;
   answerid: string;
   options: QuestionOption[];
+  multiflag: boolean;
 };
 
 export type IQuestionContainerProps = {
