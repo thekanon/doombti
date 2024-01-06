@@ -61,14 +61,31 @@ export async function POST(request: Request) {
 
     const userId = result.rows[0].uid;
     // 선호하는 기술스택
-    const surveyId = 'fea84e08-83ad-42b7-bc42-83258ac7b38a';
-    const answerId = req.answerList[1].answerId;
+    // const surveyId = 'fea84e08-83ad-42b7-bc42-83258ac7b38a';
+    // const answerId = req.answerList[1].answerId;
 
-    const result2 = await sql`
-      INSERT INTO user_survey_responses (surveyId, userId, createdAt, answer)
-      VALUES
-        (${surveyId}, ${userId}, extract(epoch from now()), ${answerId});
-    `;
+    const result2: any = [];
+    req.answerList.map(async (answer: any) => {
+      const surveyId = answer.survey_id;
+      const answerId = answer.answerId;
+      const res = await sql`
+        INSERT INTO user_survey_responses (surveyId, userId, createdAt, answer)
+        VALUES
+          (${surveyId}, ${userId}, extract(epoch from now()), ${answerId});
+      `;
+      console.log('😈😈😈');
+      console.log(`INSERT INTO user_survey_responses (surveyId, userId, createdAt, answer)
+        VALUES
+          (${surveyId}, ${userId}, extract(epoch from now()), ${answerId});`);
+      console.log('😈😈😈');
+      result2.push(res);
+    });
+
+    // const result2 = await sql`
+    //   INSERT INTO user_survey_responses (surveyId, userId, createdAt, answer)
+    //   VALUES
+    //     (${surveyId}, ${userId}, extract(epoch from now()), ${answerId});
+    // `;
 
     return NextResponse.json({ result, result2 }, { status: 200 });
   } catch (error) {

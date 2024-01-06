@@ -27,6 +27,7 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
     setSelectedQuestion,
     setPercentage,
     setAnswer,
+    setAnswers,
     handleNext,
     handleBack,
     handleSubmit,
@@ -39,8 +40,16 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
   const [optionList, setOptionList] = useState<QuestionOption[]>([]);
 
   useEffect(() => {
-    if (!uid) return;
-    router.push('/dashboard');
+    /**
+     * 1. fb_uid가 없으면 signin 페이지로 이동
+     * 2. fb_uid가 있고 uid도 있으면 dashboard 페이지로 이동
+     */
+    if (!fb_uid) {
+      router.push('/signin');
+    }
+    if (!!uid && !!fb_uid) {
+      router.push('/dashboard');
+    }
   }, [uid]);
 
   // question 초기화
@@ -62,24 +71,76 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
         (item) => item?.category?.split('/')[1] === answer,
       );
     }
+    if (questions[questionIndex].multiflag === true) {
+      let selectedQuestion = [];
 
+      for (let i = 0; answerList.length > i; i++) {
+        const answer = answerList[i];
+        const index = option.findIndex((item) => item.id === answer.id);
+        if (index !== -1) {
+          selectedQuestion.push(index);
+        }
+      }
+      setSelectedQuestion(selectedQuestion);
+    }
     setOptionList(option);
   }, [questionIndex]);
 
   const handleIconClick = (selectedIndex: number) => {
     const currentQuestion = questionList[questionIndex];
-    const selectedAnswer = currentQuestion.options[selectedIndex];
+    const selectedAnswer = optionList[selectedIndex];
 
-    setAnswer({
+    const newAnswer = {
       id: selectedAnswer.id,
       title: currentQuestion.title,
       text: selectedAnswer.text,
+      survey_id: currentQuestion.survey_id,
       isCorrect: false,
       answerId: selectedAnswer.id,
       answerText: selectedAnswer.text,
-    });
+    };
 
-    setSelectedQuestion(selectedIndex);
+    // 이전 질문에 따라 필터링되는 질문이면 이전 질문 선택 시 질문 초기화
+    if (questionList[questionIndex + 1]?.multiflag === true) {
+      const newAnswerList = answerList.filter(
+        (answer) => answer.title !== '선호하는 기술스택을 선택해주세요',
+      );
+      setAnswers([...newAnswerList]);
+
+      setSelectedQuestion(selectedIndex);
+    }
+
+    if (currentQuestion['multiflag'] === true) {
+      // 이미 선택된 답변인지 확인하고 선택된 답변이라면 제거
+      const isAnswerAlreadyIncluded = answerList.some(
+        (answer) => answer.id === newAnswer.id,
+      );
+      if (isAnswerAlreadyIncluded) {
+        // 동일한 답변이 있다면, 해당 답변을 제거
+        setAnswers(answerList.filter((answer) => answer.id !== newAnswer.id));
+      } else {
+        // 동일한 답변이 없다면, 새로운 답변을 answerList에 추가
+        setAnswers([...answerList, newAnswer]);
+      }
+
+      if (selectedQuestion instanceof Array) {
+        const isIndexSelected = selectedQuestion.includes(selectedIndex);
+        if (isIndexSelected) {
+          setSelectedQuestion(
+            selectedQuestion.filter((index) => index !== selectedIndex),
+          );
+        } else {
+          setSelectedQuestion([...selectedQuestion, selectedIndex]);
+        }
+      } else {
+        setSelectedQuestion([selectedIndex]);
+      }
+    } else {
+      setAnswer(newAnswer);
+      setSelectedQuestion(selectedIndex);
+    }
+
+    console.log(answerList);
   };
 
   const handleSubmitClick = () => {

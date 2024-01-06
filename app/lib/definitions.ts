@@ -108,6 +108,7 @@ export type Question = {
   createdat: string;
   icon: string;
   answerid: string;
+  survey_id?: string;
   options: QuestionOption[];
   multiflag: boolean;
 };

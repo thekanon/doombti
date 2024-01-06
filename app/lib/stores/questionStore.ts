@@ -15,8 +15,9 @@ interface QuestionState {
   setQuestionIndex: (index: number) => void;
   setTotalQuestions: (total: number) => void;
   setQuestionList: (questions: Question[]) => void;
-  setSelectedQuestion: (id: number) => void;
+  setSelectedQuestion: (id: number | null | Array<number>) => void;
   setAnswer: (newAnswer: IAnswerProps) => void;
+  setAnswers: (newAnswers: IAnswerProps[]) => void;
   handleNext: () => void;
   handleBack: () => void;
   handleSubmit: () => void;
@@ -75,6 +76,25 @@ const useQuestionStore = create<QuestionState>()(
 
         // 새 답변으로 업데이트
         newAnswerList[state.questionIndex] = newAnswer;
+
+        return {
+          answerList: newAnswerList,
+        };
+      }),
+    setAnswers: (newAnswers: IAnswerProps[]) =>
+      set((state) => {
+        let newAnswerList = [...state.answerList];
+
+        // 필요한 경우 배열 확장
+        if (state.questionIndex >= newAnswerList.length) {
+          newAnswerList = Array.from(
+            { length: state.questionIndex + 1 },
+            (v, i) => newAnswerList[i] || null,
+          );
+        }
+
+        // 새 답변으로 업데이트
+        newAnswerList = newAnswers;
 
         return {
           answerList: newAnswerList,

@@ -37,7 +37,11 @@ const IconQuestion = ({
               color={colors[index % colors.length]}
               onClick={() => onClick(index)}
               clickEffect={true}
-              selected={selectedQuestion === index}
+              selected={
+                Array.isArray(selectedQuestion)
+                  ? selectedQuestion.includes(index)
+                  : selectedQuestion === index
+              }
               size={50}
             />
           ))}
