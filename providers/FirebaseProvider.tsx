@@ -27,6 +27,7 @@ export default function FirebaseProvider({
     if (!getApps().length) {
       initializeApp(firebaseConfig);
     }
+    console.log('firebase init');
 
     const auth = getAuth();
 
@@ -59,6 +60,10 @@ export default function FirebaseProvider({
             photoURL,
           });
         }
+        if (pathname === '/signin' || pathname.indexOf('/introduce') !== -1) {
+          router.replace('/dashboard');
+        }
+        // router.replace('/dashboard');
       } else {
         if (
           pathname !== '/' &&

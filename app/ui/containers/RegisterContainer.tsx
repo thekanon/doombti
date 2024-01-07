@@ -44,12 +44,12 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
      * 1. fb_uid가 없으면 signin 페이지로 이동
      * 2. fb_uid가 있고 uid도 있으면 dashboard 페이지로 이동
      */
-    if (!fb_uid) {
-      router.push('/signin');
-    }
-    if (!!uid && !!fb_uid) {
-      router.push('/dashboard');
-    }
+    // if (!fb_uid) {
+    //   router.push('/signin');
+    // }
+    // if (!!uid && !!fb_uid) {
+    //   router.push('/dashboard');
+    // }
   }, [uid]);
 
   // question 초기화

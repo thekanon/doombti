@@ -363,3 +363,6 @@ https://velog.io/@sanglee/Next.js-Firebase%EB%A1%9C-%EC%96%B4%ED%94%8C%EB%A6%AC%
 3. 페이지 서버사이드에서 쿠키를 가져와서 사용
 
 ## multi select 구현
+
+multi Select로 특정 문항을 선택할 수 있도록 구현함
+저장 시 해당 문항도 저장되도록 구현함

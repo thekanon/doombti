@@ -244,6 +244,7 @@ export async function getQuestionsWithOptions() {
           q.createdat,
           q.icon,
           q.answerid,
+          q.answer_description,
           json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
       FROM 
           questions q

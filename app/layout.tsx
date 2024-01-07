@@ -26,6 +26,8 @@ async function loadAuth() {
     const { uid, email } = token;
     const userInfo = await getUserInfo(uid);
 
+    console.log(userInfo[0]);
+
     return userInfo[0];
   } catch (error) {
     console.log('error', error);

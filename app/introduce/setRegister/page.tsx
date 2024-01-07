@@ -11,8 +11,6 @@ const SetRegisterPage = async () => {
   }
   const questions = questionRow.filter(isQuestion);
 
-  console.log(questions);
-
   return (
     <div>
       <RegisterContainer questions={questions} />
