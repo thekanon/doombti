@@ -7,8 +7,13 @@ import ConfirmDialog from '../common/Molecules/ConfirmDialog';
 import { useRouter } from 'next/navigation';
 
 const AnswerContainer = () => {
-  const { answerList, totalQuestions, setQuestionIndex, setPercentage } =
-    useQuestionStore();
+  const {
+    answerList,
+    clearAnswer,
+    setQuestionIndex,
+    setPercentage,
+    setSelectedQuestion,
+  } = useQuestionStore();
   const [answers, setAnswers] = React.useState<any[]>([]);
   const router = useRouter();
   // let answers = Object.values(answerList);
@@ -30,8 +35,17 @@ const AnswerContainer = () => {
     router.push('../sampleQuestion');
   };
 
+  const handleConfirm = () => {
+    setQuestionIndex(0);
+    setPercentage(0);
+    setSelectedQuestion(null);
+    clearAnswer();
+
+    router.push('../../signin');
+  };
+
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-white p-4 shadow-md">
+    <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-white p-4 pb-[10vh] shadow-md">
       <h2 className="text-2xl font-bold">샘플 퀘스트</h2>
       <h3 className="text-xl font-bold">{`
       ${answers.length}개 중 
@@ -53,7 +67,7 @@ const AnswerContainer = () => {
           customStyle="w-full p-3"
           colorType="secondary"
           text="회원가입하기"
-          onClick={() => router.push('../setRegister')}
+          onClick={handleConfirm}
         />
       </div>
     </div>

@@ -47,9 +47,9 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
     // if (!fb_uid) {
     //   router.push('/signin');
     // }
-    // if (!!uid && !!fb_uid) {
-    //   router.push('/dashboard');
-    // }
+    if (!!uid && !!fb_uid && uid !== '') {
+      router.push('/dashboard');
+    }
   }, [uid]);
 
   // question 초기화

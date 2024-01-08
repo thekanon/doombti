@@ -190,6 +190,7 @@ export async function fetchCustomers() {
 }
 
 export async function fetchFilteredCustomers(query: string) {
+  noStore();
   try {
     const data = await sql<CustomersTableType>`
 		SELECT
@@ -282,6 +283,7 @@ export async function getCategoryList() {
 }
 
 export async function getUser(id: string) {
+  noStore();
   try {
     const user = await sql`SELECT * FROM users WHERE uid=${id}`;
     return user.rows[0] as User;
@@ -292,6 +294,7 @@ export async function getUser(id: string) {
 }
 
 export async function fetchAfterRegisterQuestions() {
+  noStore();
   try {
     const result = await sql`
       SELECT 
@@ -332,6 +335,7 @@ export async function fetchAfterRegisterQuestions() {
 }
 
 export async function getUserInfo(id: string) {
+  noStore();
   try {
     const result = await sql`
       select

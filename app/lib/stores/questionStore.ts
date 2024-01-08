@@ -21,6 +21,7 @@ interface QuestionState {
   handleNext: () => void;
   handleBack: () => void;
   handleSubmit: () => void;
+  clearAnswer: () => void;
 }
 
 // 공통 기능을 처리하는 함수
@@ -98,6 +99,12 @@ const useQuestionStore = create<QuestionState>()(
 
         return {
           answerList: newAnswerList,
+        };
+      }),
+    clearAnswer: () =>
+      set((state) => {
+        return {
+          answerList: [],
         };
       }),
 

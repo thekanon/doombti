@@ -36,7 +36,7 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
   useEffect(() => {
     if (questions?.length === 0) {
       setQuestionList([]);
-    } else {
+    } else if (questions && questions.length > 0 && !questionList.length) {
       setQuestionList(questions);
     }
     setTotalQuestions(questions.length);
@@ -79,7 +79,6 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
   const handleCancel = () => {
     // 삭제 로직 구현
     const currentPercentage = 100 / totalQuestions;
-
     setPercentage(100 - currentPercentage);
 
     setIsConfirmOpen(false); // 대화상자 닫기
@@ -90,15 +89,17 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
       <div className="p-4">
         <ProgressBar percentage={percentage} color="#6949ff" />
       </div>
-      <div className="flex flex-col items-center justify-center">
-        <IconQuestion
-          title={questions[questionIndex].title}
-          description={questions[questionIndex].category}
-          questions={questions[questionIndex].options}
-          onClick={handleIconClick}
-          selectedQuestion={selectedQuestion}
-        />
-      </div>
+      {questionList.length > 0 && (
+        <div className="flex flex-col items-center justify-center">
+          <IconQuestion
+            title={questionList[questionIndex].title}
+            description={questionList[questionIndex].category}
+            questions={questionList[questionIndex].options}
+            onClick={handleIconClick}
+            selectedQuestion={selectedQuestion}
+          />
+        </div>
+      )}
       {/* fixed footer */}
       <div
         className="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-4 bg-white p-4"

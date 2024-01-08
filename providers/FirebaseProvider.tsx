@@ -19,7 +19,7 @@ export default function FirebaseProvider({
   children,
 }: FirebaseProviderProps) {
   const [isFirebaseInitialized, setFirebaseInitialized] = useState(false);
-  const { setUserData } = useUserStore();
+  const { setUserData, uid } = useUserStore();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -45,13 +45,24 @@ export default function FirebaseProvider({
     const unsubscribeAuthChange = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, displayName, email, photoURL } = user;
-
+        console.log('user=== true');
         if (userInfo) {
           setUserData({
             ...userInfo,
             displayName,
             photoURL,
           });
+          console.log('userInfo=== true');
+
+          if (pathname === '/signin' || pathname.indexOf('/introduce') !== -1) {
+            if (userInfo.uid !== '') {
+              router.replace('/dashboard');
+            }
+            if (userInfo.uid === '') {
+              console.log("userInfo.uid === ''");
+              router.replace('/introduce');
+            }
+          }
         } else {
           setUserData({
             fb_uid: uid,
@@ -59,9 +70,11 @@ export default function FirebaseProvider({
             email,
             photoURL,
           });
-        }
-        if (pathname === '/signin' || pathname.indexOf('/introduce') !== -1) {
-          router.replace('/dashboard');
+          // dashboard로 이동할때 회원 정보가 없으면 signin으로 이동
+          if (pathname.indexOf('/dashboard') !== -1 && uid === '') {
+            console.log('pathname.indexOf(/dashboard) !== -1 && uid === )');
+            router.replace('/signin');
+          }
         }
         // router.replace('/dashboard');
       } else {
