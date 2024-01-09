@@ -16,9 +16,11 @@ const DashboardContainer = () => {
 
   const cardData = [
     { title: '직무', content: job_description },
-    { title: '푼 문제 수', content: '3' },
-    { title: '연속 목표 달성', content: '3일' },
-    { title: '오늘의 목표', content: '3문제 / 10문제' },
+    { title: '푼 문제 수', content: '3' }, // 셋팅 필요함
+    { title: '연속 목표 달성', content: '3일' }, // 셋팅 필요함
+    { title: '오늘의 목표', content: '3문제 / 10문제' }, // 셋팅 필요함
+    { title: 'MBTI', content: mbti },
+    { title: '경력', content: careeryearnumber },
   ];
 
   return (

@@ -4,9 +4,51 @@ import Link from 'next/link';
 
 const MobileLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="page-transition flex h-screen flex-col">
-      <div className="page-transition flex-1 overflow-y-auto">{children}</div>
-      <nav className="fixed inset-x-0 bottom-0 mx-auto flex justify-around bg-white p-2 md:max-w-2xl">
+    <div className="flex h-screen flex-col">
+      <header
+        className="flex items-center justify-between bg-white p-2 shadow-md
+      "
+      >
+        <div className="flex items-center">
+          {/* 왼쪽 아이콘과 텍스트 */}
+          <Image src="/logo.svg" width={24} height={24} alt="Icon" />
+          <span className="ml-2">Your App</span>
+        </div>
+        <div
+          className="flex items-center gap-2
+        "
+        >
+          {/* 검색창 */}
+          <button className="rounded p-1">
+            <Image
+              src="/Iconly/Light/Search.svg"
+              width={24}
+              height={24}
+              alt="Icon"
+            />
+          </button>
+          <button className="rounded p-1">
+            <Image
+              src="/Iconly/Light/Notification.svg"
+              width={24}
+              height={24}
+              alt="Icon"
+            />
+          </button>
+          <button className="rounded p-1">
+            <Image
+              src="/Iconly/Light/Setting.svg"
+              width={24}
+              height={24}
+              alt="Icon"
+            />
+          </button>
+        </div>
+      </header>
+
+      <div className="flex-grow overflow-y-auto">{children}</div>
+
+      <nav className="flex flex-none justify-around bg-white p-2">
         <div className="flex flex-col items-center">
           <Link href="/dashboard" className="focus:outline-none">
             <Image
