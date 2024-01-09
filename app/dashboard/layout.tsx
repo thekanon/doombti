@@ -12,7 +12,7 @@ const MobileLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="flex items-center">
           {/* 왼쪽 아이콘과 텍스트 */}
           <Image src="/logo.svg" width={24} height={24} alt="Icon" />
-          <span className="ml-2">Your App</span>
+          <span className="ml-2">Dev Quiz</span>
         </div>
         <div
           className="flex items-center gap-2
