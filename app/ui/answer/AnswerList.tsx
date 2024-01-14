@@ -14,7 +14,9 @@ const AnswerList = ({ answers }: IAnswerListProps) => {
           text={el.text}
           isCorrect={el.isCorrect}
           answerId={el.answerId}
-          answerText={el.answerText}
+          answerText={
+            el.answerDescription ? el.answerDescription : el.answerText
+          }
         />
       ))}
     </div>

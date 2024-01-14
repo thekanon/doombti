@@ -9,13 +9,29 @@ export async function POST(request: Request) {
     const email = req.user.email;
     const name = req.user.displayName;
 
-    const job_id = req.answerList[0].answerId;
+    // survey_id가 'd4594115-c385-4eab-8de0-584cd06c5654'인 것이 job_id
+    const job_id = req.answerList.find(
+      (answer: any) =>
+        answer.survey_id === 'd4594115-c385-4eab-8de0-584cd06c5654',
+    ).answerId;
     const continuous_goal_achievement = false;
     const set_goal = 5;
     const id = 'user_id';
-    const likedtechoption = req.answerList[4].answerId;
-    const careeryearnumber = req.answerList[2].answerText;
-    const mbti = req.answerList[3].answerText;
+    // survey_id가 'cfc5d2e3-92a1-4feb-acaa-26413fe05f69'인 것이 likedtechoption
+    const likedtechoption = req.answerList.find(
+      (answer: any) =>
+        answer.survey_id === 'cfc5d2e3-92a1-4feb-acaa-26413fe05f69',
+    ).answerId;
+    // survey_id가 '39ff1b35-8920-4a05-b6f1-6f9c7657be29'인 것이 careeryearnumber
+    const careeryearnumber = req.answerList.find(
+      (answer: any) =>
+        answer.survey_id === '39ff1b35-8920-4a05-b6f1-6f9c7657be29',
+    ).answerText;
+    // survey_id가 '41ac8852-7da9-448c-bdce-2a9d205fb4d1'인 것이 mbti
+    const mbti = req.answerList.find(
+      (answer: any) =>
+        answer.survey_id === '41ac8852-7da9-448c-bdce-2a9d205fb4d1',
+    ).answerText;
 
     const result = await sql`
       INSERT INTO users (

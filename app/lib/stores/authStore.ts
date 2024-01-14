@@ -17,8 +17,8 @@ interface UserState {
   careeryearnumber: string;
   mbti: string;
   fb_uid: string;
-
   solvedQuestionList: string[];
+  liked_skills: string[];
   setUserData: (user: any) => void;
   setSolvedQuestionList: (solvedQuestionList: string[]) => void;
   logout: () => void;
@@ -26,52 +26,67 @@ interface UserState {
 }
 
 const useUserStore = create<UserState>()(
-  devtools((set) => ({
-    uid: '',
-    fb_uid: '',
-    displayName: '',
-    name: '',
-    job_id: '',
-    set_goal: 0,
-    job_description: '',
-    liked_technology: '',
-    careeryearnumber: '',
-    mbti: '',
-    email: '',
-    photoURL: '',
-    solvedQuestionList: [],
-    setSolvedQuestionList: (solvedQuestionList: string[]) =>
-      set((state) => ({ solvedQuestionList })),
-    setUserData: (user: any) => set((state) => ({ ...user })),
-    logout: () =>
-      set((state) => {
-        const auth = getAuth();
-        signOut(auth);
-        return {
-          uid: '',
-          fb_uid: '',
-          displayName: '',
-          name: '',
-          job_id: '',
-          set_goal: 0,
-          job_description: '',
-          liked_technology: '',
-          careeryearnumber: '',
-          mbti: '',
-          email: '',
-          photoURL: '',
-          solvedQuestionList: [],
-        };
-      }),
-    me: async () => {
-      if (!getAuth().currentUser) return;
-      const user = getAuth().currentUser;
+  devtools(
+    (set) => ({
+      uid: '',
+      fb_uid: '',
+      displayName: '',
+      name: '',
+      job_id: '',
+      set_goal: 0,
+      job_description: '',
+      liked_technology: '',
+      careeryearnumber: '',
+      mbti: '',
+      email: '',
+      photoURL: '',
+      solvedQuestionList: [],
+      liked_skills: [],
+      setSolvedQuestionList: (solvedQuestionList: string[]) =>
+        set(
+          (state) => ({ solvedQuestionList }),
+          false,
+          'setSolvedQuestionList',
+        ),
+      setUserData: (user: any) =>
+        set((state) => ({ ...user }), false, 'setUserData'),
+      logout: () =>
+        set(
+          (state) => {
+            const auth = getAuth();
+            signOut(auth);
+            return {
+              uid: '',
+              fb_uid: '',
+              displayName: '',
+              name: '',
+              job_id: '',
+              set_goal: 0,
+              job_description: '',
+              liked_technology: '',
+              careeryearnumber: '',
+              mbti: '',
+              email: '',
+              photoURL: '',
+              solvedQuestionList: [],
+            };
+          },
+          false,
+          'logout',
+        ),
+      me: async () => {
+        if (!getAuth().currentUser) return;
+        const user = getAuth().currentUser;
 
-      const result = await fetchUserData(user?.uid);
-      const userData = result[0];
-      set((state) => ({ ...userData }));
+        const result = await fetchUserData(user?.uid);
+        const userData = result[0];
+        set((state) => ({ ...userData }), false, 'me');
+      },
+    }),
+    {
+      name: 'userStore',
     },
-  })),
+  ),
 );
 
 export default useUserStore;

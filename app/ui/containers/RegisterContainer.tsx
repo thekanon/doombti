@@ -1,6 +1,10 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { IQuestionContainerProps, QuestionOption } from '@/app/lib/definitions';
+import {
+  IQuestionContainerProps,
+  QuestionOption,
+  IAnswerProps,
+} from '@/app/lib/definitions';
 
 import IconQuestion from '../questions/IconQuestion';
 import ProgressBar from '../common/Atoms/ProgressBar';
@@ -11,7 +15,7 @@ import useUserStore from '@/app/lib/stores/authStore';
 import useQuestionStore from '@/app/lib/stores/questionStore';
 import { useRouter } from 'next/navigation';
 
-import { registerUser } from '@/app/api/users';
+import { registerUser, fetchUserData } from '@/app/api/users';
 
 const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
   // question 관련 state
@@ -86,6 +90,26 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
     setOptionList(option);
   }, [questionIndex]);
 
+  const handleMultipleSelection = (newAnswer: IAnswerProps) => {
+    // 이미 선택된 답변인지 확인하고 선택된 답변이라면 제거
+    const isAnswerAlreadyIncluded = answerList.some(
+      (answer) => answer.id === newAnswer.id,
+    );
+
+    if (isAnswerAlreadyIncluded) {
+      // 동일한 답변이 있다면, 해당 답변을 제거
+      setAnswers(answerList.filter((answer) => answer.id !== newAnswer.id));
+    } else {
+      // 동일한 답변이 없다면, 새로운 답변을 answerList에 추가
+      setAnswers([...answerList, newAnswer]);
+    }
+  };
+
+  const handleSingleSelection = (newAnswer: IAnswerProps) => {
+    // 단일 선택 문항 처리
+    setAnswer(newAnswer);
+  };
+
   const handleIconClick = (selectedIndex: number) => {
     const currentQuestion = questionList[questionIndex];
     const selectedAnswer = optionList[selectedIndex];
@@ -102,8 +126,9 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
 
     // 이전 질문에 따라 필터링되는 질문이면 이전 질문 선택 시 질문 초기화
     if (questionList[questionIndex + 1]?.multiflag === true) {
+      // 선호하는 기술스택을 선택해주세요(중복 선택이 가능해요)의 id
       const newAnswerList = answerList.filter(
-        (answer) => answer.title !== '선호하는 기술스택을 선택해주세요',
+        (answer) => answer.survey_id !== 'fea84e08-83ad-42b7-bc42-83258ac7b38a',
       );
       setAnswers([...newAnswerList]);
 
@@ -111,18 +136,9 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
     }
 
     if (currentQuestion['multiflag'] === true) {
-      // 이미 선택된 답변인지 확인하고 선택된 답변이라면 제거
-      const isAnswerAlreadyIncluded = answerList.some(
-        (answer) => answer.id === newAnswer.id,
-      );
-      if (isAnswerAlreadyIncluded) {
-        // 동일한 답변이 있다면, 해당 답변을 제거
-        setAnswers(answerList.filter((answer) => answer.id !== newAnswer.id));
-      } else {
-        // 동일한 답변이 없다면, 새로운 답변을 answerList에 추가
-        setAnswers([...answerList, newAnswer]);
-      }
+      handleMultipleSelection(newAnswer);
 
+      // 선택된 인덱스 업데이트 (다중 선택 처리)
       if (selectedQuestion instanceof Array) {
         const isIndexSelected = selectedQuestion.includes(selectedIndex);
         if (isIndexSelected) {
@@ -136,10 +152,12 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
         setSelectedQuestion([selectedIndex]);
       }
     } else {
-      setAnswer(newAnswer);
+      // 단일 선택 문항 처리
+      handleSingleSelection(newAnswer);
       setSelectedQuestion(selectedIndex);
     }
 
+    // 상태 업데이트 확인 (디버깅 용도)
     console.log(answerList);
   };
 
@@ -156,9 +174,15 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
       fb_uid,
       uid,
     };
-    const result = await registerUser(userData, answerList);
-    if (result) {
-      me();
+    const register = await registerUser(userData, answerList);
+    try {
+      if (register.result.rows[0]) {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        me();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

@@ -108,6 +108,7 @@ export type Question = {
   createdat: string;
   icon: string;
   answerid: string;
+  answer_description?: string;
   survey_id?: string;
   options: QuestionOption[];
   multiflag: boolean;
@@ -122,8 +123,10 @@ export interface IAnswerProps {
   title: string;
   text: string;
   isCorrect: boolean;
+  survey_id?: string;
   answerText: string;
   answerId: string;
+  answerDescription?: string;
 }
 
 export interface IAnswerListProps {

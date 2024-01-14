@@ -44,12 +44,12 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
 
   const handleIconClick = (selectedIndex: number) => {
     const currentQuestion = questionList[questionIndex];
+    const selectedAnswer = currentQuestion.options[selectedIndex];
 
     if (!currentQuestion) {
       return;
     }
 
-    const selectedAnswer = currentQuestion.options[selectedIndex];
     const correctAnswer = currentQuestion.options.find(
       (option) => option.id === currentQuestion.answerid,
     );
@@ -59,14 +59,19 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
     }
 
     const isCorrect = currentQuestion.answerid === selectedAnswer.id;
-    setAnswer({
+
+    const newAnswer = {
       id: selectedAnswer.id,
       title: currentQuestion.title,
       text: selectedAnswer.text,
+      survey_id: currentQuestion.survey_id,
       isCorrect: isCorrect,
-      answerId: correctAnswer.id,
-      answerText: correctAnswer.text,
-    });
+      answerId: selectedAnswer.id,
+      answerText: selectedAnswer.text,
+      answerDescription: currentQuestion.answer_description,
+    };
+
+    setAnswer(newAnswer);
 
     setSelectedQuestion(selectedIndex);
   };

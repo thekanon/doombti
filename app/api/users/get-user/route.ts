@@ -5,7 +5,7 @@ export async function POST(request: Request) {
   try {
     const req = await request.json();
     const result = await sql`
-    WITH survey_responses AS (
+        WITH survey_responses AS (
       SELECT 
         usr.userid, 
         array_agg(so.survey_text) AS response_texts

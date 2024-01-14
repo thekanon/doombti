@@ -14,11 +14,12 @@ const AnswerContainer = () => {
     setPercentage,
     setSelectedQuestion,
   } = useQuestionStore();
-  const [answers, setAnswers] = React.useState<any[]>([]);
+  const [answers, setAnswers] = React.useState<any[]>(answerList);
   const router = useRouter();
   // let answers = Object.values(answerList);
 
   useEffect(() => {
+    console.log(answers);
     if (
       answers?.length === 0 &&
       sessionStorage &&
@@ -46,7 +47,7 @@ const AnswerContainer = () => {
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-white p-4 pb-[10vh] shadow-md">
-      <h2 className="text-2xl font-bold">샘플 퀘스트</h2>
+      <h2 className="text-2xl font-bold">샘플 퀘스트 - 이런 느낌이에요</h2>
       <h3 className="text-xl font-bold">{`
       ${answers.length}개 중 
       ${answers.filter((answer) => answer.isCorrect).length}개 완료!`}</h3>
