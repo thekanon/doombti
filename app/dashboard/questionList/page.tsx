@@ -15,15 +15,12 @@ const Card = ({ title, progress }: CardProps) => {
       <div className="mt-2">
         <div className="relative h-2.5 w-full rounded-full bg-gray-200">
           <div
-            className="h-2.5 rounded-full bg-blue-600"
+            className="h-2.5 rounded-full bg-blue-300"
             style={{ width: `${progressBarWidth}%` }}
           ></div>
           <div className="absolute left-0 right-0 top-0 flex h-full items-center justify-center">
-            <span
-              className="text-blue text-sm font-medium tracking-wide"
-              style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)' }}
-            >
-              {progress}
+            <span className="text-sm font-medium tracking-wide text-blue-700">
+              {current} / {total}
             </span>
           </div>
         </div>
