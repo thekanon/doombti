@@ -366,3 +366,86 @@ https://velog.io/@sanglee/Next.js-Firebase%EB%A1%9C-%EC%96%B4%ED%94%8C%EB%A6%AC%
 
 multi Select로 특정 문항을 선택할 수 있도록 구현함
 저장 시 해당 문항도 저장되도록 구현함
+
+import React from 'react';
+
+const QuestionListPage = () => {
+return (
+<div className="dashboard-container flex flex-col items-center justify-center space-y-4 p-4">
+<div className="w-full max-w-md rounded-lg bg-white p-4 shadow-lg">
+<h1 className="mb-2 text-2xl font-bold">Quiz</h1>
+{/_ 문제 유형 컴포넌트 _/}
+<div>
+<div>Study</div>
+{/_ 문제 현황 카드 컴포넌트 _/}
+<div>
+<div>프론트엔드 개발자를 위한 문제들이에요</div>
+<div>
+{/_ 푼 문제 / 총 문제 수 그래프로 표현 _/}
+<div>
+<div>문제 수</div>
+<div>3/10</div>
+</div>
+</div>
+</div>
+<div>
+<div>내가 선택한 기술(React, JQuery, Redux)</div>
+<div>
+{/_ 푼 문제 / 총 문제 수 그래프로 표현 _/}
+<div>
+<div>문제 수</div>
+<div>34/103</div>
+</div>
+</div>
+</div>
+<div>
+<div>상관없어, 모든 문제 중 랜덤</div>
+<div>
+{/_ 푼 문제 / 총 문제 수 그래프로 표현 _/}
+<div>
+<div>전체 문제 수</div>
+<div>34/1023</div>
+</div>
+</div>
+</div>
+</div>
+{/_ 문제 유형 컴포넌트 _/}
+<div>
+<div>Funny</div>
+{/_ 문제 현황 카드 컴포넌트 _/}
+<div>
+<div>chatGPT 시대를 항해하기 위한 문제 리스트!</div>
+<div>
+{/_ 푼 문제 / 총 문제 수 그래프로 표현 _/}
+<div>
+<div>문제 수</div>
+<div>31/42</div>
+</div>
+</div>
+</div>
+<div>
+<div>라면 좋아하시나요? 라면에 대한 흥미로운 사실!</div>
+<div>
+{/_ 푼 문제 / 총 문제 수 그래프로 표현 _/}
+<div>
+<div>문제 수</div>
+<div>34/103</div>
+</div>
+</div>
+</div>
+<div>
+<div>반려동물을 사랑하는 ##님을 위한 애견 꿀팁 모의고사에요!</div>
+<div>
+{/_ 푼 문제 / 총 문제 수 그래프로 표현 _/}
+<div>
+<div>전체 문제 수</div>
+<div>34/310</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+);
+};
+export default QuestionListPage;

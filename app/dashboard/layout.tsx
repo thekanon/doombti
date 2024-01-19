@@ -60,7 +60,7 @@ const MobileLayout = ({ children }: { children: React.ReactNode }) => {
             홈
           </button>
         </Link>
-        <Link href="/dashboard/question" className="focus:outline-none">
+        <Link href="/dashboard/questionList" className="focus:outline-none">
           <button className="flex flex-col items-center">
             <Image
               src="/Iconly/Light-Outline/Tick Square.svg"
