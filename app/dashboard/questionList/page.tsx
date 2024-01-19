@@ -6,12 +6,27 @@ interface CardProps {
 }
 
 const Card = ({ title, progress }: CardProps) => {
+  const [current, total] = progress.split('/').map(Number);
+  const progressBarWidth = (current / total) * 100;
+
   return (
     <div className="mt-2 rounded-lg bg-white p-4 shadow-sm">
       <div className="font-semibold">{title}</div>
-      <div className="mt-2 flex justify-between">
-        <div>문제 수</div>
-        <div>{progress}</div>
+      <div className="mt-2">
+        <div className="relative h-2.5 w-full rounded-full bg-gray-200">
+          <div
+            className="h-2.5 rounded-full bg-blue-600"
+            style={{ width: `${progressBarWidth}%` }}
+          ></div>
+          <div className="absolute left-0 right-0 top-0 flex h-full items-center justify-center">
+            <span
+              className="text-blue text-sm font-medium tracking-wide"
+              style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)' }}
+            >
+              {progress}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -37,20 +52,30 @@ const QuestionListPage = () => {
   // Sample data for the sections and cards
   const studyCards = [
     { title: '프론트엔드 개발자를 위한 문제들이에요', progress: '3/10' },
-    // ... add more cards as needed
+    { title: '내가 선택한 기술(React, JQuery, Redux)', progress: '34/103' },
+    {
+      title: '모든 문제 중 랜덤으로 문제를 풀어요',
+      progress: '414/1203',
+    },
   ];
   const funnyCards = [
     { title: 'chatGPT 시대를 항해하기 위한 문제 리스트!', progress: '31/42' },
-    // ... add more cards as needed
+    { title: '라면에 대한 흥미로운 사실!', progress: '34/103' },
+
+    {
+      title: '반려동물을 사랑하는 ##님을 위한 애견 꿀팁 모의고사에요!',
+      progress: '34/310',
+    },
   ];
 
   return (
     <div className="dashboard-container m-2 flex flex-col items-center justify-center space-y-4 p-4 md:m-4 md:flex-row md:justify-around md:space-y-0">
+      <h1 className="mb-2 text-2xl font-bold text-indigo-600">Quiz</h1>
       <div className="w-full max-w-md rounded-lg bg-indigo-100 p-4 shadow-lg">
-        <h1 className="mb-2 text-2xl font-bold text-indigo-600">Quiz</h1>
         <Section sectionTitle="Study" cards={studyCards} />
+      </div>
+      <div className="w-full max-w-md rounded-lg bg-indigo-100 p-4 shadow-lg">
         <Section sectionTitle="Funny" cards={funnyCards} />
-        {/* Add more sections as needed */}
       </div>
     </div>
   );
