@@ -46,9 +46,14 @@ const Section = ({ sectionTitle, cards }: SectionProps) => {
 };
 
 const QuestionListPage = () => {
-  // Sample data for the sections and cards
+  // 쿼리 구현 필요
+  // 프론트엔드 라는 카테고리에
   const studyCards = [
-    { title: '프론트엔드 개발자를 위한 문제들이에요', progress: '3/10' },
+    {
+      title: '프론트엔드 개발자를 위한 문제들이에요',
+      progress: '3/10',
+      link: '프론트엔드',
+    },
     { title: '내가 선택한 기술(React, JQuery, Redux)', progress: '34/103' },
     {
       title: '모든 문제 중 랜덤으로 문제를 풀어요',
@@ -66,13 +71,14 @@ const QuestionListPage = () => {
   ];
 
   return (
-    <div className="dashboard-container m-2 flex flex-col items-center justify-center space-y-4 p-4 md:m-4 md:flex-row md:justify-around md:space-y-0">
-      <h1 className="mb-2 text-2xl font-bold text-indigo-600">Quiz</h1>
-      <div className="w-full max-w-md rounded-lg bg-indigo-100 p-4 shadow-lg">
-        <Section sectionTitle="Study" cards={studyCards} />
-      </div>
-      <div className="w-full max-w-md rounded-lg bg-indigo-100 p-4 shadow-lg">
-        <Section sectionTitle="Funny" cards={funnyCards} />
+    <div>
+      <div className="dashboard-container m-2 flex flex-col items-center justify-center space-y-4 p-4 md:m-4 md:flex-row md:justify-around md:space-y-0">
+        <div className="w-full max-w-md rounded-lg bg-indigo-100 p-4 shadow-lg">
+          <Section sectionTitle="Study" cards={studyCards} />
+        </div>
+        <div className="w-full max-w-md rounded-lg bg-indigo-100 p-4 shadow-lg">
+          <Section sectionTitle="Funny" cards={funnyCards} />
+        </div>
       </div>
     </div>
   );

@@ -366,3 +366,21 @@ https://velog.io/@sanglee/Next.js-Firebase%EB%A1%9C-%EC%96%B4%ED%94%8C%EB%A6%AC%
 
 multi Select로 특정 문항을 선택할 수 있도록 구현함
 저장 시 해당 문항도 저장되도록 구현함
+
+## json 데이터 DB에 넣는 프로그램
+
+1. json 데이터를 일단 DB에 넣음
+2. 해당 DB를 특정 쿼리로 가져올 수 있도록 쿼리 작성
+
+## questionList에서 문제를 클릭하면 해당 문제로 이동하도록 작성
+
+1. 특정 키워드로 문제를 검색할 수 있도록 쿼리 구현 필요
+   프론트엔드 개발자를 위한 문제들이에요
+
+- 프론트엔드 개발자 카테고리에 존재하는 모든 카테고리 문제들을 가져옴
+- get-position-skills
+
+니가 선호하는 스킬
+
+- like_skills에 존재하는 모든 카테고리 문제들을 가져옴
+- get-user-like-skills

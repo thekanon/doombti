@@ -8,6 +8,14 @@ import {
   User,
   Revenue,
 } from './definitions';
+import {
+  getUserLikeSkillsQuery,
+  getFilteredSurveyOptionsQuery,
+  getAfterRegisterQuestionsQuery,
+  getQuestionsWithOptionsQuery,
+  getCategoryListQuery,
+} from '@/app/lib/queries/question';
+import { getUserInfoQuery, getUserQuery } from '@/app/lib/queries/user';
 
 import { formatCurrency } from './utils';
 import { unstable_noStore as noStore } from 'next/cache';
@@ -237,26 +245,7 @@ export async function getQuestionsWithOptions() {
   noStore();
 
   try {
-    const result = await sql`
-      SELECT 
-          q.id AS question_id,
-          q.title,
-          q.category,
-          q.createdat,
-          q.icon,
-          q.answerid,
-          q.answer_description,
-          json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
-      FROM 
-          questions q
-      JOIN 
-          questionoptions o ON q.id = o.questionid
-      GROUP BY 
-          q.id, q.title, q.category, q.createdat, q.icon, q.answerid
-      ORDER BY 
-          RANDOM()
-      LIMIT 5;
-    `;
+    const result = await getQuestionsWithOptionsQuery();
 
     return result.rows;
   } catch (error) {
@@ -269,11 +258,7 @@ export async function getCategoryList() {
   noStore();
 
   try {
-    const result = await sql`
-      select distinct Category 
-      from Questions
-      order by Category;
-    `;
+    const result = await getCategoryListQuery();
 
     return result.rows;
   } catch (error) {
@@ -285,7 +270,7 @@ export async function getCategoryList() {
 export async function getUser(id: string) {
   noStore();
   try {
-    const user = await sql`SELECT * FROM users WHERE uid=${id}`;
+    const user = await getUserQuery(id);
     return user.rows[0] as User;
   } catch (error) {
     console.error('Failed to fetch user:', error);
@@ -296,36 +281,7 @@ export async function getUser(id: string) {
 export async function fetchAfterRegisterQuestions() {
   noStore();
   try {
-    const result = await sql`
-      SELECT 
-          s.id AS survey_id,
-          s.title,
-          s.category,
-          s.createdat,
-          s.icon,
-          cq.display_order,
-          multiflag,
-          json_agg(
-            json_build_object(
-              'id', so.id, 
-              'category', so.survey_category, 
-              'text', so.survey_text
-            )
-          ) 
-          AS options
-      FROM 
-          surveys s
-      JOIN 
-          survey_options so ON s.id = so.survey_id
-      JOIN
-          conditional_questions cq ON s.id = cq.surveyid
-      WHERE
-          cq.condition_type = 'AfterRegistration'
-      GROUP BY 
-          s.id, s.title, s.category, s.createdat, s.icon, cq.display_order
-      ORDER BY 
-          cq.display_order;
-    `;
+    const result = await getAfterRegisterQuestionsQuery();
 
     return result.rows;
   } catch (error) {
@@ -337,39 +293,30 @@ export async function fetchAfterRegisterQuestions() {
 export async function getUserInfo(id: string) {
   noStore();
   try {
-    const result = await sql`
-    WITH survey_responses AS (
-      SELECT 
-        usr.userid, 
-        array_agg(so.survey_text) AS response_texts
-      FROM 
-        user_survey_responses usr
-        JOIN survey_options so ON usr.answer = so.id
-      WHERE 
-        usr.surveyid = 'fea84e08-83ad-42b7-bc42-83258ac7b38a'
-      GROUP BY 
-        usr.userid
-    )
-    SELECT
-      u.uid,
-      u.fb_uid,
-      u.name,
-      u.email,
-      job_option.survey_text AS job_description,
-      u.continuous_goal_achievement,
-      u.set_goal,
-      tech_option.survey_text AS liked_technology,
-      u.careeryearnumber,
-      u.mbti,
-      sr.response_texts AS liked_skills
-    FROM 
-      users u
-      INNER JOIN survey_options job_option ON u.job_id = job_option.id
-      INNER JOIN survey_options tech_option ON u.likedtechoption = tech_option.id
-      LEFT JOIN survey_responses sr ON u.uid = sr.userid
-    WHERE 
-      fb_uid = ${id};
-    `;
+    const result = await getUserInfoQuery(id);
+    return result.rows;
+  } catch (error) {
+    console.error('Failed to fetch user info:', error);
+    throw new Error('Failed to fetch user info.');
+  }
+}
+
+export async function getUserLikeSkills(fb_uid: string) {
+  noStore();
+  try {
+    const result = await getUserLikeSkillsQuery(fb_uid);
+    return result.rows;
+  } catch (error) {
+    console.error('Failed to fetch user info:', error);
+    throw new Error('Failed to fetch user info.');
+  }
+}
+
+// getFilteredSurveyOptionsQuery
+export async function getFilteredSurveyOptions(category: string) {
+  noStore();
+  try {
+    const result = await getFilteredSurveyOptionsQuery(category);
     return result.rows;
   } catch (error) {
     console.error('Failed to fetch user info:', error);
