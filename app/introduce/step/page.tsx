@@ -70,7 +70,7 @@ const Tutorial3Page = {
       />
       <div className="max-w-xl pb-2 pt-4">
         <h1 className="Bold text-2xl">
-          무료로 사용할 수 있어요.
+          무료로 사용할 수 있어요
           <br />
           일단 해보고 가입해도 괜찮아요
         </h1>
