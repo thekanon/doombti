@@ -4,35 +4,13 @@ import './globals.css';
 import './styles/atoms.css';
 import { Nunito } from 'next/font/google';
 import CombinedProvider from '@/providers/CombinedProvider';
-import { cookies, headers } from 'next/headers';
-import { admin } from '@/firebase/firebaseAdmin';
-import { getUserInfo } from '@/app/lib/data';
 import { User } from './lib/definitions';
+import { loadAuth } from './lib/actions';
 
 const inter = Nunito({
   subsets: ['latin'],
   display: 'swap',
 });
-async function loadAuth() {
-  'use server';
-  try {
-    const cookieStore = cookies();
-    const cookietoken = cookieStore.get('token');
-
-    if (!cookietoken || cookietoken?.value === '') {
-      return;
-    }
-    const token = await admin.auth().verifyIdToken(cookietoken.value);
-    const { uid, email } = token;
-    const userInfo = await getUserInfo(uid);
-
-    console.log(userInfo[0]);
-
-    return userInfo[0];
-  } catch (error) {
-    console.log('error', error);
-  }
-}
 
 export default async function RootLayout({
   children,

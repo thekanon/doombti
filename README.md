@@ -380,7 +380,51 @@ multi Select로 특정 문항을 선택할 수 있도록 구현함
 - 프론트엔드 개발자 카테고리에 존재하는 모든 카테고리 문제들을 가져옴
 - get-position-skills
 
-니가 선호하는 스킬
+2. 니가 선호하는 스킬
 
 - like_skills에 존재하는 모든 카테고리 문제들을 가져옴
 - get-user-like-skills
+
+## 유저가 특정 종류의 퀘스천 날려볼 수 있는 쿼리 만들기
+
+fetchUserLikeSkills
+
+- 유저가 선호하는 스킬에 해당하는 문제들을 가져옴
+
+fetchPositionSkills
+
+- 유저가 선호하는 직무에 매핑되어있는 스킬에 해당하는 문제들을 가져옴
+
+## /dashboard/questionList 에서 링크 연결하기
+
+클릭 시 해당 문제 목록으로 이동하도록 구현
+
+- 클릭하면 fetchUserLikeSkills 등등 호출하고 해당 문제 목록으로 이동하도록 구현
+- 이동 디렉토리 :
+  여기서 대충
+  params.slug의 값이 [study,myskill] 이면
+  getUserLikeSkills
+  params.slug의 값이 [study,random] 이면  
+   getQuestionsWithOptions
+  params.slug의 값이 [study,myjob] 이면
+  getFilteredSurveyOptions
+
+  personal
+  [personal, 내가 푼 문제],
+  정답을 맞춘 문제들을 가져온다.
+  [personal, 내가 못 푼 문제],
+  정답을 못 맞춘 문제들을 가져온다.
+  [personal, 내가 본 문제 중 랜덤],
+  내가 본 문제 중 랜덤으로 가져온다.
+
+      [study, job, 프론트엔드],
+      [personal, likedSkil],
+      [study, random],
+
+      [funny, 랜덤],
+      [funny, 내가 푼 문제],
+      [funny, 라면에 대한 퀴즈],
+      [funny, 반려동물 백서],
+      [funny, chatGPT],
+
+# 위 내용을 퀴즈 풀기 페이지에서 연결하기

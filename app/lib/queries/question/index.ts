@@ -1,7 +1,7 @@
 // sqlQueries.js
 import { sql } from '@vercel/postgres';
 
-// filtered_survey_options
+// 특정 카테고리에 대한 질문 리스트
 export async function getFilteredSurveyOptionsQuery(category: string) {
   return await sql`
 WITH filtered_survey_options AS (
@@ -21,6 +21,7 @@ JOIN
   `;
 }
 
+// 유저가 선호하는 스킬이라고 선택한 카테고리에 속하는 질문 리스트
 export async function getUserLikeSkillsQuery(fb_uid: string) {
   return await sql`
 WITH survey_responses AS (
@@ -115,6 +116,60 @@ export async function getQuestionsWithOptionsQuery() {
           questions q
       JOIN 
           questionoptions o ON q.id = o.questionid
+      GROUP BY 
+          q.id, q.title, q.category, q.createdat, q.icon, q.answerid
+      ORDER BY 
+          RANDOM()
+      LIMIT 5;
+  `;
+}
+
+// getQuestionsWithOptionsByQuestionType
+export async function getQuestionsWithOptionsByQuestionTypeQuery(
+  question_type: string,
+) {
+  return await sql`
+      SELECT 
+          q.id AS question_id,
+          q.title,
+          q.category,
+          q.createdat,
+          q.icon,
+          q.answerid,
+          q.answer_description,
+          json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
+      FROM 
+          questions q
+      JOIN 
+          questionoptions o ON q.id = o.questionid
+      WHERE 
+ 		  q.question_type = ${question_type}
+      GROUP BY 
+          q.id, q.title, q.category, q.createdat, q.icon, q.answerid
+      ORDER BY 
+          RANDOM()
+      LIMIT 5;
+  `;
+}
+
+// getQuestionsWithOptionsByCategoryQuery
+export async function getQuestionsWithOptionsByCategoryQuery(category: string) {
+  return await sql`
+      SELECT 
+          q.id AS question_id,
+          q.title,
+          q.category,
+          q.createdat,
+          q.icon,
+          q.answerid,
+          q.answer_description,
+          json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
+      FROM 
+          questions q
+      JOIN 
+          questionoptions o ON q.id = o.questionid
+      WHERE 
+          q.category = ${category}
       GROUP BY 
           q.id, q.title, q.category, q.createdat, q.icon, q.answerid
       ORDER BY 

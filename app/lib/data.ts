@@ -14,6 +14,8 @@ import {
   getAfterRegisterQuestionsQuery,
   getQuestionsWithOptionsQuery,
   getCategoryListQuery,
+  getQuestionsWithOptionsByCategoryQuery,
+  getQuestionsWithOptionsByQuestionTypeQuery,
 } from '@/app/lib/queries/question';
 import { getUserInfoQuery, getUserQuery } from '@/app/lib/queries/user';
 
@@ -264,6 +266,35 @@ export async function getCategoryList() {
   } catch (error) {
     console.error('Failed to fetch category list:', error);
     throw new Error('Failed to fetch category list.');
+  }
+}
+
+export async function getQuestionsWithOptionsByCategory(category: string) {
+  noStore();
+
+  try {
+    const result = await getQuestionsWithOptionsByCategoryQuery(category);
+
+    return result.rows;
+  } catch (error) {
+    console.error('Failed to fetch questions with options:', error);
+    throw new Error('Failed to fetch questions with options.');
+  }
+}
+
+export async function getQuestionsWithOptionsByQuestionType(
+  questionType: string,
+) {
+  noStore();
+
+  try {
+    const result =
+      await getQuestionsWithOptionsByQuestionTypeQuery(questionType);
+
+    return result.rows;
+  } catch (error) {
+    console.error('Failed to fetch questions with options:', error);
+    throw new Error('Failed to fetch questions with options.');
   }
 }
 

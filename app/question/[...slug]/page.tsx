@@ -1,31 +1,54 @@
 import React from 'react';
-import { getUserLikeSkills, getFilteredSurveyOptions } from '@/app/lib/data';
-const QuestionPage = async ({ params }: { params: { slug: string } }) => {
-  console.log(params);
-  // const res = await getUserLikeSkills('S1x8u81VZiXNgOHpIosNF0PqDpD3');
-  const res = await getFilteredSurveyOptions('디자인');
+import {
+  getUserLikeSkills,
+  getFilteredSurveyOptions,
+  getQuestionsWithOptionsByQuestionType,
+  getQuestionsWithOptionsByCategory,
+} from '@/app/lib/data';
+import { loadAuth } from '@/app/lib/actions';
+import { User } from '@/app/lib/definitions';
 
-  /*
-    여기서 대충 
-    params.slug의 값이 [study,myskill] 이면 getUserLikeSkills
-    params.slug의 값이 [study,random] 이면 getQuestionsWithOptions
-    params.slug의 값이 [study,myjob] 이면 getFilteredSurveyOptions
+interface IQuestionParams {
+  slug: string[];
+}
 
-    그 외
-    [study, job, 프론트엔드],
-    [study, 내가 못 푼 문제],
-    [study, 내가 푼 문제],
-    [study, skill, React],
-    [study, JQuery],
+const QuestionPage = async ({ params }: { params: IQuestionParams }) => {
+  console.log(params.slug);
+  const auth = await loadAuth();
+  if (!auth) return;
+  const { fb_uid } = auth as User;
 
-    [funny, 랜덤],
-    [funny, 내가 푼 문제],
-    [funny, 라면에 대한 퀴즈],
-    [funny, 반려동물 백서],
-    [funny, chatGPT],
+  const paramsArr = params.slug.map((slug) => decodeURIComponent(slug));
+  // 쿼리 파라미터로 넘어온 값들의 성격에 따라 다른 API를 호출하도록 분기처리
+  const setApi = (paramsArr: string[]) => {
+    if (paramsArr[0] === 'study') {
+      if (paramsArr[1] === 'job') {
+        console.log('study/job');
+        return getFilteredSurveyOptions(paramsArr[2]);
+      } else if (paramsArr[1] === 'random') {
+        console.log('study/random');
+        return getQuestionsWithOptionsByQuestionType('study');
+      }
+    } else if (paramsArr[0] === 'personal') {
+      if (paramsArr[1] === 'likedSkil') {
+        console.log('personal/likedSkil');
+        return getUserLikeSkills(fb_uid);
+      }
+    } else if (paramsArr[0] === 'funny') {
+      if (paramsArr[1] === 'random') {
+        console.log('funny/random');
+        return getQuestionsWithOptionsByQuestionType('funny');
+      } else if (paramsArr[1] === 'category') {
+        console.log('funny/category');
+        return getQuestionsWithOptionsByCategory(paramsArr[2]);
+      }
+    }
 
-  */
-  console.log(res);
+    return [];
+  };
+  const res = await setApi(paramsArr);
+
+  console.log(res.length);
   return (
     <div>
       My Post: {params.slug[0]}

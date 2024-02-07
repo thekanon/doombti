@@ -143,15 +143,29 @@ export interface IConfirmDialogProps {
   cancelText?: string;
 }
 
+/*
+  uid: '55a638f1-fc3c-4920-be17-7d90dfb46a23',
+  fb_uid: 'S1x8u81VZiXNgOHpIosNF0PqDpD3',
+  name: '여의도웹 개발자',
+  email: 'dlengjs123@gmail.com',
+  job_description: '프론트엔드',
+  continuous_goal_achievement: false,
+  set_goal: 5,
+  liked_technology: '트렌디한 프론트엔드 기술에 관심이 많아요.',
+  careeryearnumber: '3년 이상 5년 미만',
+  mbti: 'INTJ',
+  liked_skills: [ 'jQuery', 'Webpack', 'React' ]
+*/
 export interface User {
   uid?: string; // UUID
-  job_id: string; // UUID, 외래 키 참조
-  set_goal: number; // 숫자로 표현된 목표
-  name: string;
-  email: string;
-  job_description: string;
-  continuous_goal_achievement: boolean; // 목표 달성을 연속으로 했는지 여부
-  liked_technology: string;
-  careeryearnumber: string;
-  mbti: string;
+  fb_uid: string; // Firebase UID
+  name: string; // 이름
+  email: string; // 이메일
+  job_description: string; // 직무
+  continuous_goal_achievement: boolean; // 지속적인 목표 달성
+  set_goal: number; // 목표 설정
+  liked_technology: string; // 선호 기술
+  careeryearnumber: string; // 경력
+  mbti: string; // MBTI
+  liked_skills: string[]; // 선호 스킬
 }
