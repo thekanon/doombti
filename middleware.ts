@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname !== '/signin' &&
     request.nextUrl.pathname.indexOf('/introduce/') === -1
   ) {
-    requestHeaders.set('x-hello-from-middleware1', 'hello');
+    requestHeaders.set('x-from-auth-page', 'true');
   }
   const response = NextResponse.next({
     request: {

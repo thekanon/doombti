@@ -14,7 +14,7 @@ const inter = Nunito({
 });
 
 export async function getUserInfo() {
-  const authHeaders = headers().get('x-hello-from-middleware1');
+  const authHeaders = headers().get('x-from-auth-page');
   console.log(authHeaders);
   if (authHeaders) {
     return (await loadAuth()) as User;
@@ -24,10 +24,8 @@ export async function getUserInfo() {
 }
 export default async function RootLayout({
   children,
-  req,
 }: {
   children: React.ReactNode;
-  req: any;
 }) {
   const userInfo = (await getUserInfo()) as User | undefined;
 
