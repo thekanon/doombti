@@ -1,5 +1,5 @@
 'use server';
-import { cookies, headers } from 'next/headers';
+import { cookies } from 'next/headers'; // Removed 'headers' as it's not used in the provided code snippet
 import { admin } from '@/firebase/firebaseAdmin';
 import { getUserInfo } from '@/app/lib/data';
 export async function loadAuth() {
@@ -7,17 +7,22 @@ export async function loadAuth() {
     const cookieStore = cookies();
     const cookietoken = cookieStore.get('token');
 
-    if (!cookietoken || cookietoken?.value === '') {
+    if (!cookietoken || cookietoken.value === '') {
       return;
     }
+
     const token = await admin.auth().verifyIdToken(cookietoken.value);
-    const { uid, email } = token;
+    const { uid } = token;
+
     const userInfo = await getUserInfo(uid);
 
-    // console.log(userInfo[0]);
+    if (!userInfo || userInfo.length === 0) {
+      return;
+    }
 
     return userInfo[0];
   } catch (error) {
-    console.log('error', error);
+    console.error('Error loading authentication:', error);
+    return null;
   }
 }

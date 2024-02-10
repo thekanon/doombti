@@ -8,16 +8,22 @@ export async function middleware(request: NextRequest) {
   const cookieStore = cookies();
   const cookietoken = cookieStore.get('token');
 
-  // if (
-  //   cookietoken &&
-  //   cookietoken.value === '' &&
-  //   request.nextUrl.pathname !== '/' &&
-  //   request.nextUrl.pathname !== '/signin' &&
-  //   request.nextUrl.pathname.indexOf('/introduce/') === -1
-  // ) {
-  //   return NextResponse.redirect(new URL('/signin', request.url));
-  // }
-  return NextResponse.next();
+  const requestHeaders = new Headers(request.headers);
+
+  if (
+    request.nextUrl.pathname !== '/' &&
+    request.nextUrl.pathname !== '/signin' &&
+    request.nextUrl.pathname.indexOf('/introduce/') === -1
+  ) {
+    requestHeaders.set('x-hello-from-middleware1', 'hello');
+  }
+  const response = NextResponse.next({
+    request: {
+      // New request headers
+      headers: requestHeaders,
+    },
+  });
+  return response;
 }
 export const config = {
   matcher: [
