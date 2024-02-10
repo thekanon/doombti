@@ -18,7 +18,7 @@ export default function Page() {
       }
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [router]);
 
   return (
     <div

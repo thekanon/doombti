@@ -144,5 +144,5 @@ const QuestionListPage = async () => {
     </div>
   );
 };
-
+export const dynamic = 'force-dynamic';
 export default QuestionListPage;

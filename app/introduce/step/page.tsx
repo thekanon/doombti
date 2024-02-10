@@ -85,7 +85,7 @@ const StepPage = () => {
 
   useEffect(() => {
     router.prefetch('./sampleQuestion');
-  }, []);
+  }, [router]);
 
   return (
     <div

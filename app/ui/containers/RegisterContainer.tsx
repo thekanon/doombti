@@ -54,7 +54,7 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
     if (!!uid && !!fb_uid && uid !== '') {
       router.push('/dashboard');
     }
-  }, [uid]);
+  }, [uid, fb_uid, router]);
 
   // question 초기화
   useEffect(() => {
@@ -64,7 +64,7 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
       setQuestionList(questions);
     }
     setTotalQuestions(questions.length);
-  }, []);
+  }, [questions, setQuestionList, setTotalQuestions]);
 
   useEffect(() => {
     let option = questions[questionIndex].options;
@@ -88,7 +88,7 @@ const RegisterContainer = ({ questions }: IQuestionContainerProps) => {
       setSelectedQuestion(selectedQuestion);
     }
     setOptionList(option);
-  }, [questionIndex]);
+  }, [questionIndex, questions, answerList, setSelectedQuestion]);
 
   const handleMultipleSelection = (newAnswer: IAnswerProps) => {
     // 이미 선택된 답변인지 확인하고 선택된 답변이라면 제거

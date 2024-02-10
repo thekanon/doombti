@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import useUserStore from '@/app/lib/stores/authStore';
 import { useRouter } from 'next/navigation';
@@ -15,7 +16,7 @@ const SignInPage = () => {
     if (uid !== '') {
       router.push('/dashboard');
     }
-  }, []);
+  }, [uid, router]);
 
   const handleSignIn = () => {
     const auth = getAuth();
@@ -69,10 +70,11 @@ const SignInPage = () => {
           className="btn-google mb-4 flex w-full items-center rounded px-4 py-2 focus:outline-none"
         >
           <span className="btn-icon">
-            <img
+            <Image
               src="/Iconly/Button/google.svg"
               alt="Google"
-              style={{ width: '24px', height: '24px' }}
+              width={24}
+              height={24}
             />
           </span>
           <span className="flex-grow text-center">Google로 시작하기</span>
@@ -83,10 +85,11 @@ const SignInPage = () => {
           className="btn-apple mb-4 flex w-full items-center rounded px-4 py-2 focus:outline-none"
         >
           <span className="btn-icon">
-            <img
+            <Image
               src="/Iconly/Button/white-apple.svg"
               alt="Google"
-              style={{ width: '24px', height: '24px' }}
+              width={24}
+              height={24}
             />
           </span>
           <span className="flex-grow text-center">Apple로 시작하기</span>
@@ -96,10 +99,11 @@ const SignInPage = () => {
           className="btn-kakao mb-4 flex w-full items-center rounded px-4 py-2 focus:outline-none"
         >
           <span className="btn-icon">
-            <img
+            <Image
               src="/Iconly/Button/kakao.svg"
               alt="Google"
-              style={{ width: '24px', height: '24px' }}
+              width={24}
+              height={24}
             />
           </span>
           <span className="flex-grow text-center">카카오로 시작하기</span>

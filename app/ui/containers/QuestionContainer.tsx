@@ -40,7 +40,7 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
       setQuestionList(questions);
     }
     setTotalQuestions(questions.length);
-  }, []);
+  }, [questions, questionList.length, setQuestionList, setTotalQuestions]);
 
   const handleIconClick = (selectedIndex: number) => {
     const currentQuestion = questionList[questionIndex];

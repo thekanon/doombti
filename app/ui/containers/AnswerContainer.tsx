@@ -28,7 +28,7 @@ const AnswerContainer = () => {
       const answerStr = sessionStorage?.getItem('answerList') || '';
       setAnswers(JSON.parse(answerStr));
     }
-  }, [answerList]);
+  }, [answers, answerList]);
 
   const handleReset = () => {
     setQuestionIndex(0);

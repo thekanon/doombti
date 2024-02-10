@@ -1,33 +1,33 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { InputField, InputProps } from "./InputField";
+import type { Meta, StoryObj } from '@storybook/react';
+import { InputField, InputProps } from './InputField';
 
 const meta: Meta<typeof InputField> = {
-  title: "MBTI/Input",
+  title: 'MBTI/Input',
   component: InputField,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     status: {
-      control: "select",
-      options: ["active", "fill", "default"],
+      control: 'select',
+      options: ['active', 'fill', 'default'],
     },
     type: {
-      control: "select",
+      control: 'select',
       options: [
-        "default",
-        "code",
-        "username",
-        "email",
-        "password",
-        "normal",
-        "phone",
+        'default',
+        'code',
+        'username',
+        'email',
+        'password',
+        'normal',
+        'phone',
       ],
     },
     theme: {
-      control: "select",
-      options: ["light", "dark"],
+      control: 'select',
+      options: ['light', 'dark'],
     },
   },
 };
@@ -38,24 +38,24 @@ type Story = StoryObj<typeof InputField>;
 
 export const Default: Story = {
   args: {
-    status: "default",
-    type: "email",
-    theme: "light",
+    status: 'default',
+    type: 'email',
+    theme: 'light',
   },
 };
 
 export const DarkTheme: Story = {
   args: {
-    status: "default",
-    type: "email",
-    theme: "dark",
+    status: 'default',
+    type: 'email',
+    theme: 'dark',
   },
 };
 
-export const activeStatus: Story = {
+export const ActiveStatus: Story = {
   args: {
-    status: "active",
-    type: "username",
-    theme: "light",
+    status: 'active',
+    type: 'username',
+    theme: 'light',
   },
 };
