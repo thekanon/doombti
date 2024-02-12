@@ -8,6 +8,8 @@ import {
   User,
   Revenue,
 } from './definitions';
+import { QuestionsSchema } from '@/app/lib/schema';
+
 import {
   getUserLikeSkillsQuery,
   getFilteredSurveyOptionsQuery,
@@ -275,7 +277,7 @@ export async function getQuestionsWithOptionsByCategory(category: string) {
   try {
     const result = await getQuestionsWithOptionsByCategoryQuery(category);
 
-    return result.rows;
+    return QuestionsSchema.parse(result.rows);
   } catch (error) {
     console.error('Failed to fetch questions with options:', error);
     throw new Error('Failed to fetch questions with options.');
@@ -291,7 +293,7 @@ export async function getQuestionsWithOptionsByQuestionType(
     const result =
       await getQuestionsWithOptionsByQuestionTypeQuery(questionType);
 
-    return result.rows;
+    return QuestionsSchema.parse(result.rows);
   } catch (error) {
     console.error('Failed to fetch questions with options:', error);
     throw new Error('Failed to fetch questions with options.');
@@ -336,7 +338,7 @@ export async function getUserLikeSkills(fb_uid: string) {
   noStore();
   try {
     const result = await getUserLikeSkillsQuery(fb_uid);
-    return result.rows;
+    return QuestionsSchema.parse(result.rows);
   } catch (error) {
     console.error('Failed to fetch user info:', error);
     throw new Error('Failed to fetch user info.');
@@ -348,7 +350,8 @@ export async function getFilteredSurveyOptions(category: string) {
   noStore();
   try {
     const result = await getFilteredSurveyOptionsQuery(category);
-    return result.rows;
+
+    return QuestionsSchema.parse(result.rows);
   } catch (error) {
     console.error('Failed to fetch user info:', error);
     throw new Error('Failed to fetch user info.');
