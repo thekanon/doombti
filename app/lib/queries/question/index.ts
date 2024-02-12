@@ -12,7 +12,7 @@ export async function getFilteredSurveyOptionsQuery(category: string) {
       WHERE 
         so.survey_category LIKE '%' || ${category} || '%'
     ), filtered_questions AS (
-      SELECT
+      SELECT DISTINCT ON (q.id)
         q.id AS question_id,
         q.title,
         q.category,
@@ -112,7 +112,7 @@ JOIN
 GROUP BY
   ud.uid, ud.fb_uid, ud.name, ud.email, ud.job_description, ud.continuous_goal_achievement, ud.set_goal, ud.liked_technology, ud.careeryearnumber, ud.mbti, skill, q.id, q.title, q.category, q.createdat, q.icon, q.answerid, q.answer_description
 ORDER BY 
-  q.createdat DESC
+  RANDOM()
 LIMIT 5;
   `;
 }
