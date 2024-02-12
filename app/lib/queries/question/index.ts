@@ -4,20 +4,45 @@ import { sql } from '@vercel/postgres';
 // 특정 카테고리에 대한 질문 리스트
 export async function getFilteredSurveyOptionsQuery(category: string) {
   return await sql`
-WITH filtered_survey_options AS (
-  SELECT 
-    so.survey_text
-  FROM 
-    survey_options so 
-  WHERE 
-    so.survey_category LIKE '%' || ${category} || '%'
-)
-SELECT
-  q.*
-FROM
-  questions q
-JOIN 
-  filtered_survey_options fso ON q.category LIKE '%' || fso.survey_text || '%';
+    WITH filtered_survey_options AS (
+      SELECT 
+        so.survey_text
+      FROM 
+        survey_options so 
+      WHERE 
+        so.survey_category LIKE '%' || ${category} || '%'
+    ), filtered_questions AS (
+      SELECT
+        q.id AS question_id,
+        q.title,
+        q.category,
+        q.createdat,
+        q.icon,
+        q.answerid,
+        q.answer_description
+      FROM
+        questions q
+      JOIN 
+        filtered_survey_options fso ON q.category LIKE '%' || fso.survey_text || '%'
+    )
+    SELECT 
+      fq.question_id,
+      fq.title,
+      fq.category,
+      fq.createdat,
+      fq.icon,
+      fq.answerid,
+      fq.answer_description,
+      json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
+    FROM 
+      filtered_questions fq
+    JOIN 
+      questionoptions o ON fq.question_id = o.questionid
+    GROUP BY 
+      fq.question_id, fq.title, fq.category, fq.createdat, fq.icon, fq.answerid, fq.answer_description
+    ORDER BY 
+      RANDOM()
+    LIMIT 5;
   `;
 }
 
@@ -55,16 +80,41 @@ user_data AS (
     INNER JOIN survey_options tech_option ON u.likedtechoption = tech_option.id
     LEFT JOIN survey_responses sr ON u.uid = sr.userid
   WHERE 
-    fb_uid = ${fb_uid}
-    )
+    u.fb_uid = ${fb_uid}
+)
 SELECT
-  ud.*,
-  q.*
+  ud.uid,
+  ud.fb_uid,
+  ud.name,
+  ud.email,
+  ud.job_description,
+  ud.continuous_goal_achievement,
+  ud.set_goal,
+  ud.liked_technology,
+  ud.careeryearnumber,
+  ud.mbti,
+  skill,
+  q.id AS question_id,
+  q.title,
+  q.category,
+  q.createdat,
+  q.icon,
+  q.answerid,
+  q.answer_description,
+  json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
 FROM
-  user_data ud
-  CROSS JOIN LATERAL unnest(ud.liked_skills) AS skill
-  INNER JOIN questions q ON q.category LIKE '%' || skill || '%';
-    `;
+  user_data ud,
+  LATERAL unnest(ud.liked_skills) AS skill
+JOIN
+  questions q ON q.category LIKE '%' || skill || '%'
+JOIN 
+  questionoptions o ON q.id = o.questionid
+GROUP BY
+  ud.uid, ud.fb_uid, ud.name, ud.email, ud.job_description, ud.continuous_goal_achievement, ud.set_goal, ud.liked_technology, ud.careeryearnumber, ud.mbti, skill, q.id, q.title, q.category, q.createdat, q.icon, q.answerid, q.answer_description
+ORDER BY 
+  q.createdat DESC
+LIMIT 5;
+  `;
 }
 
 export async function getAfterRegisterQuestionsQuery() {
@@ -129,52 +179,52 @@ export async function getQuestionsWithOptionsByQuestionTypeQuery(
   question_type: string,
 ) {
   return await sql`
-      SELECT 
-          q.id AS question_id,
-          q.title,
-          q.category,
-          q.createdat,
-          q.icon,
-          q.answerid,
-          q.answer_description,
-          json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
-      FROM 
-          questions q
-      JOIN 
-          questionoptions o ON q.id = o.questionid
-      WHERE 
- 		  q.question_type = ${question_type}
-      GROUP BY 
-          q.id, q.title, q.category, q.createdat, q.icon, q.answerid
-      ORDER BY 
-          RANDOM()
-      LIMIT 5;
+    SELECT 
+      q.id AS question_id,
+      q.title,
+      q.category,
+      q.createdat,
+      q.icon,
+      q.answerid,
+      q.answer_description,
+      json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
+    FROM 
+      questions q
+    JOIN 
+      questionoptions o ON q.id = o.questionid
+    WHERE 
+      q.question_type = ${question_type}
+    GROUP BY 
+      q.id, q.title, q.category, q.createdat, q.icon, q.answerid, q.answer_description
+    ORDER BY 
+      RANDOM()
+    LIMIT 5;
   `;
 }
 
 // getQuestionsWithOptionsByCategoryQuery
 export async function getQuestionsWithOptionsByCategoryQuery(category: string) {
   return await sql`
-      SELECT 
-          q.id AS question_id,
-          q.title,
-          q.category,
-          q.createdat,
-          q.icon,
-          q.answerid,
-          q.answer_description,
-          json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
-      FROM 
-          questions q
-      JOIN 
-          questionoptions o ON q.id = o.questionid
-      WHERE 
-          q.category = ${category}
-      GROUP BY 
-          q.id, q.title, q.category, q.createdat, q.icon, q.answerid
-      ORDER BY 
-          RANDOM()
-      LIMIT 5;
+    SELECT 
+      q.id AS question_id,
+      q.title,
+      q.category,
+      q.createdat,
+      q.icon,
+      q.answerid,
+      q.answer_description,
+      json_agg(json_build_object('id', o.id, 'text', o.text)) AS options
+    FROM 
+      questions q
+    JOIN 
+      questionoptions o ON q.id = o.questionid
+    WHERE 
+      q.category = ${category}
+    GROUP BY 
+      q.id, q.title, q.category, q.createdat, q.icon, q.answerid, q.answer_description
+    ORDER BY 
+      RANDOM()
+    LIMIT 5;
   `;
 }
 

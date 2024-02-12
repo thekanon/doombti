@@ -34,6 +34,7 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
 
   // question 초기화
   useEffect(() => {
+    console.log(questions);
     if (questions?.length === 0) {
       setQuestionList([]);
     } else if (questions && questions.length > 0 && !questionList.length) {

@@ -5,15 +5,15 @@ import {
   getQuestionsWithOptionsByQuestionType,
   getQuestionsWithOptionsByCategory,
 } from '@/app/lib/data';
+import QuestionContainer from '@/app/ui/containers/QuestionContainer';
 import { loadAuth } from '@/app/lib/actions';
-import { User } from '@/app/lib/definitions';
+import { User, Question } from '@/app/lib/definitions';
 
 interface IQuestionParams {
   slug: string[];
 }
 
 const QuestionPage = async ({ params }: { params: IQuestionParams }) => {
-  console.log(params.slug);
   const auth = await loadAuth();
   if (!auth) return;
   const { fb_uid } = auth as User;
@@ -47,20 +47,18 @@ const QuestionPage = async ({ params }: { params: IQuestionParams }) => {
     return [];
   };
   const res = await setApi(paramsArr);
+  function isQuestion(obj: any): obj is Question {
+    return 'question_id' in obj && 'title' in obj;
+  }
 
-  console.log(res.length);
+  if (res.length === 0) {
+    if
+  }
+  const questions = res.filter(isQuestion);
+
   return (
     <div>
-      My Post: {params.slug[0]}
-      My Post: {params.slug[1]}
-      <div>
-        {res.map((item) => (
-          <div key={item.id}>
-            <div>{item.title}</div>
-            <div>{item.answer_description}</div>
-          </div>
-        ))}
-      </div>
+      <QuestionContainer questions={questions} />
     </div>
   );
 };

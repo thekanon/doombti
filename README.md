@@ -428,3 +428,12 @@ fetchPositionSkills
       [funny, chatGPT],
 
 # 위 내용을 퀴즈 풀기 페이지에서 연결하기
+
+# 퀴즈 컨테이너에 맞는 데이터 연결해보기
+
+getFilteredSurveyOptions
+getQuestionsWithOptionsByQuestionType
+getUserLikeSkills
+getQuestionsWithOptionsByCategory
+
+#
