@@ -436,4 +436,17 @@ getQuestionsWithOptionsByQuestionType
 getUserLikeSkills
 getQuestionsWithOptionsByCategory
 
-#
+위의 쿼리에서 내려오는 값들을 전부 퀴즈 컨테이너에 맞춤
+zod를 사용하여 타입을 정의하고, 해당 타입에 맞춰서 데이터를 가져오도록 수정
+
+# 왜 문항이 2개씩 들어갈까
+
+확인해보니 filtered_questions 쿼리에서
+발생하는 원인은 'JavaScript'라는 키워드가
+JOIN
+filtered_survey_options fso ON q.category LIKE '%' || fso.survey_text || '%'
+부분의
+
+'JavaScript/JavaScript',
+'TypeScript/Need for Types in JavaScript'
+에서 2번씩 잡히기 때문이었음
