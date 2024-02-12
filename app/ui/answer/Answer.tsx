@@ -18,7 +18,7 @@ const Answer = ({
 }: IAnswerWithIndexProps) => {
   return (
     <div
-      className="animate-slide-in mb-4 rounded-lg border p-4 shadow-md"
+      className="mb-4 animate-slide-in rounded-lg border p-4 shadow-md"
       style={{
         animation: `slideInFromLeft 0.5s ease-out ${index * 0.5}s`,
         animationFillMode: 'backwards',
@@ -37,7 +37,7 @@ const Answer = ({
         </div>
       </div>
       <div className="mb-2 text-xl font-bold text-gray-800">{title}</div>
-      <div className="mb-2 text-gray-700">{text}</div>
+      <div className="mb-2 text-gray-700">{answerText ? answerText : text}</div>
 
       {/* 숨김 처리된 정보 */}
       <div

@@ -8,7 +8,7 @@ import ConfirmDialog from '../common/Molecules/ConfirmDialog';
 import ButtonComponent from '../common/Atoms/ButtonComponent';
 
 import useQuestionStore from '@/app/lib/stores/questionStore';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
   // question 관련 state
@@ -31,6 +31,7 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   // question 초기화
   useEffect(() => {
@@ -138,7 +139,7 @@ const QuestionContainer = ({ questions }: IQuestionContainerProps) => {
       </div>
       <ConfirmDialog
         isOpen={isConfirmOpen}
-        onConfirm={() => router.push('./sampleQuestion/result')}
+        onConfirm={() => router.push(pathname + '/result')}
         onCancel={handleCancel}
         title="제출 확인"
         message={`문제를 다 푸셨나요?\n제출 시 결과를 확인할 수 있습니다.`}

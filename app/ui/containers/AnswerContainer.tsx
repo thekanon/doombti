@@ -33,7 +33,7 @@ const AnswerContainer = () => {
   const handleReset = () => {
     setQuestionIndex(0);
     setPercentage(0);
-    router.push('../sampleQuestion');
+    router.back();
   };
 
   const handleConfirm = () => {

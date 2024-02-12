@@ -6,6 +6,7 @@ import {
   getQuestionsWithOptionsByCategory,
 } from '@/app/lib/data';
 import QuestionContainer from '@/app/ui/containers/QuestionContainer';
+import AnswerContainer from '@/app/ui/containers/AnswerContainer';
 import { loadAuth } from '@/app/lib/actions';
 import { User, Question } from '@/app/lib/definitions';
 
@@ -55,6 +56,14 @@ const QuestionPage = async ({ params }: { params: IQuestionParams }) => {
   // 결과가 비어있을 경우 에러 페이지 대신 안내 메시지 표시
   if (!questions.length) {
     return <div>No questions found</div>;
+  }
+  // 정답 확인해야 하는 경우 정답 페이지로 이동
+  if (paramsArr[paramsArr.length - 1] === 'result') {
+    return (
+      <div>
+        <AnswerContainer />
+      </div>
+    );
   }
 
   return (
