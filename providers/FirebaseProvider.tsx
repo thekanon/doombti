@@ -19,7 +19,7 @@ export default function FirebaseProvider({
   children,
 }: FirebaseProviderProps) {
   const [isFirebaseInitialized, setFirebaseInitialized] = useState(false);
-  const { setUserData, uid } = useUserStore();
+  const { setUserData, name, me } = useUserStore();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -42,16 +42,18 @@ export default function FirebaseProvider({
     });
 
     // 사용자 상태 변경 시 호출될 콜백 함수 등록
-    const unsubscribeAuthChange = onAuthStateChanged(auth, (user) => {
+    const unsubscribeAuthChange = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const { uid, displayName, email, photoURL } = user;
         console.log('user=== true');
         if (userInfo) {
-          setUserData({
-            ...userInfo,
-            displayName,
-            photoURL,
-          });
+          if (name === '') {
+            setUserData({
+              ...userInfo,
+              displayName,
+              photoURL,
+            });
+          }
           console.log('userInfo=== true');
 
           if (pathname === '/signin' || pathname.indexOf('/introduce') !== -1) {
@@ -64,21 +66,17 @@ export default function FirebaseProvider({
             }
           }
         } else {
-          setUserData({
-            fb_uid: uid,
-            displayName,
-            email,
-            photoURL,
-          });
-          // dashboard로 이동할때 회원 정보가 없으면 signin으로 이동
-          if (pathname.indexOf('/dashboard') !== -1 && uid === '') {
-            console.log('pathname.indexOf(/dashboard) !== -1 && uid === )');
-            router.replace('/signin');
+          console.log('userInfo=== false');
+          if (name === '') {
+            const auth = me();
+            console.log('auth', auth);
           }
         }
         // router.replace('/dashboard');
       } else {
-        if (
+        if (pathname === '/dashboard') {
+          router.replace('/signin');
+        } else if (
           pathname !== '/' &&
           pathname !== '/signin' &&
           pathname.indexOf('/introduce') === -1

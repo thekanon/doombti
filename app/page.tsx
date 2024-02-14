@@ -3,22 +3,30 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Loading from '@/app/ui/common/Atoms/Loading';
 import { useRouter } from 'next/navigation';
+import useUserStore from '@/app/lib/stores/authStore';
 
 export default function Page() {
   const router = useRouter();
+  const userinfo = useUserStore();
 
   useEffect(() => {
-    router.prefetch('introduce/step');
     const timer = setTimeout(() => {
-      if (localStorage && !localStorage?.getItem('visited')) {
+      if (!localStorage?.getItem('visited') && !userinfo.fb_uid) {
+        console.log('not visited');
+        localStorage.setItem('visited', 'true');
         router.push('introduce/step');
-      } else {
+      } else if (userinfo.fb_uid) {
+        console.log('visited');
+        router.push('dashboard');
         // 사용자가 이전에 방문한 적이 있음을 의미
         // 메인 페이지나 다른 페이지를 보여주는 로직
+      } else {
+        console.log('not login');
+        router.push('signin');
       }
-    }, 2000);
+    }, 100);
     return () => clearTimeout(timer);
-  }, [router]);
+  }, [router, userinfo]);
 
   return (
     <div

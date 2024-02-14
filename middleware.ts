@@ -11,7 +11,6 @@ export async function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
 
   if (
-    request.nextUrl.pathname !== '/' &&
     request.nextUrl.pathname !== '/signin' &&
     request.nextUrl.pathname.indexOf('/introduce/') === -1
   ) {

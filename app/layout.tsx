@@ -15,7 +15,6 @@ const inter = Nunito({
 
 export async function getUserInfo() {
   const authHeaders = headers().get('x-from-auth-page');
-  console.log(authHeaders);
   if (authHeaders) {
     return (await loadAuth()) as User;
   } else {
