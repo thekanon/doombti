@@ -18,15 +18,6 @@ const MobileLayout = ({ children }: { children: React.ReactNode }) => {
           className="flex items-center gap-2
         "
         >
-          {/* 검색창 */}
-          <button className="rounded p-1">
-            <Image
-              src="/Iconly/Light/Search.svg"
-              width={24}
-              height={24}
-              alt="Icon"
-            />
-          </button>
           <button className="rounded p-1">
             <Image
               src="/Iconly/Light/Notification.svg"
