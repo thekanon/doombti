@@ -81,6 +81,7 @@ const useUserStore = create<UserState>()(
         const result = await fetchUserData(user?.uid);
         const userData = result[0];
         set((state) => ({ ...userData }), false, 'me');
+        return userData;
       },
     }),
     {
