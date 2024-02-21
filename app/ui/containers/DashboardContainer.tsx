@@ -73,7 +73,7 @@ const DashboardContainer = () => {
           className="mt-4 flex flex-col gap-4 rounded-lg bg-white p-4 shadow-md
         "
         >
-          <h2 className="mb-4 text-lg font-bold">요즘 핫한 설문이에요</h2>
+          <h2 className="mb-4 text-lg font-bold">요즘 핫한 설문 결과에요</h2>
           {hotQuestions.map((question, index) => (
             <HotTopic
               key={index}
