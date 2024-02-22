@@ -34,6 +34,11 @@ const SurveyPage = () => {
           <button className="btn btn-primary">네</button>
           <button className="btn btn-primary">아니요</button>
         </div>
+        자녀가 있으신가요?
+        <div className="flex flex-col space-y-2">
+          <button className="btn btn-primary">네</button>
+          <button className="btn btn-primary">아니요</button>
+        </div>
       </div>
     </div>
   );
